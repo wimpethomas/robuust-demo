@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Charts Examples with Dark Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="darkModeToggle">
+                <input type="checkbox" id="darkModeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Dark Mode</em>
+        </div>
+
+        <div class="container">
+            <h1>Google Charts Examples</h1>
+
+            <div class="chart-section">
+                <h2>Bar Chart (Company Performance)</h2>
+                <div id="bar_chart_div" class="chart"></div>
+            </div>
+
+            <div class="chart-section">
+                <h2>Line Chart (Daily Sales)</h2>
+                <div id="line_chart_div" class="chart"></div>
+            </div>
+
+            <div class="chart-section">
+                <h2>Pie Chart (Browser Usage)</h2>
+                <div id="pie_chart_div" class="chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

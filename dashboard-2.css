@@ -1,0 +1,666 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef; /* Used for modal headers as well */
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors (consistent with products.css) */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Card specific colors */
+    --card-border: #e0e0e0;
+    --card-header-bg: #f8f9fa;
+    --card-footer-bg: #f8f9fa;
+
+    /* Google Chart specific colors (these will also be set in JS) */
+    --chart-bg-google: '#ffffff';
+    --chart-text-google: '#666';
+    --chart-grid-google: '#e0e0e0';
+    --chart-title-google: '#333';
+
+    /* Sidebar specific colors */
+    --sidebar-bg: #333;
+    --sidebar-text-color: #ffffff;
+    --sidebar-hover-bg: #007bff;
+    --sidebar-active-bg: #0056b3;
+    --sidebar-border-color: #555;
+    --submenu-bg: #444;
+    --submenu-hover-bg: #555;
+    --sidebar-header-bg: #222;
+    --sidebar-footer-bg: #222;
+    --sidebar-logo-border: #777;
+    --close-button-color: #ffffff;
+    --close-button-hover-color: #ccc;
+    --logout-link-color: #9ac2ed;
+    --logout-status-bg: #28a745;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #e0e0e0;
+    --h-color: #9ac2ed; /* Adjusted for dark mode */
+    --subtitle-color: #b0b0b0;
+    --border-color: #3a3a5f;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #9ac2ed; /* Adjusted for dark mode */
+    --button-hover-color: #79a8d9; /* Darker hover for dark mode accent */
+    --input-bg: #2d3142;
+    --input-border: #5a5a7f;
+    --table-header-bg: #2a2a4a;
+    --table-border: #3a3a5f;
+    --table-row-hover: #22223b;
+
+    /* Header button colors */
+    --header-button-bg: #333;
+    --header-button-text: #e0e0e0;
+    --header-button-border: #555;
+    --header-button-hover-bg: #444;
+
+    /* Card specific colors for dark mode */
+    --card-border: #3a3a5f;
+    --card-header-bg: #22223b;
+    --card-footer-bg: #22223b;
+
+    /* Google Chart specific colors for dark mode */
+    --chart-bg-google: '#16213e'; /* Dark background for charts */
+    --chart-text-google: '#e0e0e0'; /* Light text for charts */
+    --chart-grid-google: '#5a5a7f'; /* Darker grid lines */
+    --chart-title-google: '#e0e0e0'; /* Light title */
+
+    /* Sidebar specific colors for dark mode */
+    --sidebar-bg: #2b2e3b;
+    --sidebar-text-color: #e0e0e0;
+    --sidebar-hover-bg: #3a3f52;
+    --sidebar-active-bg: #4c5268;
+    --sidebar-border-color: #4a4d60;
+    --submenu-bg: #323546;
+    --submenu-hover-bg: #3f4357;
+    --sidebar-header-bg: #22242e;
+    --sidebar-footer-bg: #22242e;
+    --sidebar-logo-border: #5a5d70;
+    --close-button-color: #e0e0e0;
+    --close-button-hover-color: #b0b0b0;
+    --logout-link-color: #9ac2ed;
+    --logout-status-bg: #1e6c3d;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.1);
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Needed for sidebar positioning */
+}
+
+/* Header Styles (from products.css) */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--h-color);
+    color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .page-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.main-header h1 {
+    font-size: 1.8em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.action-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.1);
+}
+
+.action-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--button-hover-color);
+}
+
+.action-icon-button .icon {
+    font-size: 1.4em;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.menu-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #ffffff;
+    padding-left: 10px; /* Add some space from buttons */
+}
+
+/* Top Controls - Theme Switch (from products.css) */
+.top-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+}
+
+
+/* Dashboard Cards Layout */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 25px;
+    padding: 25px;
+    background-color: var(--bg-color); /* Matches page background */
+    transition: background-color 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures content stays within rounded corners */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-header-bg);
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.ellipsis-icon {
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    padding: 5px; /* Make it easier to click */
+    border-radius: 50%; /* Make it circular */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ellipsis-icon:hover {
+    background-color: rgba(var(--shadow-color-rgb), 0.05);
+    color: var(--accent-color);
+}
+
+.card-content-text {
+    padding: 20px;
+    flex-grow: 1; /* Allows it to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically if space allows */
+}
+
+.card-chart-content {
+    flex-grow: 1; /* Allows the chart to take available space */
+    min-height: 250px; /* Minimum height for chart containers */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Add some padding around the chart */
+}
+
+.chart {
+    width: 100%;
+    height: 100%; /* Charts will fill their parent container */
+}
+
+.card-metric {
+    font-size: 2.5em; /* Large font for key numbers */
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between description and percentage */
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+.card-percentage {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 3px 8px; /* Padding for the percentage bubble */
+    border-radius: 4px;
+}
+
+.card-percentage.positive {
+    background-color: #e6ffe6; /* Light green background */
+    color: #28a745; /* Green text for positive */
+    border: 1px solid #28a745;
+}
+
+body.dark-mode .card-percentage.positive {
+    background-color: #1a4528; /* Darker green background */
+    color: #a7f7b7; /* Lighter green text */
+    border-color: #a7f7b7;
+}
+
+.card-percentage.negative {
+    background-color: #ffe6e6; /* Light red background */
+    color: #dc3545; /* Red text for negative */
+    border: 1px solid #dc3545;
+}
+
+body.dark-mode .card-percentage.negative {
+    background-color: #451a1a; /* Darker red background */
+    color: #f7a7a7; /* Lighter red text */
+    border-color: #f7a7a7;
+}
+
+.card-footer {
+    padding: 10px 20px;
+    background-color: var(--card-footer-bg);
+    border-top: 1px solid var(--card-border);
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed; /* Position fixed to overlay content */
+    top: 0;
+    left: -280px; /* Hidden by default */
+    width: 260px; /* Adjusted width for menu content */
+    height: 100%;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text-color);
+    box-shadow: 2px 0 10px rgba(var(--shadow-color-rgb), 0.2);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    left: 0; /* Slide in */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--sidebar-header-bg);
+    border-bottom: 1px solid var(--sidebar-border-color);
+}
+
+.sidebar-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 1px solid var(--sidebar-logo-border);
+}
+
+.sidebar-app-name {
+    font-weight: bold;
+    flex-grow: 1;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.close-sidebar-button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--close-button-color);
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.close-sidebar-button:hover {
+    color: var(--close-button-hover-color);
+}
+
+.sidebar-nav {
+    flex-grow: 1; /* Allows nav to take available vertical space */
+    overflow-y: auto; /* Enable scrolling for long menus */
+    padding-top: 10px;
+    padding-bottom: 10px; /* Add padding to the bottom for scroll */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav ul li a i {
+    margin-right: 12px;
+    font-size: 1.1em;
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: var(--accent-color); /* Highlight text on hover */
+}
+
+.sidebar-nav ul li a.active {
+    background-color: var(--sidebar-active-bg);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sidebar-nav ul li a.has-submenu {
+    position: relative;
+    padding-right: 40px; /* Space for the arrow icon */
+}
+
+.sidebar-nav ul li a .submenu-icon {
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav ul li a.has-submenu.expanded .submenu-icon {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    padding-left: 0; /* Remove default padding */
+    margin-left: 0;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--submenu-bg);
+}
+
+.submenu.expanded {
+    max-height: 500px; /* Arbitrary large value to show all content */
+    transition: max-height 0.5s ease-in;
+}
+
+.submenu li a {
+    padding: 12px 20px 12px 55px; /* Apply specific padding including the desired left indent */
+    font-size: 0.88em; /* Smaller font size */
+}
+
+.submenu li a:hover {
+    background-color: var(--submenu-hover-bg);
+}
+
+.sidebar-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--sidebar-border-color);
+    background-color: var(--sidebar-footer-bg);
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+}
+
+.user-info span {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--sidebar-text-color);
+}
+
+.user-info .restaurant-name {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+}
+
+.user-info .username {
+    color: var(--sidebar-text-color);
+}
+
+.user-info .version {
+    font-size: 0.75em;
+    color: var(--subtitle-color);
+}
+
+.logout-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: var(--logout-link-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-link i {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.logout-status {
+    background-color: var(--logout-status-bg);
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: normal;
+}
+
+/* Overlay to dim content when sidebar is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar, above content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .main-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        justify-content: center;
+        padding: 10px 15px;
+    }
+
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .card-content-text {
+        padding: 15px;
+    }
+
+    .card-metric {
+        font-size: 2em;
+    }
+
+    .card-footer {
+        padding: 8px 15px;
+    }
+
+    .sidebar {
+        width: 220px; /* Slightly smaller sidebar on mobile */
+        left: -240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-icon-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+    }
+    .action-icon-button .icon {
+        font-size: 1.2em;
+    }
+    .menu-icon {
+        font-size: 1.3em;
+    }
+    .theme-switch-wrapper em {
+        font-size: 0.8em;
+    }
+}

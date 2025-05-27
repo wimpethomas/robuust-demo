@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floor Manager - Restaurant Jorge Mendoza</title>
+    <link rel="stylesheet" href="floormanager.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="table-info">Floor Management</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="top-controls-floor-manager">
+            <input type="date" id="floorManagerDatePicker" class="date-picker">
+            <div class="room-tabs">
+                <button class="tab-button active" data-room="all">All</button>
+                <button class="tab-button" data-room="roomA">Room A</button>
+                <button class="tab-button" data-room="roomB">Room B</button>
+                <button class="tab-button" data-room="terrace">Terrace</button>
+            </div>
+        </div>
+
+        <main class="pos-main-content floor-manager-content">
+            <div id="table-rows-container" class="table-rows-container">
+                </div>
+        </main>
+    </div>
+
+    <script src="floormanager.js"></script>
+</body>
+</html>

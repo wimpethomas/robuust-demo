@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <span class="icon-products">&#127869; Produkten</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="action-icon-button" id="headerButton1">
+                    <span class="icon">&#10003;</span>
+                </button>
+                <button class="action-icon-button" id="headerButton2">
+                    <span class="icon">&#9998;</span>
+                </button>
+                <button class="action-icon-button" id="headerButton3">
+                    <span class="icon">&#43;</span>
+                </button>
+                <span class="menu-icon">&#9776;</span>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="darkModeToggle">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <em>Toggle Light/Dark Mode</em>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <select id="typeFilter" class="filter-dropdown">
+                <option value="">-- Selecteer Type --</option>
+                <option value="gerecht">gerecht</option>
+                <option value="drank">drank</option>
+            </select>
+            <select id="groupFilter" class="filter-dropdown">
+                <option value="">-- Selecteer Groep --</option>
+                <option value="A la carte">A la carte</option>
+                <option value="Voorgerecht">Voorgerecht</option>
+                <option value="Hoofdgerecht">Hoofdgerecht</option>
+            </select>
+            <select id="departmentFilter" class="filter-dropdown">
+                <option value="">-- Selecteer Afdeling --</option>
+                <option value="Keuken">Keuken</option>
+                <option value="Bar">Bar</option>
+            </select>
+            <input type="text" id="searchDish" class="search-input" placeholder="Zoek gerecht">
+        </div>
+
+        <div class="table-container">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAllDesktop"> Nr</th>
+                        <th>Naam</th>
+                        <th class="column-type">Type</th>
+                        <th class="column-group">Groep</th>
+                        <th class="column-subgroup">Subgroep</th>
+                        <th class="column-department">Afdeling</th>
+                        <th class="column-partie">Partie</th>
+                        <th class="column-gang">Gang</th>
+                        <th class="column-price">Prijs</th>
+                        <th></th> </tr>
+                </thead>
+                <tbody>
+                    <tr data-product-id="I-1" data-type="gerecht" data-group="Voorgerecht" data-department="Keuken">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-1</td>
+                        <td>Brood met smeersels</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">Voorgerecht</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Keuken</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 8,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr data-product-id="I-2" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-2</td>
+                        <td>Carpaccio</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 16,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-4" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-4</td>
+                        <td>Iberico ribfingers</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 18,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-6" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-6</td>
+                        <td>Diamantbaas Gegratineerd</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 16,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-7" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-7</td>
+                        <td>Torbedo Gamalen</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 14,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-9" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-9</td>
+                        <td>Zalm Gegratineerd</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 16,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-11" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-11</td>
+                        <td>Pokebowl vega</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 13,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-12" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-12</td>
+                        <td>Kaaskroketjes</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Voorgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 12,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-13" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-13</td>
+                        <td>Kip cashew</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Hoofdgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 25,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-17" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-17</td>
+                        <td>Vis van de dag</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Hoofdgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 25,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-18" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-18</td>
+                        <td>Grote Tijgergarnalen</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Hoofdgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 27,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                     <tr data-product-id="I-20" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
+                        <td><input type="checkbox" class="product-checkbox-desktop"> I-20</td>
+                        <td>Gevulde Portobello</td>
+                        <td class="column-type">gerecht</td>
+                        <td class="column-group">A la carte</td>
+                        <td class="column-subgroup"></td>
+                        <td class="column-department">Hoofdgerecht</td>
+                        <td class="column-partie"></td>
+                        <td class="column-gang"></td>
+                        <td class="column-price">€ 17,50</td>
+                        <td>
+                            <button class="action-button">
+                                <span class="save-icon">&#x1F4BE;</span>
+                                <span class="drag-handle-icon">&#x2261;</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="product-modal-overlay" id="newProductModal">
+        <div class="product-modal">
+            <div class="modal-header">
+                <h2>New Product</h2>
+                <button class="modal-close-btn" id="modalCloseBtn">&#x2715;</button>
+            </div>
+            <div class="modal-tabs">
+                <button class="modal-tab-btn active" data-tab="main">Main</button>
+                <button class="modal-tab-btn" data-tab="ingredients">Ingredients</button>
+                <button class="modal-tab-btn" data-tab="options">Options & Extras</button>
+                <button class="modal-tab-btn" data-tab="advanced">Advanced</button>
+                <button class="modal-tab-btn" data-tab="related-dishes">Gerelateerde gerechten</button>
+                <button class="modal-tab-btn" data-tab="prices">Prijzen</button>
+                <button class="modal-tab-btn" data-tab="recipe">Receptuur</button>
+                <button class="modal-tab-btn" data-tab="image">Afbeelding</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-content-section active" id="main-tab">
+                    <div class="modal-grid-two-columns">
+                        <div class="form-group">
+                            <label for="product-name">Product Name</label>
+                            <input type="text" id="product-name" placeholder="Enter product name">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category">
+                                <option value="">Select category</option>
+                                <option value="main-course">Main Course</option>
+                                <option value="appetizer">Appetizer</option>
+                                <option value="dessert">Dessert</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select id="type">
+                                <option value="">Select type</option>
+                                <option value="type1">Type 1</option>
+                                <option value="type2">Type 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="group">Group</label>
+                            <select id="group">
+                                <option value="">Select group</option>
+                                <option value="group1">Group 1</option>
+                                <option value="group2">Group 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subgroup">Subgroup</label>
+                            <select id="subgroup">
+                                <option value="">Select subgroup</option>
+                                <option value="subgroup1">Subgroup 1</option>
+                                <option value="subgroup2">Subgroup 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department">
+                                <option value="">Select department</option>
+                                <option value="dept1">Department 1</option>
+                                <option value="dept2">Department 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="partie">Partie</label>
+                            <select id="partie">
+                                <option value="">Select partie</option>
+                                <option value="partie1">Partie 1</option>
+                                <option value="partie2">Partie 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gang">Gang</label>
+                            <select id="gang">
+                                <option value="">Select gang</option>
+                                <option value="gang1">Gang 1</option>
+                                <option value="gang2">Gang 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supplier">Supplier</label>
+                            <select id="supplier">
+                                <option value="">Select supplier</option>
+                                <option value="supplier-a">Supplier A</option>
+                                <option value="supplier-b">Supplier B</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">Unit</label>
+                            <select id="unit">
+                                <option value="">Select unit</option>
+                                <option value="pcs">Pcs</option>
+                                <option value="kg">KG</option>
+                                <option value="liter">Liter</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vat-group">VAT Group</label>
+                            <select id="vat-group">
+                                <option value="">Select VAT Group</option>
+                                <option value="vat-high">High VAT</option>
+                                <option value="vat-low">Low VAT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kitchen-printer">Kitchen Printer</label>
+                            <select id="kitchen-printer">
+                                <option value="">Select printer</option>
+                                <option value="printer1">Printer 1</option>
+                                <option value="printer2">Printer 2</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sales-price">Sales Price</label>
+                            <input type="text" id="sales-price" placeholder="€0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="purchase-price">Purchase Price</label>
+                            <input type="text" id="purchase-price" placeholder="€0.00">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Product Type <i class="fas fa-info-circle info-icon" title="Choose the type of product."></i></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="product-type" value="standard" checked> Standard Product</label>
+                            <label><input type="radio" name="product-type" value="recipe"> Recipe</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <div class="rich-text-editor-placeholder">
+                            <div class="toolbar">
+                                <button><i class="fas fa-bold"></i></button>
+                                <button><i class="fas fa-italic"></i></button>
+                                <button><i class="fas fa-underline"></i></button>
+                                <button><i class="fas fa-list-ul"></i></button>
+                                <button><i class="fas fa-list-ol"></i></button>
+                                <select>
+                                    <option>Normal</option>
+                                    <option>Heading 1</option>
+                                </select>
+                            </div>
+                            <textarea id="description" placeholder="Enter product description here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-content-section" id="ingredients-tab">
+                    <h3>Ingredients List <button class="table-add-btn"><i class="fas fa-plus"></i></button></h3>
+                    <div class="modal-table-container">
+                        <table class="modal-table">
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Quantity</th>
+                                    <th>Unit</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sugar</td>
+                                    <td>100</td>
+                                    <td>grams</td>
+                                    <td class="actions-column">
+                                        <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Flour</td>
+                                    <td>200</td>
+                                    <td>grams</td>
+                                    <td class="actions-column">
+                                        <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-content-section" id="options-tab">
+                    <div class="modal-two-column-grid">
+                        <div>
+                            <h3>Options <button class="table-add-btn"><i class="fas fa-plus"></i></button></h3>
+                            <div class="modal-table-container">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Option Name</th>
+                                            <th>Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Small</td>
+                                            <td>€0.00</td>
+                                            <td class="actions-column">
+                                                <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                                <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Large</td>
+                                            <td>€2.00</td>
+                                            <td class="actions-column">
+                                                <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                                <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Extras <button class="table-add-btn"><i class="fas fa-plus"></i></button></h3>
+                            <div class="modal-table-container">
+                                <table class="modal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Extra Name</th>
+                                            <th>Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Extra Cheese</td>
+                                            <td>€1.50</td>
+                                            <td class="actions-column">
+                                                <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                                <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Add Bacon</td>
+                                            <td>€2.50</td>
+                                            <td class="actions-column">
+                                                <button class="table-edit-btn"><i class="fas fa-edit"></i></button>
+                                                <button class="table-delete-btn"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-content-section" id="advanced-tab">
+                    <div class="form-group">
+                        <label for="product-code">Product Code</label>
+                        <input type="text" id="product-code" placeholder="Auto-generated or enter manually">
+                    </div>
+                    <div class="form-group">
+                        <label for="barcode">Barcode</label>
+                        <input type="text" id="barcode" placeholder="Scan or enter barcode">
+                    </div>
+                    <div class="form-group">
+                        <label>Availability</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="availability" value="online" checked> Available Online</label>
+                            <label><input type="checkbox" name="availability" value="instore"> Available In-Store</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Internal Notes</label>
+                        <textarea id="notes" placeholder="Add any internal notes about the product..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-content-section" id="related-dishes-tab">
+                    <h3>Gerelateerde gerechten (Content coming soon)</h3>
+                    <p>This section will allow linking related dishes.</p>
+                </div>
+                <div class="modal-content-section" id="prices-tab">
+                    <h3>Prijzen (Content coming soon)</h3>
+                    <p>This section will manage various pricing options.</p>
+                </div>
+                <div class="modal-content-section" id="recipe-tab">
+                    <h3>Receptuur (Content coming soon)</h3>
+                    <p>This section will contain recipe details.</p>
+                </div>
+                <div class="modal-content-section" id="image-tab">
+                    <h3>Afbeelding (Content coming soon)</h3>
+                    <p>This section will manage product images.</p>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="modal-action-btn cancel-button" id="modalCancelBtn">Cancel</button>
+                <div class="modal-navigation-buttons">
+                    <button class="modal-action-btn nav-button"><i class="fas fa-chevron-left"></i></button>
+                    <button class="modal-action-btn nav-button"><i class="fas fa-chevron-right"></i></button>
+                    <button class="modal-action-btn save-button-footer"><i class="fas fa-save"></i> Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+</body>
+</html>

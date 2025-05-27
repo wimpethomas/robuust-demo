@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Components</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="darkModeToggle">
+                <input type="checkbox" id="darkModeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Dark Mode</em>
+        </div>
+
+        <div class="dashboard-container">
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Kaart</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content">
+                    <p class="subtitle">Antraciet</p>
+                    <p class="value-line-1">=-12-% vs.</p>
+                    <p class="value-line-2">=-12% vs. Gisteren</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Vosarten</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content">
+                    <p class="icon-label">+ TOAT</p>
+                    <p class="large-number">$84508</p>
+                    <p class="small-text">102% ck</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Dorgelijkingen</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content">
+                    <p class="icon-label">+ TOAT</p>
+                    <p class="large-number">$20150</p>
+                    <p class="small-text">112% vs. Gisteren</p>
+                </div>
+            </div>
+
+            <div class="card card-with-form">
+                <div class="card-header">
+                    <h3>Kaarten</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <select class="dropdown-select">
+                            <option>Debisuret</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                    <button class="action-button">Aanpassen</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

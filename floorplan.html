@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Floorplan - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="floorplan.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <span class="icon-floorplan">&#9776; Floorplan</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="action-button">Actieve tafels</button>
+                <button class="action-button">Dagafsluiting</button>
+                <span class="menu-icon">&#9776;</span>
+            </div>
+        </header>
+
+        <nav class="floorplan-nav">
+            <button class="nav-button active">RESTAURANT</button>
+            <button class="nav-button">THEATER</button>
+            <button class="nav-button">GALLERY</button>
+            <button class="nav-button">TERRAS</button>
+            <button class="nav-button">THEATER GR</button>
+            <button class="nav-button add-button">+</button>
+        </nav>
+
+        <div class="top-controls">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="darkModeToggle">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <em>Toggle Light/Dark Mode</em>
+            </div>
+            <div class="date-picker-wrapper">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate">
+                <button id="applyDates">Apply</button>
+            </div>
+        </div>
+
+        <div class="floorplan-container">
+            <div class="floorplan-image-wrapper">
+                <img src="ROBUUST-05-27-2025_09_15_AM.jpg" alt="Restaurant Floorplan" class="floorplan-image">
+            </div>
+            <button class="reservations-button">Reserveringen <span class="plus-icon">+</span></button>
+        </div>
+    </div>
+
+    <script src="floorplan.js"></script>
+</body>
+</html>

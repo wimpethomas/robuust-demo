@@ -1,0 +1,407 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff;
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --input-focus-border: #007bff;
+    --nav-button-bg: #e9ecef;
+    --nav-button-text: #333;
+    --nav-button-active-bg: #007bff;
+    --nav-button-active-text: #ffffff;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #e0e0e0;
+    --h-color: #9ac2ed;
+    --subtitle-color: #b0b0b0;
+    --border-color: #3a3a5f;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #66b3ff;
+    --button-hover-color: #4a90e2;
+    --input-bg: #3a3a3a;
+    --input-border: #555;
+    --button-bg: #4a90e2;
+    --button-text: #ffffff;
+    --input-focus-border: #66b3ff;
+    --nav-button-bg: #2a3b5c;
+    --nav-button-text: #e0e0e0;
+    --nav-button-active-bg: #66b3ff;
+    --nav-button-active-text: #16213e;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(var(--shadow-color-rgb), 0.1);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-center h1 {
+    font-size: 1.5em;
+    color: var(--h-color);
+}
+
+.icon-floorplan {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--subtitle-color);
+}
+
+.action-button {
+    padding: 8px 15px;
+    background-color: var(--accent-color);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.menu-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--subtitle-color);
+}
+
+/* Floorplan Navigation */
+.floorplan-nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    background-color: var(--card-bg);
+    padding: 10px 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    background-color: var(--nav-button-bg);
+    color: var(--nav-button-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button:hover:not(.active) {
+    background-color: color-mix(in srgb, var(--nav-button-bg) 80%, var(--accent-color) 20%);
+}
+
+.nav-button.active {
+    background-color: var(--nav-button-active-bg);
+    color: var(--nav-button-active-text);
+}
+
+.nav-button.add-button {
+    background-color: #28a745; /* Green for add button */
+    color: white;
+}
+
+body.dark-mode .nav-button.add-button {
+    background-color: #4CAF50; /* Slightly different green in dark mode */
+}
+
+/* Top Controls - Theme Switch & Date Picker */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-style: normal;
+    transition: color 0.3s ease;
+}
+
+/* Angular Material inspired Date Picker Styles */
+.date-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.date-picker-wrapper label {
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.date-picker-wrapper input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 1px solid var(--input-border);
+    border-radius: 4px 4px 0 0;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9em;
+    transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.date-picker-wrapper input[type="date"]:hover {
+    background-color: color-mix(in srgb, var(--input-bg) 90%, var(--text-color) 10%);
+}
+
+.date-picker-wrapper input[type="date"]:focus {
+    outline: none;
+    border-bottom: 2px solid var(--input-focus-border);
+    padding-bottom: 9px;
+}
+
+/* Style for the calendar icon/drop-down arrow for consistency */
+.date-picker-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(var(--text-invert-filter, 0));
+    cursor: pointer;
+}
+
+/* Helper to invert calendar icon color in dark mode */
+body.dark-mode {
+    --text-invert-filter: 1;
+}
+
+.date-picker-wrapper button {
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-picker-wrapper button:hover {
+    background-color: var(--button-hover-color);
+    box-shadow: 0 4px 8px rgba(var(--shadow-color-rgb), 0.3);
+}
+
+.date-picker-wrapper button:active {
+    box-shadow: 0 1px 2px rgba(var(--shadow-color-rgb), 0.4);
+}
+
+/* Floorplan Container */
+.floorplan-container {
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px; /* Ensure enough height for the image */
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floorplan-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floorplan-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Scale image to fit within the container */
+    border-radius: 8px;
+}
+
+.reservations-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545; /* Red color for reservations */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .reservations-button {
+    background-color: #e65252;
+}
+
+.reservations-button:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 8px rgba(var(--shadow-color-rgb), 0.3);
+}
+
+.reservations-button .plus-icon {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .floorplan-nav {
+        justify-content: center;
+    }
+    .top-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .date-picker-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        width: 100%;
+    }
+    .date-picker-wrapper input[type="date"],
+    .date-picker-wrapper button {
+        width: 100%;
+    }
+    .reservations-button {
+        position: static; /* Remove absolute positioning on small screens */
+        margin-top: 20px;
+        width: 100%;
+    }
+    .floorplan-container {
+        min-height: 400px; /* Adjust height for smaller screens */
+    }
+}

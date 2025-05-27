@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="stats.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Statistics</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="top-controls-stats">
+            <div class="date-range-picker">
+                <label for="startDate">From:</label>
+                <input type="date" id="startDate" class="date-input">
+                <label for="endDate">To:</label>
+                <input type="date" id="endDate" class="date-input">
+            </div>
+            <div class="filter-selectors">
+                <div class="select-group">
+                    <label for="mealTypeFilter">Meal Type:</label>
+                    <select id="mealTypeFilter" class="dropdown-select">
+                        <option value="all">All</option>
+                        <option value="main">Main Course</option>
+                        <option value="appetizer">Appetizer</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="drink">Drinks</option>
+                    </select>
+                </div>
+                <div class="select-group">
+                    <label for="departmentFilter">Department:</label>
+                    <select id="departmentFilter" class="dropdown-select">
+                        <option value="all">All</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bar">Bar</option>
+                        <option value="service">Service</option>
+                    </select>
+                </div>
+                <div class="select-group">
+                    <label for="roomFilter">Room:</label>
+                    <select id="roomFilter" class="dropdown-select">
+                        <option value="all">All</option>
+                        <option value="mainDining">Main Dining</option>
+                        <option value="terrace">Terrace</option>
+                        <option value="privateRoom">Private Room</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <main class="pos-main-content stats-content">
+            <div id="overall-stats-section" class="stats-section active">
+                <h2>Overall Statistics</h2>
+                <div class="summary-cards-container">
+                    <div class="stat-card">
+                        <div class="card-title">Total Sales</div>
+                        <div class="card-value" id="overallTotalSales"></div>
+                        <div class="card-description">€ 15,230.50 Target</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Avg Order Value</div>
+                        <div class="card-value" id="overallAvgOrderValue"></div>
+                        <div class="card-description">€ 45.20 Baseline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Avg Covers per Order</div>
+                        <div class="card-value" id="overallAvgCovers"></div>
+                        <div class="card-description">2.5 Standard</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Top Selling Meal</div>
+                        <div class="card-value" id="overallTopMeal"></div>
+                        <div class="card-description">This period's best</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Avg Wait Time</div>
+                        <div class="card-value" id="overallAvgWaitTime"></div>
+                        <div class="card-description">Target: 10 min</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Table Turnover</div>
+                        <div class="card-value" id="overallTableTurnover"></div>
+                        <div class="card-description">Target: 75 min</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="card-title">Customer Satisfaction</div>
+                        <div class="card-value" id="overallCustomerSat"></div>
+                        <div class="card-description">Out of 5 stars</div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Daily Sales Trend</h3>
+                        <div id="daily_sales_trend_chart" class="chart-placeholder"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Meal Type Breakdown</h3>
+                        <div id="meal_type_breakdown_chart" class="chart-placeholder"></div>
+                    </div>
+                </div>
+
+                <div class="daily-table-container">
+                    <h3>Daily Statistics Breakdown</h3>
+                    <table class="stats-table daily-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Total Sales</th>
+                                <th>Total Orders</th>
+                                <th>Avg Order Value</th>
+                                <th>Top Meal Today</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="stats.js"></script>
+</body>
+</html>

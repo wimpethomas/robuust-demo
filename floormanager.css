@@ -1,0 +1,531 @@
+/* Base Styles */
+:root {
+    --primary-bg: #F8F8F8; /* Lighter page background for contrast */
+    --secondary-bg: #ffffff;
+    --border-color: #d0d0d0; /* Adjusted for new contrast with table lines */
+    --text-color: #333333;
+    --header-bg: #4a148c; /* Deep Purple */
+    --header-text: #ffffff;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --button-hover-bg: #0056b3;
+    --card-bg: #ffffff;
+    --product-item-bg: #f8f8f8;
+    --product-item-hover-bg: #e9ecef;
+    --product-item-selected-bg: #e0f2f7; /* Light blue for selected */
+    --order-item-bg: #E0E0E0; /* Changed: main background for order items */
+    --order-item-border: #D0D0D0; /* Adjusted: general border for order items */
+    --accent-color: #28a745; /* Green for total/important info */
+    --modal-bg: rgba(0, 0, 0, 0.5);
+    --modal-content-bg: #ffffff;
+    --modal-header-bg: #f8f8f8;
+    --modal-border-color: #ccc;
+    --modal-button-bg: #007bff;
+    --modal-button-cancel-bg: #dc3545;
+    --modal-button-hover-bg: #0056b3;
+    --input-bg: #ffffff;
+    --input-border: #cccccc;
+    --input-text: #333;
+    --section-title-color: #555;
+
+    /* Payment Modal Variables */
+    --payment-amount-bg: #e9ecef;
+    --payment-amount-text: #333;
+    --payment-method-box-bg: #f0f0f0;
+    --payment-method-box-hover-bg: #e0e0e0;
+    --payment-method-box-selected-bg: #28a745;
+    --payment-method-box-selected-text: #ffffff;
+    --payment-input-bg: #ffffff;
+    --payment-input-border: #999;
+    --payment-input-text: #333;
+
+    /* Split Payment Variables */
+    --split-mode-button-bg: #e0e0e0;
+    --split-mode-button-text: #333;
+    --split-mode-button-hover-bg: #d0d0d0;
+    --split-mode-button-active-bg: #007bff; /* Blue for active split mode */
+    --split-mode-button-active-text: #ffffff;
+    --split-section-bg: #f8f8f8;
+    --split-line-border: #eee;
+    --split-line-bg: #ffffff;
+    --secondary-button-bg: #6c757d; /* Gray for secondary buttons */
+    --secondary-button-hover-bg: #5a6268;
+
+    /* Floor Manager Specific Colors (NEW) */
+    --table-row-bg: #E0E0E0; /* Changed: main background for table lines/rows */
+    --table-row-border: #D0D0D0; /* Adjusted for contrast with new table-row-bg */
+    --table-summary-bg: #D5D5D5; /* Slightly darker than table-row-bg for summary contrast */
+    --order-item-border-fm: #B0B0B0; /* Adjusted for contrast with new order-item-bg */
+    --service-time-good: #28a745; /* Green */
+    --service-time-neutral: #ffc107; /* Amber/Yellow */
+    --service-time-bad: #dc3545; /* Red */
+    --inactive-table-opacity: 0.5;
+
+    /* Top Controls for Floor Manager */
+    --top-controls-bg: #ffffff; /* Keep white for a clean bar */
+    --date-picker-bg: #f8f8f8;
+    --date-picker-border: #cccccc;
+    --tab-button-bg: #e0e0e0;
+    --tab-button-text: #333;
+    --tab-button-hover-bg: #d0d0d0;
+    --tab-button-active-bg: #4a148c; /* Deep Purple for active tab */
+    --tab-button-active-text: #ffffff;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --primary-bg: #212121;
+    --secondary-bg: #333333;
+    --border-color: #444444;
+    --text-color: #e0e0e0;
+    --header-bg: #311b92; /* Darker Purple */
+    --header-text: #ffffff;
+    --button-bg: #4a148c; /* Darker blue/purple */
+    --button-text: #ffffff;
+    --button-hover-bg: #5a2c9d;
+    --card-bg: #424242;
+    --product-item-bg: #3a3a3a;
+    --product-item-hover-bg: #4f4f4f;
+    --product-item-selected-bg: #2a6a8c; /* Darker blue */
+    --order-item-bg: #424242;
+    --order-item-border: #555;
+    --accent-color: #66bb6a; /* Lighter green for dark mode */
+    --modal-bg: rgba(0, 0, 0, 0.7);
+    --modal-content-bg: #3a3a3a;
+    --modal-header-bg: #2c2c2c;
+    --modal-border-color: #555;
+    --modal-button-bg: #4a148c;
+    --modal-button-cancel-bg: #a83f4f;
+    --modal-button-hover-bg: #5a2c9d;
+    --input-bg: #424242;
+    --input-border: #666666;
+    --input-text: #e0e0e0;
+    --section-title-color: #bbb;
+
+    /* Payment Modal Dark Mode Variables */
+    --payment-amount-bg: #2d3142;
+    --payment-amount-text: #e0e0e0;
+    --payment-method-box-bg: #444;
+    --payment-method-box-hover-bg: #555;
+    --payment-method-box-selected-bg: #66bb6a;
+    --payment-method-box-selected-text: #ffffff;
+    --payment-input-bg: #3a3a3a;
+    --payment-input-border: #555;
+    --payment-input-text: #e0e0e0;
+
+    /* Split Payment Dark Mode Variables */
+    --split-mode-button-bg: #444;
+    --split-mode-button-text: #e0e0e0;
+    --split-mode-button-hover-bg: #555;
+    --split-mode-button-active-bg: #4a148c; /* Darker purple for active split mode */
+    --split-mode-button-active-text: #ffffff;
+    --split-section-bg: #2d3142;
+    --split-line-border: #3a3a5f;
+    --split-line-bg: #333;
+    --secondary-button-bg: #5a6268;
+    --secondary-button-hover-bg: #495057;
+
+    /* Floor Manager Specific Dark Mode Colors (NEW) */
+    --table-row-bg: #3a3a3a;
+    --table-row-border: #444444;
+    --table-summary-bg: #2c2c2c;
+    --order-item-border-fm: #555555;
+    --service-time-good: #66bb6a;
+    --service-time-neutral: #ffeb3b; /* Keep yellow, but adjust text */
+    --service-time-bad: #ef5350;
+    --inactive-table-opacity: 0.5;
+
+    /* Top Controls Dark Mode */
+    --top-controls-bg: #2c2c2c;
+    --date-picker-bg: #3a3a3a;
+    --date-picker-border: #666666;
+    --tab-button-bg: #444;
+    --tab-button-text: #e0e0e0;
+    --tab-button-hover-bg: #555;
+    --tab-button-active-bg: #311b92; /* Darker purple for active tab */
+    --tab-button-active-text: #ffffff;
+}
+
+
+/* General Body and Container Styles */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    height: 100vh;
+    overflow: hidden; /* Prevent body scroll, let content scroll */
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header Styles */
+.pos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 60px;
+    box-sizing: border-box;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-center h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.table-info {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.header-icon-button {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    font-size: 1.4em;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .ball {
+    background-color: #fff;
+    height: 21px;
+    width: 21px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s linear;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px);
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    color: #f1c40f; /* Yellow for sun/moon */
+    font-size: 1.1em;
+}
+
+.dark-mode-label .moon-icon {
+    transform: translateX(-5px); /* Adjust position slightly */
+}
+
+.dark-mode-label .sun-icon {
+    transform: translateX(5px); /* Adjust position slightly */
+}
+
+
+/* New: Top Controls for Floor Manager */
+.top-controls-floor-manager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 20px;
+    background-color: var(--top-controls-bg);
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.date-picker {
+    padding: 8px 12px;
+    border: 1px solid var(--date-picker-border);
+    border-radius: 5px;
+    background-color: var(--date-picker-bg);
+    color: var(--input-text);
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.date-picker:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.room-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* Allow tabs to wrap if too many */
+    justify-content: center;
+}
+
+.tab-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--tab-button-bg);
+    color: var(--tab-button-text);
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-button:hover {
+    background-color: var(--tab-button-hover-bg);
+}
+
+.tab-button.active {
+    background-color: var(--tab-button-active-bg);
+    color: var(--tab-button-active-text);
+    font-weight: bold;
+}
+
+
+/* Main Content Area */
+.pos-main-content {
+    display: flex;
+    flex: 1; /* Takes remaining vertical space */
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden; /* Manage overflow of its direct children */
+}
+
+/* Floor Manager Specific Styles (NEW) */
+.floor-manager-content {
+    flex-direction: column; /* Stack tables vertically */
+    overflow-y: auto; /* Allow scrolling for the entire floor manager content */
+    align-items: center; /* Center content horizontally */
+    padding-top: 20px; /* Add some top padding */
+    padding-bottom: 20px; /* Add some bottom padding */
+    width: 100%;
+    max-width: 1400px; /* Max width for readability - Changed from 1200px to 1400px */
+    margin: 0 auto; /* Center the content area */
+}
+
+.table-rows-container {
+    width: 100%; /* Take full width of its parent (.floor-manager-content) */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between table rows */
+}
+
+.table-row {
+    display: flex;
+    border: 1px solid var(--table-row-border);
+    border-radius: 8px;
+    background-color: var(--table-row-bg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    min-height: 80px; /* Minimum height for a row */
+    overflow: hidden; /* Contain order flow if it overflows */
+    transition: opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-row.inactive-table {
+    opacity: var(--inactive-table-opacity);
+}
+
+.table-summary {
+    flex-shrink: 0; /* Don't shrink */
+    width: 180px; /* Fixed width for table number and last service */
+    background-color: var(--table-summary-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-right: 1px solid var(--table-row-border);
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.table-summary .table-number {
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: var(--header-bg); /* Use a prominent color */
+}
+
+.table-summary .last-served-info {
+    font-size: 0.9em;
+    color: var(--section-title-color);
+}
+
+.order-flow {
+    flex-grow: 1; /* Take remaining space */
+    display: flex;
+    overflow-x: auto; /* Allow horizontal scrolling for orders */
+    align-items: center;
+    padding: 10px;
+    gap: 10px; /* Space between order items */
+}
+
+.order-item {
+    flex-shrink: 0; /* Don't shrink items */
+    min-width: 120px; /* Minimum width for each order item */
+    padding: 8px 12px;
+    border: 1px solid var(--order-item-border-fm);
+    border-radius: 6px;
+    background-color: var(--order-item-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    font-size: 0.9em;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.order-item .item-name {
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--text-color);
+}
+
+.order-item .item-quantity {
+    font-size: 0.85em;
+    color: var(--section-title-color);
+    margin-bottom: 5px;
+}
+
+.order-item .service-time {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: #f0f0f0; /* Default neutral background */
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-self: flex-end; /* Align to bottom right */
+}
+
+/* Service Time Color Coding */
+.service-time.green {
+    background-color: var(--service-time-good);
+    color: white;
+}
+
+/* Changed text color to dark for better readability on yellow */
+.service-time.neutral {
+    background-color: var(--service-time-neutral);
+    color: #333; /* Explicitly dark text for neutral in both light and dark mode */
+}
+body.dark-mode .service-time.neutral {
+    color: #333; /* Explicitly dark text for neutral in dark mode */
+}
+
+
+.service-time.red {
+    background-color: var(--service-time-bad);
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    .header-left, .header-right, .header-center {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+    .pos-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.5em;
+    }
+    .pos-main-content {
+        padding: 10px;
+    }
+    .top-controls-floor-manager {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    .date-picker, .room-tabs {
+        width: 100%;
+        justify-content: center;
+    }
+    .table-row {
+        flex-direction: column; /* Stack summary and orders vertically */
+    }
+    .table-summary {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--table-row-border);
+    }
+    .order-flow {
+        width: 100%;
+        padding: 10px;
+    }
+    .order-item {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        height: auto; /* Allow header to expand if content wraps */
+        padding: 10px;
+    }
+    .pos-header h1 {
+        font-size: 1.2em;
+    }
+    .table-summary .table-number {
+        font-size: 1.5em;
+    }
+    .table-summary .last-served-info {
+        font-size: 0.8em;
+    }
+    .order-item {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    .order-item .service-time {
+        font-size: 0.9em;
+        padding: 2px 4px;
+    }
+}

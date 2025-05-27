@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="transactions.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Transactions</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="top-controls-transactions">
+            <div class="date-range-picker">
+                <label for="startDate">From:</label>
+                <input type="date" id="startDate" class="date-input">
+                <label for="endDate">To:</label>
+                <input type="date" id="endDate" class="date-input">
+            </div>
+            <div class="type-selector">
+                <label for="transactionType">Show:</label>
+                <select id="transactionType" class="dropdown-select">
+                    <option value="all">All Transactions</option>
+                    <option value="perPaymentMethod">Per Payment Method</option>
+                    <option value="perCoworker">Per Coworker</option>
+                </select>
+            </div>
+        </div>
+
+        <main class="pos-main-content transactions-content">
+            <div id="all-transactions-section" class="transaction-section active">
+                <div class="summary-cards-container">
+                    <div class="transaction-card">
+                        <div class="card-title">Total Transactions</div>
+                        <div class="card-value" id="totalTransactions"></div>
+                        <div class="card-trend positive">+10%</div>
+                        <div class="card-description">since last month</div>
+                    </div>
+                    <div class="transaction-card">
+                        <div class="card-title">Average Check</div>
+                        <div class="card-value" id="averageCheck"></div>
+                        <div class="card-trend negative">-5%</div>
+                        <div class="card-description">compared to last period</div>
+                    </div>
+                    <div class="transaction-card">
+                        <div class="card-title">Average Covers</div>
+                        <div class="card-value" id="averageCovers"></div>
+                        <div class="card-trend positive">+0.2</div>
+                        <div class="card-description">per transaction</div>
+                    </div>
+                </div>
+
+                <div class="daily-table-container">
+                    <h3>All Transactions Data</h3>
+                    <table class="transaction-table daily-all-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Transaction ID</th>
+                                <th>Table</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Coworker</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="perPaymentMethod-transactions-section" class="transaction-section">
+                <div class="daily-table-container">
+                    <h2>Transactions Per Payment Method</h2>
+                    <table class="transaction-table daily-paymentmethod-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Payment Method</th>
+                                <th>Total Transactions</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="perCoworker-transactions-section" class="transaction-section">
+                <div class="daily-table-container">
+                    <h2>Transactions Per Coworker</h2>
+                    <table class="transaction-table daily-coworker-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Coworker Name</th>
+                                <th>Total Transactions</th>
+                                <th>Total Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="transactions.js"></script>
+</body>
+</html>

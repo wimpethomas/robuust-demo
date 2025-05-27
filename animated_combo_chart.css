@@ -1,0 +1,160 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --h1-color: #0056b3;
+    --h2-color: #007bff;
+    --chart-border-color: #ddd;
+    --section-border-color: #eee;
+    --chart-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* Google Chart specific colors (these will also be set in JS) */
+    --chart-bg-google: '#ffffff'; /* White for light mode chart background */
+    --chart-text-google: '#666'; /* Darker grey for axis text, legend text */
+    --chart-grid-google: '#e0e0e0'; /* Lighter grey for gridlines */
+    --chart-title-google: '#333'; /* Dark grey for chart title */
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --container-bg: #16213e;
+    --text-color: #e0e0e0;
+    --h1-color: #66b3ff;
+    --h2-color: #9ac2ed;
+    --chart-border-color: #3a3a5f;
+    --section-border-color: #2a2a4a;
+    --chart-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* Google Chart specific colors for dark mode */
+    --chart-bg-google: '#16213e';
+    --chart-text-google: '#b0b0b0';
+    --chart-grid-google: '#3a3a5f';
+    --chart-title-google: '#e0e0e0';
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease; /* Smooth transition for theme change */
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Max width for the whole content area */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+h1 {
+    text-align: center;
+    color: var(--h1-color);
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+}
+
+h2 {
+    color: var(--h2-color);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--section-border-color);
+    padding-bottom: 10px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.chart-section {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.chart {
+    width: 100%;
+    height: 500px;
+    border: 1px solid var(--chart-border-color);
+    border-radius: 5px;
+    box-shadow: var(--chart-box-shadow);
+    display: inline-block;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme Switch Specific Styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+    margin-bottom: 25px; /* Spacing below the switch */
+    width: 100%; /* Take full width of page-wrapper */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-style: normal;
+    transition: color 0.3s ease;
+}

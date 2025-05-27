@@ -1,0 +1,1631 @@
+/* CSS Variables for POS Theme */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --header-bg: #007bff; /* Example: Blue for header in light mode */
+    --accent-color: #007bff;
+    --button-bg: #e0e0e0;
+    --button-text: #333;
+    --button-hover-bg: #d0d0d0;
+    --border-color: #ddd;
+    --input-bg: #f5f5f5;
+    --input-text: #333;
+    --input-border: #999;
+    --product-item-bg: #E0E0E0; /* Background for product squares in light mode */
+    --product-item-hover-bg: #e2f0ff;
+    --product-item-selected-bg: #cce0ff;
+    --category-button-bg: #e9ecef;
+    --category-button-active-bg: #007bff;
+    --category-button-text: #333;
+    --order-action-bg: #e0e0e0;
+    --order-action-hover-bg: #d0d0d0;
+    --order-action-active-bg: #28a745;
+    --order-action-active-text: #ffffff;
+    --order-item-bg: #ffffff; /* This affects order-box and bill-summary parents */
+    --order-item-border: #eee;
+    --quantity-button-bg: #e9ecef;
+    --quantity-button-hover-bg: #d0d0d0;
+    --table-header-bg: #e9ecef;
+    --bill-item-bg: #ffffff; /* This affects order-box and bill-summary parents */
+    --total-bg: #e9ecef;
+    --subtitle-color: #666;
+    --order-list-bg: #E0E0E0; /* Specific background for order list in light mode */
+    --bill-items-container-bg: #E0E0E0; /* Specific background for bill items container in light mode */
+
+    /* Modal Specific Variables */
+    --modal-overlay-bg: rgba(0, 0, 0, 0.5);
+    --modal-content-bg: #ffffff;
+    --modal-header-bg: var(--table-header-bg);
+    --modal-border-color: var(--border-color);
+    --modal-text-color: var(--text-color);
+    --modal-input-bg: var(--input-bg);
+    --modal-input-border: var(--input-border);
+    --modal-button-cancel-bg: #dc3545;
+    --modal-button-cancel-text: #ffffff;
+    --modal-button-cancel-hover: #c82333;
+    --modal-button-add-bg: #28a745;
+    --modal-button-add-text: #ffffff;
+    --modal-button-add-hover: #218838;
+    --modal-section-title-color: var(--subtitle-color);
+    --modal-option-bg: #f8f8f8; /* Default for option group */
+    --option-box-bg: #f0f0f0; /* Background for unselected option boxes */
+    --option-box-border: #ccc;
+    --option-box-hover-bg: #e0e0e0;
+    --option-box-selected-bg: #cce0ff; /* Light blue for selected */
+    --option-box-selected-border: #007bff; /* Blue border for selected */
+    --option-box-text-color: var(--text-color);
+    --option-price-color: var(--subtitle-color);
+
+    /* Payment Modal Specific Variables */
+    --payment-amount-bg: #e9ecef;
+    --payment-amount-text: #333;
+    --payment-method-box-bg: #f0f0f0;
+    --payment-method-box-hover-bg: #e0e0e0;
+    --payment-method-box-selected-bg: #28a745; /* Green for selected payment method */
+    --payment-method-box-selected-text: #ffffff;
+    --payment-input-bg: #ffffff;
+    --payment-input-border: #999;
+    --payment-input-text: #333;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e; /* Dark background */
+    --card-bg: #16213e; /* Darker card/pane background */
+    --text-color: #e0e0e0; /* Light text */
+    --header-bg: #4a148c; /* Purple from Kassa.png header */
+    --accent-color: #9ac2ed; /* Light blue accent */
+    --button-bg: #444; /* Dark button background */
+    --button-text: #e0e0e0; /* Light button text */
+    --button-hover-bg: #555;
+    --border-color: #3a3a5f; /* Dark border */
+    --input-bg: #2d3142;
+    --input-text: #e0e0e0;
+    --input-border: #5a5a7f;
+    --product-item-bg: #333; /* Background for product squares in dark mode */
+    --product-item-hover-bg: #007bff; /* Blue hover for products */
+    --product-item-selected-bg: #0056b3; /* Darker blue for selected */
+    --category-button-bg: #2d3142;
+    --category-button-active-bg: #007bff;
+    --category-button-text: #e0e0e0;
+    --order-action-bg: #666;
+    --order-action-hover-bg: #777;
+    --order-action-active-bg: #28a745; /* Green for "Sluit" */
+    --order-action-active-text: #ffffff;
+    --order-item-bg: #333;
+    --order-item-border: #444;
+    --quantity-button-bg: #555;
+    --quantity-button-hover-bg: #666;
+    --table-header-bg: #2a2a4a;
+    --bill-item-bg: #22223b;
+    --total-bg: #3a3f52;
+    --subtitle-color: #b0b0b0; /* Lighter subtitle in dark mode */
+    --order-list-bg: var(--card-bg); /* Use card background in dark mode */
+    --bill-items-container-bg: var(--card-bg); /* Use card background in dark mode */
+
+    /* Modal Specific Dark Mode Variables */
+    --modal-overlay-bg: rgba(0, 0, 0, 0.7);
+    --modal-content-bg: #2a2a4a;
+    --modal-header-bg: #3a3f52;
+    --modal-border-color: #4a4f6a;
+    --modal-text-color: #e0e0e0;
+    --modal-input-bg: #3b3b5c;
+    --modal-input-border: #6a6a8f;
+    --modal-button-cancel-bg: #7c3545; /* Darker red */
+    --modal-button-cancel-hover: #8c2333;
+    --modal-button-add-bg: #1e7e34; /* Darker green */
+    --modal-button-add-hover: #17692f;
+    --modal-section-title-color: var(--subtitle-color);
+    --modal-option-bg: #333; /* Darker background for option group */
+    --option-box-bg: #444; /* Background for unselected option boxes in dark mode */
+    --option-box-border: #666;
+    --option-box-hover-bg: #555;
+    --option-box-selected-bg: #0056b3; /* Darker blue for selected in dark mode */
+    --option-box-selected-border: #007bff; /* Blue border for selected in dark mode */
+    --option-box-text-color: var(--text-color);
+    --option-price-color: #b0b0b0;
+
+    /* Payment Modal Specific Dark Mode Variables */
+    --payment-amount-bg: #3a3f52;
+    --payment-amount-text: #e0e0e0;
+    --payment-method-box-bg: #444;
+    --payment-method-box-hover-bg: #555;
+    --payment-method-box-selected-bg: #1e7e34; /* Darker green for selected */
+    --payment-method-box-selected-text: #ffffff;
+    --payment-input-bg: #3b3b5c;
+    --payment-input-border: #6a6a8f;
+    --payment-input-text: #e0e0e0;
+}
+
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: hidden; /* Prevent body scroll, main content handles it */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 1400px; /* RESTRICTED MAX WIDTH */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Header Styles */
+.pos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* Prevent header from shrinking */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+    transition: background-color 0.3s ease;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .table-info {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.pos-header h1 {
+    font-size: 1.4em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icon-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    margin: 0 5px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: var(--button-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    font-size: 1em;
+    color: var(--accent-color); /* Adjust icon color based on theme */
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode-label .sun-icon {
+    right: 5px;
+    left: auto; /* Ensure sun icon stays on the right initially */
+}
+
+.dark-mode-label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 19px;
+    width: 19px;
+    transform: translateX(0px);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px); /* Move to the right for dark mode */
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label {
+    background-color: #6a0dad; /* Purple switch background when dark mode is on */
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .moon-icon {
+    transform: translateX(100%); /* Move moon icon out of view */
+    opacity: 0;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .sun-icon {
+    transform: translateX(-100%); /* Move sun icon out of view */
+    opacity: 1; /* Make sun icon visible */
+}
+
+/* Initial icon states for light mode */
+.dark-mode-checkbox + .dark-mode-label .moon-icon {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.dark-mode-checkbox + .dark-mode-label .sun-icon {
+    opacity: 0;
+    transform: translateX(0%); /* Keep sun icon at its position but hidden */
+}
+
+
+/* Main Content Area */
+.pos-main-content {
+    display: flex;
+    flex-grow: 1; /* Takes remaining vertical space */
+    background-color: var(--bg-color);
+    padding: 15px;
+    gap: 15px; /* Space between the two main panes */
+    overflow: hidden; /* Important for flex children scrolling */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    transition: background-color 0.3s ease;
+}
+
+/* Product Pane (Left) */
+.product-pane {
+    flex: 1; /* Takes available space */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.product-grid-container {
+    flex-grow: 1; /* Allows grid to take available space */
+    overflow-y: auto; /* Independent scrolling for products */
+    padding-right: 10px; /* Space for scrollbar */
+    margin-right: -10px; /* Compensate for padding to keep alignment */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid for products */
+    gap: 10px;
+}
+
+.product-item {
+    background-color: var(--product-item-bg); /* Uses variable */
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; /* Fixed height for product items */
+    transition: background-color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.product-item:hover {
+    background-color: var(--product-item-hover-bg);
+}
+
+.product-item.selected {
+    background-color: var(--product-item-selected-bg);
+    border: 2px solid var(--accent-color); /* Highlight selected */
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.product-price {
+    font-size: 1.1em;
+    color: var(--accent-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.product-code {
+    font-size: 0.7em;
+    color: var(--subtitle-color);
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+    justify-content: center;
+}
+
+.category-button {
+    background-color: var(--category-button-bg);
+    color: var(--category-button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.category-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.category-button.active {
+    background-color: var(--category-button-active-bg);
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Order Pane (Right) */
+.order-pane {
+    flex: 0 0 450px; /* Fixed width for the order pane */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.order-actions .action-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.order-actions .action-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.order-actions .table-number-display {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    flex-grow: 1; /* Takes available space */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.order-actions .printer-button, .order-actions .diner-button {
+    background-color: #007bff; /* Specific color for Diner/Print */
+}
+.order-actions .printer-button:hover, .order-actions .diner-button:hover {
+    background-color: #0056b3;
+}
+.order-actions .pay-button { /* NEW */
+    background-color: #28a745; /* Green for pay button */
+    color: #ffffff;
+    font-weight: bold;
+}
+.order-actions .pay-button:hover { /* NEW */
+    background-color: #218838;
+}
+
+
+.order-box {
+    background-color: var(--order-item-bg);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent shrinking to allow bill-summary to scroll */
+    min-height: 200px; /* Minimum height for order box */
+    max-height: 300px; /* Max height to allow bill summary to scroll */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-box-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.order-box-header span {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.order-action-button {
+    background-color: var(--order-action-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-left: 5px;
+}
+
+.order-action-button:hover {
+    background-color: var(--order-action-hover-bg);
+}
+
+.order-action-button.active {
+    background-color: var(--order-action-active-bg);
+    color: var(--order-action-active-text);
+}
+
+.order-list-container {
+    flex-grow: 1; /* Allows order list to take available space */
+    overflow-y: auto; /* Independent scrolling for order items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+    background-color: var(--order-list-bg); /* Uses variable */
+}
+
+.order-list {
+    list-style: none;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--order-item-border);
+    transition: border-color 0.3s ease;
+}
+
+.order-item-name {
+    flex-grow: 1;
+    font-size: 0.95em;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-controls button {
+    background-color: var(--quantity-button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: var(--quantity-button-hover-bg);
+}
+
+.quantity-controls .quantity {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.bill-summary {
+    flex-grow: 1; /* Takes remaining vertical space */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bill-item-bg); /* Uses bill-item-bg, which is white by default in light mode */
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    min-height: 200px; /* Minimum height */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bill-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* Dish, Qty, Price, Gang */
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.bill-items-container {
+    flex-grow: 1; /* Allows bill items to take available space */
+    overflow-y: auto; /* Independent scrolling for bill items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+    background-color: var(--bill-items-container-bg); /* Uses variable */
+}
+
+.bill-items {
+    list-style: none;
+}
+
+.bill-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--order-item-border); /* Dashed line for bill items */
+    font-size: 0.9em;
+    transition: border-color 0.3s ease;
+}
+
+.bill-item:last-child {
+    border-bottom: none;
+}
+
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: var(--total-bg);
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Scrollbar styling for Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-bg);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* On top of other content */
+}
+
+.modal-content {
+    background-color: var(--modal-content-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--modal-text-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--modal-header-bg);
+    border-bottom: 1px solid var(--modal-border-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.close-button {
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #dc3545;
+}
+
+.modal-body {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    font-size: 1em;
+    color: var(--modal-section-title-color);
+}
+
+textarea.kitchen-note {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--modal-input-border);
+    border-radius: 5px;
+    background-color: var(--modal-input-bg);
+    color: var(--modal-text-color);
+    font-size: 0.9em;
+    min-height: 80px;
+    resize: vertical;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.option-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid for options */
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--modal-option-bg);
+    border-radius: 5px;
+}
+
+.option-box {
+    background-color: var(--option-box-bg);
+    border: 1px solid var(--option-box-border);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--option-box-text-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60px; /* Ensure boxes have some height */
+}
+
+.option-box:hover {
+    background-color: var(--option-box-hover-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.option-box.selected {
+    background-color: var(--option-box-selected-bg);
+    border-color: var(--option-box-selected-border);
+    box-shadow: 0 0 0 2px var(--option-box-selected-border); /* Highlight border */
+    font-weight: bold;
+}
+
+.option-box .option-price {
+    font-size: 0.8em;
+    color: var(--option-price-color);
+    margin-top: 3px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid var(--modal-border-color);
+    background-color: var(--modal-header-bg); /* Use similar background as header */
+}
+
+.modal-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.modal-button.cancel-button {
+    background-color: var(--modal-button-cancel-bg);
+    color: var(--modal-button-cancel-text);
+}
+
+.modal-button.cancel-button:hover {
+    background-color: var(--modal-button-cancel-hover);
+    transform: translateY(-1px);
+}
+
+.modal-button.add-button {
+    background-color: var(--modal-button-add-bg);
+    color: var(--modal-button-add-text);
+}
+
+.modal-button.add-button:hover {
+    background-color: var(--modal-button-add-hover);
+    transform: translateY(-1px);
+}
+
+/* Payment Modal Specific Styles (NEW) */
+.payment-section {
+    margin-bottom: 20px;
+}
+
+.payment-amount-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--payment-amount-bg);
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--payment-amount-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.payment-amount-display .label {
+    color: var(--subtitle-color);
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.payment-amount-display .amount {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.payment-method-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.payment-method-box {
+    background-color: var(--payment-method-box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+.payment-method-box:hover {
+    background-color: var(--payment-method-box-hover-bg);
+}
+
+.payment-method-box.selected {
+    background-color: var(--payment-method-box-selected-bg);
+    color: var(--payment-method-box-selected-text);
+    border-color: var(--payment-method-box-selected-bg); /* Match border to background when selected */
+    font-weight: bold;
+}
+
+.payment-method-box.selected i {
+    color: var(--payment-method-box-selected-text); /* Ensure icon color changes with selection */
+}
+
+.payment-method-box i {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    color: var(--subtitle-color); /* Default icon color */
+    transition: color 0.2s ease;
+}
+
+.payment-input-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--payment-input-bg);
+    border: 1px solid var(--payment-input-border);
+    border-radius: 5px;
+    padding: 8px 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.payment-input-group .currency-prefix {
+    font-size: 1.2em;
+    margin-right: 5px;
+    color: var(--payment-input-text);
+}
+
+.payment-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    padding: 2px 0;
+    background-color: transparent;
+    color: var(--payment-input-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .pos-main-content {
+        flex-direction: column; /* Stack panes vertically */
+        overflow-y: auto; /* Allow main content to scroll if needed */
+    }
+
+    .product-pane, .order-pane {
+        flex: none; /* Remove flex grow */
+        width: 100%; /* Take full width */
+        max-width: none;
+        height: auto; /* Allow height to be determined by content */
+        max-height: none;
+    }
+
+    .order-pane {
+        flex: 0 0 auto; /* Allow order pane to shrink/grow */
+    }
+
+    .order-box, .bill-summary {
+        max-height: 400px; /* Limit height for scrollable sections on smaller screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .pos-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.2em;
+    }
+
+    .order-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .order-actions .table-number-display {
+        flex-grow: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .product-item {
+        height: 90px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .payment-method-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Smaller payment buttons */
+    }
+
+    .payment-method-box i {
+        font-size: 1.5em;
+    }
+    .payment-method-box span {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .product-item {
+        height: 80px;
+        padding: 8px;
+    }
+
+    .product-name {
+        font-size: 0.8em;
+    }
+
+    .product-price {
+        font-size: 1em;
+    }
+
+    .category-button, .action-button, .order-action-button {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+
+    .payment-amount-display {
+        font-size: 1em;
+        padding: 10px;
+    }
+    .payment-amount-display .label {
+        font-size: 0.8em;
+    }
+    .payment-amount-display .amount {
+        font-size: 1em;
+    }
+    .payment-input {
+        font-size: 1em;
+    }
+    .payment-input-group .currency-prefix {
+        font-size: 1em;
+    }
+}
+
+/* Add to CSS Variables for Payment Modal */
+:root {
+    /* ... existing variables ... */
+    --payment-amount-bg: #e9ecef;
+    --payment-amount-text: #333;
+    --payment-method-box-bg: #f0f0f0;
+    --payment-method-box-hover-bg: #e0e0e0;
+    --payment-method-box-selected-bg: #28a745;
+    --payment-method-box-selected-text: #ffffff;
+    --payment-input-bg: #ffffff;
+    --payment-input-border: #999;
+    --payment-input-text: #333;
+
+    /* Split Payment Variables (NEW) */
+    --split-mode-button-bg: #e0e0e0;
+    --split-mode-button-text: #333;
+    --split-mode-button-hover-bg: #d0d0d0;
+    --split-mode-button-active-bg: #007bff; /* Blue for active split mode */
+    --split-mode-button-active-text: #ffffff;
+    --split-section-bg: #f8f8f8;
+    --split-line-border: #eee;
+    --split-line-bg: #ffffff;
+    --secondary-button-bg: #6c757d; /* Gray for secondary buttons */
+    --secondary-button-hover-bg: #5a6268;
+}
+
+body.dark-mode {
+    /* ... existing dark mode variables ... */
+
+    /* Split Payment Dark Mode Variables (NEW) */
+    --split-mode-button-bg: #444;
+    --split-mode-button-text: #e0e0e0;
+    --split-mode-button-hover-bg: #555;
+    --split-mode-button-active-bg: #4a148c; /* Darker purple for active split mode */
+    --split-mode-button-active-text: #ffffff;
+    --split-section-bg: #2d3142;
+    --split-line-border: #3a3a5f;
+    --split-line-bg: #333;
+    --secondary-button-bg: #5a6268;
+    --secondary-button-hover-bg: #495057;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    /* ... existing styles ... */
+}
+
+.modal-content {
+    /* ... existing styles ... */
+    max-width: 500px; /* Default small modal */
+}
+
+.modal-content.large-modal-content { /* NEW */
+    max-width: 900px; /* Wider modal for split payments */
+    width: 95%;
+}
+
+/* ... existing modal styles ... */
+
+/* Payment Modal Specific Styles (NEW) */
+/* ... existing payment modal styles ... */
+
+.split-payment-section { /* Container for split options */
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.split-modes-selection {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.split-mode-button {
+    background-color: var(--split-mode-button-bg);
+    color: var(--split-mode-button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex: 1; /* Distribute space evenly */
+    min-width: 100px; /* Minimum width for buttons */
+}
+
+.split-mode-button:hover {
+    background-color: var(--split-mode-button-hover-bg);
+}
+
+.split-mode-button.active {
+    background-color: var(--split-mode-button-active-bg);
+    color: var(--split-mode-button-active-text);
+}
+
+.split-options-container {
+    padding: 10px;
+    background-color: var(--split-section-bg);
+    border-radius: 8px;
+    min-height: 150px; /* Ensure some height even if content is small */
+    transition: background-color 0.3s ease;
+}
+
+.split-mode-content {
+    display: none; /* Hidden by default, shown by JS */
+    flex-direction: column; /* Most split modes will be column layout */
+    gap: 15px;
+}
+
+.split-mode-content.active {
+    display: flex;
+}
+
+.split-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.split-input-group label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.split-input-group .small-input {
+    width: 80px; /* Smaller input for number of people */
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+}
+
+.payment-amount-display.small-display {
+    padding: 10px;
+    font-size: 1.1em;
+    background-color: var(--payment-amount-bg);
+}
+
+.split-line-header {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1.5fr; /* Person, Paid, Method */
+    gap: 10px;
+    font-weight: bold;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.split-payment-lines { /* Container for dynamic lines in Los mode */
+    max-height: 250px; /* Scrollable area */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-right: -10px;
+}
+
+.split-payment-line {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1.5fr 30px; /* Person, Paid, Method, Delete button */
+    gap: 10px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--split-line-border);
+    background-color: var(--split-line-bg);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.split-payment-line:last-child {
+    border-bottom: none;
+}
+
+.split-payment-line span {
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+.split-payment-line input {
+    padding: 5px;
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.9em;
+}
+
+.split-payment-line .payment-method-dropdown {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.split-payment-line .delete-line-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+.split-payment-line .delete-line-btn:hover {
+    color: #c82333;
+}
+
+
+.split-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.split-actions.split-top-actions { /* For OnDish mode's top actions */
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-top: none;
+    padding-top: 0;
+}
+
+.modal-button.secondary-button {
+    background-color: var(--secondary-button-bg);
+    color: #ffffff;
+}
+
+.modal-button.secondary-button:hover {
+    background-color: var(--secondary-button-hover-bg);
+}
+
+
+/* Split Mode: Gelijkmatig (Even) */
+.split-payment-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px; /* Scrollable area */
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-right: -10px;
+}
+
+.person-payment-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: var(--split-line-bg);
+    border: 1px solid var(--split-line-border);
+    border-radius: 5px;
+}
+
+.person-payment-section .person-label {
+    font-weight: bold;
+    min-width: 80px; /* Align labels */
+}
+
+.person-payment-section .person-amount {
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--accent-color);
+}
+
+.person-payment-section .payment-method-grid-small {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Align to right */
+    flex-grow: 1;
+}
+
+.person-payment-section .payment-method-box-small {
+    padding: 5px 8px;
+    font-size: 0.8em;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--payment-method-box-bg);
+    color: var(--text-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.person-payment-section .payment-method-box-small:hover {
+    background-color: var(--payment-method-box-hover-bg);
+}
+
+.person-payment-section .payment-method-box-small.selected {
+    background-color: var(--payment-method-box-selected-bg);
+    color: var(--payment-method-box-selected-text);
+    border-color: var(--payment-method-box-selected-bg);
+}
+
+
+/* Split Mode: Op gerecht (On Dish) */
+.on-dish-payment-lines-container {
+    display: flex;
+    gap: 15px;
+    height: 350px; /* Fixed height for the main content area */
+    overflow: hidden; /* Manage scrolling of children */
+}
+
+.on-dish-order-items,
+.on-dish-payment-sections {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    height: 100%; /* Take full height of parent */
+    overflow-y: auto; /* Scrollable */
+    transition: background-color 0.3s ease;
+}
+
+.on-dish-order-items {
+    flex: 1; /* Take half width */
+    min-width: 200px;
+}
+
+.on-dish-payment-sections {
+    flex: 1.2; /* Take slightly more than half to accommodate more payment lines */
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Allows payment sections to wrap */
+    align-content: flex-start; /* Aligns items to the start of the container */
+}
+
+
+.order-item-list { /* For draggable order items */
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.on-dish-item {
+    padding: 8px;
+    background-color: var(--split-line-bg);
+    border: 1px solid var(--split-line-border);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.on-dish-item:hover {
+    background-color: var(--product-item-hover-bg);
+}
+
+.on-dish-item.dragging {
+    opacity: 0.5;
+    border: 2px dashed var(--accent-color);
+}
+
+.on-dish-item .item-name {
+    font-weight: bold;
+}
+.on-dish-item .item-price {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.on-dish-payment-target {
+    background-color: var(--split-section-bg); /* Lighter background for drop targets */
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px; /* Ensure a minimum size for drop target */
+    flex: 0 0 calc(50% - 10px); /* Two columns layout */
+    position: relative;
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.on-dish-payment-target.drag-over {
+    border-color: var(--accent-color);
+    background-color: var(--product-item-selected-bg);
+}
+
+.on-dish-payment-target .target-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--modal-section-title-color);
+}
+
+.on-dish-payment-target .target-total {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-top: auto; /* Pushes to the bottom */
+    text-align: right;
+}
+
+.on-dish-payment-target .target-item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allows list to fill space */
+    overflow-y: auto; /* If items exceed height */
+}
+
+.on-dish-payment-target .target-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--split-line-border);
+    font-size: 0.85em;
+}
+
+.on-dish-payment-target .target-item:last-child {
+    border-bottom: none;
+}
+
+.on-dish-payment-target .delete-target-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 5px;
+}
+.on-dish-payment-target .delete-target-btn:hover {
+    color: #c82333;
+}
+
+.on-dish-payment-target .payment-method-grid-small {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+
+/* Responsive adjustments for large modal */
+@media (max-width: 992px) {
+    .modal-content.large-modal-content {
+        max-width: 700px;
+    }
+    .on-dish-payment-lines-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .on-dish-order-items {
+        width: 100%;
+        height: 200px; /* Shorter height for items list */
+    }
+    .on-dish-payment-sections {
+        width: 100%;
+        flex-wrap: wrap; /* Ensure columns wrap */
+        height: auto; /* Allow height to adjust */
+    }
+    .on-dish-payment-target {
+        flex: 0 0 calc(100% - 0px); /* Stack targets vertically */
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content.large-modal-content {
+        max-width: 95%; /* Allow it to be almost full width on small screens */
+    }
+    .split-mode-button {
+        flex: auto; /* Allow buttons to wrap more naturally */
+        width: 100px;
+    }
+    .split-line-header, .split-payment-line {
+        grid-template-columns: 0.5fr 1.2fr 1.5fr 30px; /* Adjust columns */
+    }
+    .on-dish-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .on-dish-item .item-price {
+        align-self: flex-end; /* Push price to right */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content.large-modal-content {
+        padding: 10px;
+    }
+    .modal-header h3 {
+        font-size: 1em;
+    }
+    .modal-button {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+    .split-mode-button {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+    .payment-amount-display, .payment-amount-display.small-display {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    .payment-input-group .currency-prefix, .payment-input {
+        font-size: 1em;
+    }
+    .split-line-header, .split-payment-line {
+        grid-template-columns: 0.5fr 1fr 1fr 25px; /* Further adjust for very small screens */
+        font-size: 0.8em;
+    }
+    .split-payment-line input, .split-payment-line .payment-method-dropdown {
+        font-size: 0.8em;
+        padding: 3px;
+    }
+    .on-dish-payment-target {
+        min-height: 80px;
+        padding: 5px;
+    }
+    .on-dish-payment-target .target-header {
+        font-size: 0.9em;
+    }
+    .on-dish-payment-target .target-total {
+        font-size: 1em;
+    }
+    .on-dish-payment-target .target-item {
+        font-size: 0.75em;
+    }
+}

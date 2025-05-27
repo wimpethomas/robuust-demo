@@ -1,0 +1,602 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef; /* Used for modal headers as well */
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Schedule specific colors */
+    --schedule-border: #e0e0e0;
+    --schedule-cell-bg: #ffffff;
+    --schedule-header-bg: #f8f9fa;
+    --current-day-border: var(--accent-color);
+    --other-month-color: #bbb; /* Less relevant for weekly, but keep for consistency */
+    --add-button-bg: #28a745;
+    --add-button-hover-bg: #218838;
+    --coworker-name-bg: #e9ecef;
+    --coworker-name-color: #333;
+
+    /* Availability colors */
+    --shift-morning-bg: #d1ecf1; /* Light blue */
+    --shift-morning-text: #0c5460;
+    --shift-afternoon-bg: #fff3cd; /* Light yellow */
+    --shift-afternoon-text: #856404;
+    --shift-evening-bg: #f8d7da; /* Light red */
+    --shift-evening-text: #721c24;
+    --shift-off-bg: #e2e3e5; /* Light gray */
+    --shift-off-text: #495057;
+    --shift-custom-bg: #d4edda; /* Light green */
+    --shift-custom-text: #155724;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #e0e0e0;
+    --h-color: #9ac2ed; /* Adjusted for dark mode */
+    --subtitle-color: #b0b0b0;
+    --border-color: #3a3a5f;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #9ac2ed; /* Adjusted for dark mode */
+    --button-hover-color: #79a8d9; /* Darker hover for dark mode accent */
+    --input-bg: #2d3142;
+    --input-border: #5a5a7f;
+    --table-header-bg: #2a2a4a;
+    --table-border: #3a3a5f;
+    --table-row-hover: #22223b;
+
+    /* Header button colors */
+    --header-button-bg: #333;
+    --header-button-text: #e0e0e0;
+    --header-button-border: #555;
+    --header-button-hover-bg: #444;
+
+    /* Schedule specific colors for dark mode */
+    --schedule-border: #3a3a5f;
+    --schedule-cell-bg: #16213e;
+    --schedule-header-bg: #22223b;
+    --current-day-border: var(--accent-color);
+    --other-month-color: #777;
+    --add-button-bg: #1f7d3d; /* Darker green */
+    --add-button-hover-bg: #1a632e;
+    --coworker-name-bg: #2a2a4a;
+    --coworker-name-color: #e0e0e0;
+
+    /* Availability colors dark mode */
+    --shift-morning-bg: #0d3840;
+    --shift-morning-text: #a1d9e2;
+    --shift-afternoon-bg: #5a4b16;
+    --shift-afternoon-text: #f0e68c;
+    --shift-evening-bg: #4d1c24;
+    --shift-evening-text: #e8a8b1;
+    --shift-off-bg: #2e3034;
+    --shift-off-text: #a9b3bb;
+    --shift-custom-bg: #1b4f2c;
+    --shift-custom-text: #a7f7b7;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.1);
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Header Styles */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--h-color);
+    color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .page-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.main-header h1 {
+    font-size: 1.8em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.action-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.1);
+}
+
+.action-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--button-hover-color);
+}
+
+.action-icon-button .icon {
+    font-size: 1.4em;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.menu-icon {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* Top Controls - Theme Switch */
+.top-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease;
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+}
+
+
+/* Schedule Container and Table Styles */
+.schedule-container {
+    padding: 25px;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+}
+
+.week-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.05);
+    border: 1px solid var(--schedule-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.week-nav h2 {
+    font-size: 1.5em;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.nav-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Schedule Table Grid Layout */
+.schedule-table {
+    display: grid;
+    /* 1 column for coworker name + 7 columns for days */
+    grid-template-columns: minmax(150px, 1.2fr) repeat(7, 1fr);
+    border: 1px solid var(--schedule-border); /* Outer border for the grid */
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to content */
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.08);
+}
+
+.table-row {
+    display: contents; /* Allows children to be placed directly in the grid */
+}
+
+.table-header {
+    background-color: var(--schedule-header-bg);
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--subtitle-color);
+    border-bottom: 1px solid var(--schedule-border);
+    border-right: 1px solid var(--schedule-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap; /* Prevent wrapping for headers */
+}
+
+.table-header:last-child { /* Last header in the row (Sunday) */
+    border-right: none;
+}
+
+.table-header.coworker-header {
+    text-align: left;
+    padding-left: 15px;
+    min-width: 150px;
+    justify-content: flex-start;
+}
+
+.table-header.day-header .date-info {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: var(--subtitle-color);
+    margin-top: 2px;
+}
+
+.coworker-name-cell, .availability-cell {
+    position: relative;
+    padding: 10px;
+    border-right: 1px solid var(--schedule-border);
+    border-bottom: 1px solid var(--schedule-border);
+    background-color: var(--schedule-cell-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.coworker-name-cell {
+    background-color: var(--coworker-name-bg);
+    color: var(--coworker-name-color);
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+    align-items: flex-start;
+}
+
+/* Remove right border for cells in the last column (Sunday column) */
+.table-row > *:nth-child(8n) { /* Every 8th child in the grid (which is the Sunday cell) */
+    border-right: none;
+}
+
+/* No bottom border for cells in the last logical row (last coworker) */
+/* This will be handled by JS adding a class or inline style, or by dynamically removing the last border */
+.table-row:last-of-type .coworker-name-cell,
+.table-row:last-of-type .availability-cell {
+    border-bottom: none;
+}
+
+
+/* Current day highlight */
+.table-header.current-day-column {
+    border-color: var(--current-day-border);
+    box-shadow: inset 0 0 0 1px var(--current-day-border);
+}
+.availability-cell.current-day-highlight {
+    border: 2px solid var(--current-day-border);
+    box-shadow: 0 0 0 1px var(--current-day-border);
+    z-index: 1; /* Bring current day slightly to front */
+}
+
+
+/* Shift/Availability Item Styles */
+.shift-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 2px; /* Space between multiple shifts */
+}
+.shift-block:last-child {
+    margin-bottom: 0;
+}
+
+/* Specific shift styling */
+.shift-morning {
+    background-color: var(--shift-morning-bg);
+    color: var(--shift-morning-text);
+}
+
+.shift-afternoon {
+    background-color: var(--shift-afternoon-bg);
+    color: var(--shift-afternoon-text);
+}
+
+.shift-evening {
+    background-color: var(--shift-evening-bg);
+    color: var(--shift-evening-text);
+}
+
+.shift-off {
+    background-color: var(--shift-off-bg);
+    color: var(--shift-off-text);
+}
+
+.shift-custom {
+    background-color: var(--shift-custom-bg);
+    color: var(--shift-custom-text);
+}
+
+/* Add Button for individual cells */
+.add-shift-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: var(--add-button-bg);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(var(--shadow-color-rgb), 0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 2; /* Ensure button is above shift blocks */
+}
+
+.add-shift-btn:hover {
+    background-color: var(--add-button-hover-bg);
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .schedule-table {
+        grid-template-columns: minmax(120px, 1fr) repeat(7, 1fr);
+    }
+    .table-header.coworker-header, .coworker-name-cell {
+        padding-left: 10px;
+    }
+    .table-header, .availability-cell {
+        min-height: 60px;
+        padding: 5px;
+        font-size: 0.9em;
+    }
+    .shift-block {
+        font-size: 0.8em;
+        padding: 3px 5px;
+    }
+    .add-shift-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 1.1em;
+        bottom: 3px;
+        right: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 10px 15px;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 8px;
+    }
+
+    .main-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        justify-content: center;
+        padding: 10px 15px;
+    }
+
+    .schedule-container {
+        padding: 15px;
+    }
+
+    .week-nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .week-nav h2 {
+        font-size: 1.2em;
+    }
+
+    .nav-button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .schedule-table {
+        font-size: 0.85em;
+    }
+
+    .table-header {
+        padding: 8px 3px;
+    }
+
+    .table-header.day-header .date-info {
+        font-size: 0.7em;
+    }
+
+    .coworker-name-cell {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .availability-cell {
+        min-height: 50px; /* Even smaller height for small screens */
+        padding: 4px;
+        font-size: 0.8em;
+    }
+
+    .shift-block {
+        font-size: 0.7em;
+        padding: 2px 4px;
+    }
+
+    .add-shift-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 1em;
+        bottom: 2px;
+        right: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-icon-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+    }
+    .action-icon-button .icon {
+        font-size: 1.2em;
+    }
+    .menu-icon {
+        font-size: 1.3em;
+    }
+    .theme-switch-wrapper em {
+        font-size: 0.8em;
+    }
+    .week-nav {
+        flex-direction: row; /* Keep buttons next to month display */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .week-nav h2 {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .schedule-table {
+        grid-template-columns: 80px repeat(7, 1fr); /* Fixed width for coworker column */
+    }
+    .table-header.coworker-header {
+        min-width: 80px;
+    }
+    .coworker-name-cell {
+        padding: 5px;
+    }
+}

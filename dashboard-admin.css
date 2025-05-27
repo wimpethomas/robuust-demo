@@ -1,0 +1,444 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    /* Default (Light Mode) */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff;
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5; /* Lighter input background */
+    --input-border: #999; /* Grey border for inputs */
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --input-focus-border: #007bff; /* Accent color on focus */
+
+    /* Google Chart specific colors (these will also be set in JS) */
+    --chart-bg-google: '#ffffff';
+    --chart-text-google: '#666';
+    --chart-grid-google: '#e0e0e0';
+    --chart-title-google: '#333';
+    --table-header-bg: #e9ecef;
+    --table-border-color: #dee2e6;
+    --table-text-color: #333;
+    --table-row-hover-bg: #f5f5f5;
+}
+
+/* Dark Mode Variables (Primary Theme based on image) */
+body.dark-mode {
+    --bg-color: #212121; /* Dark background */
+    --card-bg: #2b2b2b; /* Slightly lighter dark for cards */
+    --text-color: #e0e0e0; /* Light text for readability */
+    --h-color: #e0e0e0; /* Headers also light */
+    --subtitle-color: #b0b0b0; /* Subtitles a bit darker than main text */
+    --border-color: #444; /* Darker borders */
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #66b3ff; /* Lighter accent for highlights */
+    --button-hover-color: #4a90e2;
+    --input-bg: #3a3a3a; /* Darker input background */
+    --input-border: #555; /* Darker grey border */
+    --button-bg: #4a90e2;
+    --button-text: #ffffff;
+    --input-focus-border: #66b3ff; /* Accent color on focus in dark mode */
+
+    /* Google Chart specific colors for dark mode */
+    --chart-bg-google: '#2b2b2b'; /* Dark background for charts in dark mode */
+    --chart-text-google: '#b0b0b0';
+    --chart-grid-google: '#444';
+    --chart-title-google: '#e0e0e0';
+    --table-header-bg: #3a3a3a;
+    --table-border-color: #444;
+    --table-text-color: #e0e0e0;
+    --table-row-hover-bg: #3a3a3a;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1400px; /* Increased max width for more content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Space between flex items */
+}
+
+/* Theme Switch Specific Styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-style: normal;
+    transition: color 0.3s ease;
+}
+
+/* Angular Material inspired Date Picker Styles */
+.date-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased gap */
+    font-family: 'Roboto', sans-serif; /* Common Material Design font */
+}
+
+.date-picker-wrapper label {
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-weight: 500; /* Slightly bolder */
+}
+
+.date-picker-wrapper input[type="date"] {
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 12px;
+    border: none; /* No visible border initially */
+    border-bottom: 1px solid var(--input-border); /* Underline style */
+    border-radius: 4px 4px 0 0; /* Slight rounding on top corners */
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9em;
+    transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer; /* Indicate interactivity */
+}
+
+.date-picker-wrapper input[type="date"]:hover {
+    background-color: color-mix(in srgb, var(--input-bg) 90%, var(--text-color) 10%); /* Subtle hover effect */
+}
+
+.date-picker-wrapper input[type="date"]:focus {
+    outline: none;
+    border-bottom: 2px solid var(--input-focus-border); /* Thicker accent line on focus */
+    padding-bottom: 9px; /* Adjust padding due to thicker border */
+}
+
+/* Style for the calendar icon/drop-down arrow for consistency */
+.date-picker-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(var(--text-invert-filter, 0)); /* Adjust color in dark mode */
+    cursor: pointer;
+}
+
+/* Helper to invert calendar icon color in dark mode */
+body.dark-mode {
+    --text-invert-filter: 1; /* Invert filter for light text */
+}
+
+.date-picker-wrapper button {
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px; /* Slightly less rounded for Material */
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: uppercase; /* Material button style */
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.2); /* Slight elevation */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-picker-wrapper button:hover {
+    background-color: var(--button-hover-color);
+    box-shadow: 0 4px 8px rgba(var(--shadow-color-rgb), 0.3); /* More elevation on hover */
+}
+
+.date-picker-wrapper button:active {
+    box-shadow: 0 1px 2px rgba(var(--shadow-color-rgb), 0.4); /* Depressed on active */
+}
+
+
+/* Dashboard Grid */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for main layout */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    min-height: 300px; /* Default height for cards with charts */
+}
+
+/* Specific layout for the new arrangement */
+.full-width-chart-card {
+    grid-column: span 2; /* Bar chart spans 2 columns */
+}
+
+/* Card Hover Animation */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 32px rgba(var(--shadow-color-rgb), 0.25);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 1.1em;
+    color: var(--h-color); /* Use h-color for card headers */
+    font-weight: 600;
+}
+
+.ellipsis-icon {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Chart Container within Card */
+.card-chart-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Adjusted min-height for charts */
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+/* Metric Card Specific Styles */
+.metric-card {
+    min-height: 120px; /* Smaller height for metric cards */
+    justify-content: center;
+    align-items: flex-start; /* Align text to start */
+}
+
+.metric-card .card-metric {
+    font-size: 2.2em; /* Slightly smaller for metric cards */
+    margin-bottom: 5px;
+}
+
+.metric-card .card-description {
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+}
+
+/* Text Card Content Styles (re-purposed for metrics) */
+.card-content-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0;
+}
+
+.card-metric {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+.card-percentage {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.card-percentage.positive {
+    background-color: #e6ffe6;
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+body.dark-mode .card-percentage.positive {
+    background-color: #1a4528;
+    color: #a7f7b7;
+    border-color: #a7f7b7;
+}
+
+.card-percentage.negative {
+    background-color: #ffe6e6;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+body.dark-mode .card-percentage.negative {
+    background-color: #451a1a;
+    color: #f7b7b7;
+    border-color: #f7b7b7;
+}
+
+.card-footer {
+    margin-top: auto;
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+/* Table Specific Styles */
+.table-card {
+    min-height: auto; /* Allow tables to determine their height */
+    padding: 15px; /* Adjust padding for tables */
+}
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for narrow screens */
+    width: 100%;
+    flex-grow: 1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border-color);
+    color: var(--table-text-color);
+}
+
+table th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color); /* Ensure header text is readable */
+    position: sticky; /* Keep headers visible on scroll */
+    top: 0; /* Stick to the top of the container */
+    z-index: 1; /* Ensure header is above content */
+}
+
+table tbody tr:hover {
+    background-color: var(--table-row-hover-bg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .dashboard-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust grid for smaller screens */
+    }
+
+    .full-width-chart-card { /* Only apply this for the specific chart now */
+        grid-column: auto; /* Remove specific spans on smaller screens */
+    }
+
+    .top-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .date-picker-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .date-picker-wrapper input[type="date"],
+    .date-picker-wrapper button {
+        width: 100%;
+    }
+}

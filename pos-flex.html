@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS - Restaurant Jorge Mendoza</title>
+    <link rel="stylesheet" href="pos-flex.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="table-info">Rekening - Tafel 33</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <main class="pos-main-content">
+            <div class="product-pane">
+                <div class="search-bar">
+                    <input type="text" placeholder="Zoek product...">
+                    <button>Zoek</button>
+                </div>
+                <div class="product-grid-container">
+                    <div class="product-grid">
+                        <div class="product-item" data-name="Koffie" data-price="2.50" data-code="001">
+                            <span class="product-name">Koffie</span>
+                            <span class="product-price">&euro; 2.50</span>
+                            <span class="product-code">001</span>
+                        </div>
+                        <div class="product-item" data-name="Thee" data-price="2.20" data-code="002">
+                            <span class="product-name">Thee</span>
+                            <span class="product-price">&euro; 2.20</span>
+                            <span class="product-code">002</span>
+                        </div>
+                        <div class="product-item" data-name="Cola" data-price="3.00" data-code="003">
+                            <span class="product-name">Cola</span>
+                            <span class="product-price">&euro; 3.00</span>
+                            <span class="product-code">003</span>
+                        </div>
+                        <div class="product-item" data-name="Truki Ribs" data-price="18.50" data-code="TR01">
+                            <span class="product-name">Truki Ribs</span>
+                            <span class="product-price">&euro; 18.50</span>
+                            <span class="product-code">TR01</span>
+                        </div>
+                        <div class="product-item" data-name="Fanta" data-price="3.00" data-code="004">
+                            <span class="product-name">Fanta</span>
+                            <span class="product-price">&euro; 3.00</span>
+                            <span class="product-code">004</span>
+                        </div>
+                        <div class="product-item" data-name="Sprite" data-price="3.00" data-code="005">
+                            <span class="product-name">Sprite</span>
+                            <span class="product-price">&euro; 3.00</span>
+                            <span class="product-code">005</span>
+                        </div>
+                        <div class="product-item" data-name="Water" data-price="2.00" data-code="006">
+                            <span class="product-name">Water</span>
+                            <span class="product-price">&euro; 2.00</span>
+                            <span class="product-code">006</span>
+                        </div>
+                        <div class="product-item" data-name="Appelsap" data-price="3.20" data-code="007">
+                            <span class="product-name">Appelsap</span>
+                            <span class="product-price">&euro; 3.20</span>
+                            <span class="product-code">007</span>
+                        </div>
+                        <div class="product-item" data-name="Bier" data-price="4.50" data-code="008">
+                            <span class="product-name">Bier</span>
+                            <span class="product-price">&euro; 4.50</span>
+                            <span class="product-code">008</span>
+                        </div>
+                        <div class="product-item" data-name="Wijn Rood" data-price="5.00" data-code="009">
+                            <span class="product-name">Wijn Rood</span>
+                            <span class="product-price">&euro; 5.00</span>
+                            <span class="product-code">009</span>
+                        </div>
+                        <div class="product-item" data-name="Wijn Wit" data-price="5.00" data-code="010">
+                            <span class="product-name">Wijn Wit</span>
+                            <span class="product-price">&euro; 5.00</span>
+                            <span class="product-code">010</span>
+                        </div>
+                        <div class="product-item" data-name="Broodje Ham" data-price="6.50" data-code="011">
+                            <span class="product-name">Broodje Ham</span>
+                            <span class="product-price">&euro; 6.50</span>
+                            <span class="product-code">011</span>
+                        </div>
+                        <div class="product-item" data-name="Broodje Kaas" data-price="6.00" data-code="012">
+                            <span class="product-name">Broodje Kaas</span>
+                            <span class="product-price">&euro; 6.00</span>
+                            <span class="product-code">012</span>
+                        </div>
+                        <div class="product-item" data-name="Tosti" data-price="5.50" data-code="013">
+                            <span class="product-name">Tosti</span>
+                            <span class="product-price">&euro; 5.50</span>
+                            <span class="product-code">013</span>
+                        </div>
+                        <div class="product-item" data-name="Salade Kip" data-price="12.00" data-code="014">
+                            <span class="product-name">Salade Kip</span>
+                            <span class="product-price">&euro; 12.00</span>
+                            <span class="product-code">014</span>
+                        </div>
+                        <div class="product-item" data-name="Soep v/d dag" data-price="7.50" data-code="015">
+                            <span class="product-name">Soep v/d dag</span>
+                            <span class="product-price">&euro; 7.50</span>
+                            <span class="product-code">015</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-buttons">
+                    <button class="category-button active">Alles</button>
+                    <button class="category-button">Dranken</button>
+                    <button class="category-button">Eten</button>
+                    <button class="category-button">Desserts</button>
+                    <button class="category-button">Specials</button>
+                </div>
+            </div>
+
+            <div class="order-pane">
+                <div class="order-actions">
+                    <span class="table-number-display">Tafel 33</span>
+                    <button class="action-button printer-button"><i class="fas fa-print"></i></button>
+                    <button class="action-button"><i class="fas fa-trash-alt"></i></button>
+                    <button class="action-button diner-button">Diner</button>
+                    <button class="action-button pay-button" id="openPaymentModalBtn">Betalen</button>
+                </div>
+
+                <div class="order-box">
+                    <div class="order-box-header">
+                        <span>Bestelling</span>
+                        <button class="order-action-button active">Sluit</button>
+                        <button class="order-action-button">Bestel</button>
+                    </div>
+                    <div class="order-list-container">
+                        <ul class="order-list">
+                            </ul>
+                    </div>
+                </div>
+
+                <div class="bill-summary">
+                    <div class="bill-header">
+                        <span>Gerecht</span>
+                        <span>Aantal</span>
+                        <span>Prijs</span>
+                        <span>Gang</span>
+                    </div>
+                    <div class="bill-items-container">
+                        <ul class="bill-items">
+                            </ul>
+                    </div>
+                    <div class="bill-total">
+                        <span>Totaal</span>
+                        <span id="total-amount">€ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="itemModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProductName">Product Name</h3>
+                <span class="close-button" id="closeModalBtn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="section-title">Opmerkingen voor de keuken</div>
+                <textarea id="kitchenNote" class="kitchen-note" placeholder="Voeg een notitie toe..."></textarea>
+
+                <div class="section-title">Opties / Extra's</div>
+                <div class="option-group" id="optionGroup">
+                    <div class="option-box" data-value="Extra saus" data-price="1.00">
+                        Extra saus <span class="option-price">(+&euro; 1.00)</span>
+                    </div>
+                    <div class="option-box" data-value="Geen uien" data-price="0.00">
+                        Geen uien
+                    </div>
+                    <div class="option-box" data-value="Patat i.p.v. aardappelen" data-price="1.50">
+                        Patat i.p.v. aardappelen <span class="option-price">(+&euro; 1.50)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button cancel-button" id="cancelModalBtn">Annuleren</button>
+                <button class="modal-button add-button" id="addNoteBtn">Voeg toe aan bestelling</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content large-modal-content"> <div class="modal-header">
+                <h3>Betaling</h3>
+                <span class="close-button" id="closePaymentModalBtn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="payment-section">
+                    <div class="payment-amount-display">
+                        <span class="label">Openstaand Bedrag:</span>
+                        <span class="amount" id="outstandingAmount">€ 0.00</span>
+                    </div>
+                </div>
+
+                <div class="payment-options">
+                    <div class="section-title">Betaalmethode</div>
+                    <div class="payment-method-grid" id="paymentMethodGrid">
+                        <div class="payment-method-box selected" data-method="Contant">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Contant</span>
+                        </div>
+                        <div class="payment-method-box" data-method="Pin">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Pin</span>
+                        </div>
+                        <div class="payment-method-box" data-method="Creditcard">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Creditcard</span>
+                        </div>
+                        <div class="payment-method-box" data-method="Overboeking">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Overboeking</span>
+                        </div>
+                        <div class="payment-method-box" data-method="Cadeaubon">
+                            <i class="fas fa-gift"></i>
+                            <span>Cadeaubon</span>
+                        </div>
+                        <div class="payment-method-box" data-method="Factuur">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Factuur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <div class="section-title">Ontvangen Bedrag</div>
+                    <div class="payment-input-group">
+                        <span class="currency-prefix">&euro;</span>
+                        <input type="number" id="receivedAmount" class="payment-input" placeholder="0.00" step="0.01">
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <div class="payment-amount-display">
+                        <span class="label">Wisselgeld:</span>
+                        <span class="amount" id="changeAmount">€ 0.00</span>
+                    </div>
+                </div>
+
+                <div class="split-payment-section">
+                    <div class="section-title">Splitsen</div>
+                    <div class="split-modes-selection" id="splitModesSelection">
+                        <button class="split-mode-button" data-split-mode="none" id="splitModeNone">Normaal</button> <button class="split-mode-button" data-split-mode="los" id="splitModeLos">Los</button>
+                        <button class="split-mode-button" data-split-mode="even" id="splitModeEven">Gelijkmatig</button>
+                        <button class="split-mode-button" data-split-mode="ondish" id="splitModeOnDish">Op gerecht</button>
+                    </div>
+
+                    <div class="split-options-container">
+                        <div id="splitModeLosContent" class="split-mode-content hidden">
+                            <div class="split-input-group">
+                                <label for="numPeopleLos">Aantal personen:</label>
+                                <input type="number" id="numPeopleLos" min="1" value="1" class="small-input">
+                            </div>
+                            <div class="split-line-header">
+                                <span>Persoon</span>
+                                <span>Betaald</span>
+                                <span>Methode</span>
+                            </div>
+                            <div id="losPaymentLines" class="split-payment-lines">
+                                </div>
+                            <div class="split-actions">
+                                <button class="modal-button secondary-button" id="addLosPaymentLineBtn">Voeg +</button>
+                                <button class="modal-button secondary-button" id="calculateRemainingLosBtn">Bereken resterend</button>
+                                <div class="payment-amount-display small-display">
+                                    <span class="label">Resterend:</span>
+                                    <span class="amount" id="losRemainingAmount">€ 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="splitModeEvenContent" class="split-mode-content hidden">
+                            <div class="split-input-group">
+                                <label for="numPeopleEven">Aantal personen:</label>
+                                <input type="number" id="numPeopleEven" min="1" value="1" class="small-input">
+                            </div>
+                            <div class="payment-amount-display small-display">
+                                <span class="label">Per persoon:</span>
+                                <span class="amount" id="amountPerPerson">€ 0.00</span>
+                            </div>
+                            <div id="evenPaymentSections" class="split-payment-sections">
+                                </div>
+                        </div>
+
+                        <div id="splitModeOnDishContent" class="split-mode-content hidden">
+                            <div class="split-actions split-top-actions">
+                                <button class="modal-button secondary-button" id="addOnDishPaymentLineBtn">Voeg +</button>
+                                <div class="payment-amount-display small-display">
+                                    <span class="label">Nog te betalen:</span>
+                                    <span class="amount" id="onDishRemainingAmount">€ 0.00</span>
+                                </div>
+                            </div>
+                            <div class="on-dish-payment-lines-container">
+                                <div id="onDishOrderItems" class="on-dish-order-items">
+                                    <div class="section-title">Alle Gerechten</div>
+                                    <ul class="order-item-list" id="draggableOrderItems">
+                                        </ul>
+                                </div>
+                                <div id="onDishPaymentSections" class="on-dish-payment-sections">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button cancel-button" id="cancelPaymentModalBtn">Annuleren</button>
+                <button class="modal-button add-button" id="checkoutBtn">Afrekenen</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pos-flex.js"></script>
+</body>
+</html>

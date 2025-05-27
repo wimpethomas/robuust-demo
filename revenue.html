@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="revenue.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Revenue</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="top-controls-revenue">
+            <div class="date-range-picker">
+                <label for="startDate">From:</label>
+                <input type="date" id="startDate" class="date-input">
+                <label for="endDate">To:</label>
+                <input type="date" id="endDate" class="date-input">
+            </div>
+            <div class="type-selector">
+                <label for="revenueType">Show:</label>
+                <select id="revenueType" class="dropdown-select">
+                    <option value="overall">Overall</option>
+                    <option value="paymentMethod">Per Payment Method</option>
+                    <option value="meal">Per Meal</option>
+                    <option value="coworker">Per Coworker</option>
+                </select>
+            </div>
+        </div>
+
+        <main class="pos-main-content revenue-content">
+            <div id="overall-revenue-section" class="revenue-section active">
+                <div class="summary-cards-container">
+                    <div class="revenue-card">
+                        <div class="card-title">Total Revenue</div>
+                        <div class="card-value" id="overallTotalRevenue"></div>
+                        <div class="card-trend positive">+8%</div>
+                        <div class="card-description">since last month</div>
+                    </div>
+                    <div class="revenue-card">
+                        <div class="card-title">Average Check</div>
+                        <div class="card-value" id="overallAverageCheck"></div>
+                        <div class="card-trend negative">-2%</div>
+                        <div class="card-description">compared to last period</div>
+                    </div>
+                    <div class="revenue-card">
+                        <div class="card-title">Transactions</div>
+                        <div class="card-value" id="overallTransactions"></div>
+                        <div class="card-trend positive">+15</div>
+                        <div class="card-description">more than last period</div>
+                    </div>
+                </div>
+                <div class="revenue-chart-container">
+                    <h3>Daily Revenue Trend (Graph)</h3>
+                    <div id="revenue_line_chart" class="chart-placeholder"></div>
+                </div>
+
+                <div class="daily-table-container">
+                    <h3>Daily Overall Revenue Data</h3>
+                    <table class="revenue-table daily-overall-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Total Revenue</th>
+                                <th>Transactions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="paymentMethod-revenue-section" class="revenue-section">
+                <div class="daily-table-container">
+                    <h2>Daily Revenue Per Payment Method</h2>
+                    <table class="revenue-table daily-paymentmethod-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Payment Method</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="meal-revenue-section" class="revenue-section">
+                <div class="daily-table-container">
+                    <h2>Daily Revenue Per Meal</h2>
+                    <table class="revenue-table daily-meal-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Meal Name</th>
+                                <th>Quantity Sold</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="coworker-revenue-section" class="revenue-section">
+                <div class="daily-table-container">
+                    <h2>Daily Revenue Per Coworker</h2>
+                    <table class="revenue-table daily-coworker-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Coworker Name</th>
+                                <th>Total Sales</th>
+                                <th>Number of Orders</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="revenue.js"></script>
+</body>
+</html>

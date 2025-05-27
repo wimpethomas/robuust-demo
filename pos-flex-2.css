@@ -1,0 +1,711 @@
+/* CSS Variables for POS Theme */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --header-bg: #007bff; /* Example: Blue for header in light mode */
+    --accent-color: #007bff;
+    --button-bg: #e0e0e0;
+    --button-text: #333;
+    --button-hover-bg: #d0d0d0;
+    --border-color: #ddd;
+    --input-bg: #f5f5f5;
+    --input-text: #333;
+    --input-border: #999;
+    --product-item-bg: #E0E0E0; /* Background for product squares in light mode */
+    --product-item-hover-bg: #e2f0ff;
+    --product-item-selected-bg: #cce0ff;
+    --category-button-bg: #e9ecef;
+    --category-button-active-bg: #007bff;
+    --category-button-text: #333;
+    --order-action-bg: #e0e0e0;
+    --order-action-hover-bg: #d0d0d0;
+    --order-action-active-bg: #28a745;
+    --order-action-active-text: #ffffff;
+    --order-item-bg: #ffffff; /* This affects order-box and bill-summary parents */
+    --order-item-border: #eee;
+    --quantity-button-bg: #e9ecef;
+    --quantity-button-hover-bg: #d0d0d0;
+    --table-header-bg: #e9ecef;
+    --bill-item-bg: #ffffff; /* This affects order-box and bill-summary parents */
+    --total-bg: #e9ecef;
+    --subtitle-color: #666;
+    --order-list-bg: #E0E0E0; /* Specific background for order list in light mode */
+    --bill-items-container-bg: #E0E0E0; /* Specific background for bill items container in light mode */
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e; /* Dark background */
+    --card-bg: #16213e; /* Darker card/pane background */
+    --text-color: #e0e0e0; /* Light text */
+    --header-bg: #4a148c; /* Purple from Kassa.png header */
+    --accent-color: #9ac2ed; /* Light blue accent */
+    --button-bg: #444; /* Dark button background */
+    --button-text: #e0e0e0; /* Light button text */
+    --button-hover-bg: #555;
+    --border-color: #3a3a5f; /* Dark border */
+    --input-bg: #2d3142;
+    --input-text: #e0e0e0;
+    --input-border: #5a5a7f;
+    --product-item-bg: #333; /* Background for product squares in dark mode */
+    --product-item-hover-bg: #007bff; /* Blue hover for products */
+    --product-item-selected-bg: #0056b3; /* Darker blue for selected */
+    --category-button-bg: #2d3142;
+    --category-button-active-bg: #007bff;
+    --category-button-text: #e0e0e0;
+    --order-action-bg: #666;
+    --order-action-hover-bg: #777;
+    --order-action-active-bg: #28a745; /* Green for "Sluit" */
+    --order-action-active-text: #ffffff;
+    --order-item-bg: #333;
+    --order-item-border: #444;
+    --quantity-button-bg: #555;
+    --quantity-button-hover-bg: #666;
+    --table-header-bg: #2a2a4a;
+    --bill-item-bg: #22223b;
+    --total-bg: #3a3f52;
+    --subtitle-color: #b0b0b0; /* Lighter subtitle in dark mode */
+    --order-list-bg: var(--card-bg); /* Use card background in dark mode */
+    --bill-items-container-bg: var(--card-bg); /* Use card background in dark mode */
+}
+
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: hidden; /* Prevent body scroll, main content handles it */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 1400px; /* RESTRICTED MAX WIDTH */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Header Styles */
+.pos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* Prevent header from shrinking */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+    transition: background-color 0.3s ease;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .table-info {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.pos-header h1 {
+    font-size: 1.4em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icon-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    margin: 0 5px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: var(--button-bg);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    font-size: 1em;
+    color: var(--accent-color); /* Adjust icon color based on theme */
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode-label .sun-icon {
+    right: 5px;
+    left: auto; /* Ensure sun icon stays on the right initially */
+}
+
+.dark-mode-label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 19px;
+    width: 19px;
+    transform: translateX(0px);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px); /* Move to the right for dark mode */
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label {
+    background-color: #6a0dad; /* Purple switch background when dark mode is on */
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .moon-icon {
+    transform: translateX(100%); /* Move moon icon out of view */
+    opacity: 0;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .sun-icon {
+    transform: translateX(-100%); /* Move sun icon out of view */
+    opacity: 1; /* Make sun icon visible */
+}
+
+/* Initial icon states for light mode */
+.dark-mode-checkbox + .dark-mode-label .moon-icon {
+    opacity: 1;
+    transform: translateX(0%);
+}
+.dark-mode-checkbox + .dark-mode-label .sun-icon {
+    opacity: 0;
+    transform: translateX(0%); /* Keep sun icon at its position but hidden */
+}
+
+
+/* Main Content Area */
+.pos-main-content {
+    display: flex;
+    flex-grow: 1; /* Takes remaining vertical space */
+    background-color: var(--bg-color);
+    padding: 15px;
+    gap: 15px; /* Space between the two main panes */
+    overflow: hidden; /* Important for flex children scrolling */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    transition: background-color 0.3s ease;
+}
+
+/* Product Pane (Left) */
+.product-pane {
+    flex: 1; /* Takes available space */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.product-grid-container {
+    flex-grow: 1; /* Allows grid to take available space */
+    overflow-y: auto; /* Independent scrolling for products */
+    padding-right: 10px; /* Space for scrollbar */
+    margin-right: -10px; /* Compensate for padding to keep alignment */
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid for products */
+    gap: 10px;
+}
+
+.product-item {
+    background-color: var(--product-item-bg); /* Uses variable */
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; /* Fixed height for product items */
+    transition: background-color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.product-item:hover {
+    background-color: var(--product-item-hover-bg);
+}
+
+.product-item.selected {
+    background-color: var(--product-item-selected-bg);
+    border: 2px solid var(--accent-color); /* Highlight selected */
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.product-price {
+    font-size: 1.1em;
+    color: var(--accent-color);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.product-code {
+    font-size: 0.7em;
+    color: var(--subtitle-color);
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    flex-shrink: 0; /* Prevent shrinking */
+    justify-content: center;
+}
+
+.category-button {
+    background-color: var(--category-button-bg);
+    color: var(--category-button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.category-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.category-button.active {
+    background-color: var(--category-button-active-bg);
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Order Pane (Right) */
+.order-pane {
+    flex: 0 0 450px; /* Fixed width for the order pane */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.order-actions .action-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.order-actions .action-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.order-actions .table-number-display {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    flex-grow: 1; /* Takes available space */
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.order-actions .printer-button, .order-actions .diner-button {
+    background-color: #007bff; /* Specific color for Diner/Print */
+}
+.order-actions .printer-button:hover, .order-actions .diner-button:hover {
+    background-color: #0056b3;
+}
+
+.order-box {
+    background-color: var(--order-item-bg);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent shrinking to allow bill-summary to scroll */
+    min-height: 200px; /* Minimum height for order box */
+    max-height: 300px; /* Max height to allow bill summary to scroll */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-box-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.order-box-header span {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.order-action-button {
+    background-color: var(--order-action-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-left: 5px;
+}
+
+.order-action-button:hover {
+    background-color: var(--order-action-hover-bg);
+}
+
+.order-action-button.active {
+    background-color: var(--order-action-active-bg);
+    color: var(--order-action-active-text);
+}
+
+.order-list-container {
+    flex-grow: 1; /* Allows order list to take available space */
+    overflow-y: auto; /* Independent scrolling for order items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+    background-color: var(--order-list-bg); /* Uses variable */
+}
+
+.order-list {
+    list-style: none;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--order-item-border);
+    transition: border-color 0.3s ease;
+}
+
+.order-item-name {
+    flex-grow: 1;
+    font-size: 0.95em;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-controls button {
+    background-color: var(--quantity-button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: var(--quantity-button-hover-bg);
+}
+
+.quantity-controls .quantity {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.bill-summary {
+    flex-grow: 1; /* Takes remaining vertical space */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bill-item-bg); /* Uses bill-item-bg, which is white by default in light mode */
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    min-height: 200px; /* Minimum height */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bill-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* Dish, Qty, Price, Gang */
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.bill-items-container {
+    flex-grow: 1; /* Allows bill items to take available space */
+    overflow-y: auto; /* Independent scrolling for bill items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+    background-color: var(--bill-items-container-bg); /* Uses variable */
+}
+
+.bill-items {
+    list-style: none;
+}
+
+.bill-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--order-item-border); /* Dashed line for bill items */
+    font-size: 0.9em;
+    transition: border-color 0.3s ease;
+}
+
+.bill-item:last-child {
+    border-bottom: none;
+}
+
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: var(--total-bg);
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Scrollbar styling for Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-bg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .pos-main-content {
+        flex-direction: column; /* Stack panes vertically */
+        overflow-y: auto; /* Allow main content to scroll if needed */
+    }
+
+    .product-pane, .order-pane {
+        flex: none; /* Remove flex grow */
+        width: 100%; /* Take full width */
+        max-width: none;
+        height: auto; /* Allow height to be determined by content */
+        max-height: none;
+    }
+
+    .order-pane {
+        flex: 0 0 auto; /* Allow order pane to shrink/grow */
+    }
+
+    .order-box, .bill-summary {
+        max-height: 400px; /* Limit height for scrollable sections on smaller screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .pos-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.2em;
+    }
+
+    .order-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .order-actions .table-number-display {
+        flex-grow: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .product-item {
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .product-item {
+        height: 80px;
+        padding: 8px;
+    }
+
+    .product-name {
+        font-size: 0.8em;
+    }
+
+    .product-price {
+        font-size: 1em;
+    }
+
+    .category-button, .action-button, .order-action-button {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekrooster - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="schedule-week.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <span class="page-title">Weekrooster</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="action-icon-button" id="headerButton1">
+                    <span class="icon">&#10003;</span>
+                </button>
+                <button class="action-icon-button" id="headerButton2">
+                    <span class="icon">&#9998;</span>
+                </button>
+                <button class="action-icon-button" id="headerButton3">
+                    <span class="icon">&#43;</span>
+                </button>
+                <span class="menu-icon">&#9776;</span>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="darkModeToggle">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <em>Toggle Light/Dark Mode</em>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <div class="week-nav">
+                <button class="nav-button" id="prevWeek">&#x25C0;</button> <h2 id="weekDisplay"></h2>
+                <button class="nav-button" id="nextWeek">&#x25B6;</button> </div>
+
+            <div class="schedule-table">
+                <div class="table-row table-header-row">
+                    <div class="table-header coworker-header">Medewerker</div>
+                    <div class="table-header day-header">Ma <span class="date-info"></span></div>
+                    <div class="table-header day-header">Di <span class="date-info"></span></div>
+                    <div class="table-header day-header">Wo <span class="date-info"></span></div>
+                    <div class="table-header day-header">Do <span class="date-info"></span></div>
+                    <div class="table-header day-header">Vr <span class="date-info"></span></div>
+                    <div class="table-header day-header">Za <span class="date-info"></span></div>
+                    <div class="table-header day-header">Zo <span class="date-info"></span></div>
+                </div>
+                </div>
+        </div>
+    </div>
+
+    <script src="schedule-week.js"></script>
+</body>
+</html>

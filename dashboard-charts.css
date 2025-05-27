@@ -1,0 +1,257 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+
+    /* Google Chart specific colors (these will also be set in JS) */
+    --chart-bg-google: '#ffffff';
+    --chart-text-google: '#666';
+    --chart-grid-google: '#e0e0e0';
+    --chart-title-google: '#333';
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #e0e0e0;
+    --h-color: #9ac2ed;
+    --subtitle-color: #b0b0b0;
+    --border-color: #3a3a5f;
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: #66b3ff;
+    --button-hover-color: #4a90e2;
+
+    /* Google Chart specific colors for dark mode */
+    --chart-bg-google: '#16213e';
+    --chart-text-google: '#b0b0b0';
+    --chart-grid-google: '#3a3a5f';
+    --chart-title-google: '#e0e0e0';
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease; /* Smooth transition for theme change */
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Overall max width for the dashboard content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center dashboard content horizontally */
+}
+
+/* Theme Switch Specific Styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+    margin-bottom: 25px; /* Spacing below the switch */
+    width: 100%; /* Take full width of page-wrapper */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.theme-switch-wrapper em {
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-style: normal;
+    transition: color 0.3s ease;
+}
+
+/* Dashboard Grid */
+.dashboard-container {
+    display: grid;
+    /* Max 3 cards in a row with responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px; /* Space between cards */
+    width: 100%;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    /* More distinctive shadows */
+    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15); /* Default shadow */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Animation properties */
+    min-height: 400px; /* Adjust height to accommodate charts */
+}
+
+/* Card Hover Animation */
+.card:hover {
+    transform: translateY(-10px); /* Lift effect */
+    box-shadow: 0 16px 32px rgba(var(--shadow-color-rgb), 0.25); /* More pronounced shadow */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.ellipsis-icon {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Chart Container within Card */
+.card-chart-content {
+    flex-grow: 1; /* Allows chart content to take available space */
+    display: flex; /* Use flex to center/control chart div */
+    justify-content: center;
+    align-items: center;
+    min-height: 250px; /* Minimum height for the chart area */
+}
+
+.chart {
+    width: 100%;
+    height: 100%; /* Occupy 100% of parent's height */
+    /* background-color should be set via Google Charts options in JS */
+}
+
+/* New: Text Card Content Styles */
+.card-content-text {
+    flex-grow: 1; /* Allows content to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: flex-start; /* Align text to start */
+    padding: 10px 0; /* Add some vertical padding */
+}
+
+.card-metric {
+    font-size: 2.5em; /* Large font for key numbers */
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between description and percentage */
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+.card-percentage {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 3px 8px; /* Padding for the percentage bubble */
+    border-radius: 4px;
+}
+
+.card-percentage.positive {
+    background-color: #e6ffe6; /* Light green background */
+    color: #28a745; /* Green text for positive */
+    border: 1px solid #28a745;
+}
+
+body.dark-mode .card-percentage.positive {
+    background-color: #1a4528; /* Darker green background */
+    color: #a7f7b7; /* Lighter green text */
+    border-color: #a7f7b7;
+}
+
+.card-percentage.negative {
+    background-color: #ffe6e6; /* Light red background */
+    color: #dc3545; /* Red text for negative */
+    border: 1px solid #dc3545;
+}
+
+body.dark-mode .card-percentage.negative {
+    background-color: #451a1a; /* Darker red background */
+    color: #f7b7b7; /* Lighter red text */
+    border-color: #f7b7b7;
+}
+
+.card-footer {
+    margin-top: auto; /* Push footer to bottom */
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}

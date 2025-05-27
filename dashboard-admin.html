@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard-admin.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="top-controls">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="darkModeToggle">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <em>Toggle Light/Dark Mode</em>
+            </div>
+            <div class="date-picker-wrapper">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate">
+                <button id="applyDates">Apply</button>
+            </div>
+        </div>
+
+        <div class="dashboard-container">
+            <div class="card full-width-chart-card"> <div class="card-header">
+                    <h3>Omzet per dag</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-chart-content">
+                    <div id="bar_chart_div" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Omzet</h3>
+                </div>
+                <div class="card-content-text">
+                    <div class="card-metric">€40.232,45</div>
+                    <div class="card-description">€1.100 Meer t.o.v. gemiddelde</div>
+                </div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Inkoop marge na BTW</h3>
+                </div>
+                <div class="card-content-text">
+                    <div class="card-metric">0%</div>
+                    <div class="card-description">€0,00 Meer t.o.v. gemiddelde</div>
+                </div>
+            </div>
+
+            <div class="card metric-card">
+                <div class="card-header">
+                    <h3>Kostendekker marge</h3>
+                </div>
+                <div class="card-content-text">
+                    <div class="card-metric">47%</div>
+                    <div class="card-description">€17.700,00 Meer t.o.v. gemiddelde</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Omzet per categorie</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-chart-content">
+                    <div id="pie_chart_category_div" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Omzet per maand</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-chart-content">
+                    <div id="pie_chart_month_div" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Omzet per afdeling</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-chart-content">
+                    <div id="pie_chart_department_div" class="chart"></div>
+                </div>
+            </div>
+
+            <div class="card table-card"> <div class="card-header">
+                    <h3>Totaal</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content-text">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Item 1</td><td>5</td><td>€10.00</td><td>€50.00</td></tr>
+                                <tr><td>Item 2</td><td>2</td><td>€25.00</td><td>€50.00</td></tr>
+                                <tr><td>Item 3</td><td>8</td><td>€5.50</td><td>€44.00</td></tr>
+                                <tr><td>Item 4</td><td>1</td><td>€100.00</td><td>€100.00</td></tr>
+                                <tr><td>Item 5</td><td>3</td><td>€12.00</td><td>€36.00</td></tr>
+                                <tr><td>Item 6</td><td>7</td><td>€8.00</td><td>€56.00</td></tr>
+                                <tr><td>Item 7</td><td>4</td><td>€15.00</td><td>€60.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-card"> <div class="card-header">
+                    <h3>0.0 Bier On</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content-text">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Non-Alc Beer A</td><td>10</td><td>€4.50</td><td>€45.00</td></tr>
+                                <tr><td>Non-Alc Beer B</td><td>6</td><td>€5.00</td><td>€30.00</td></tr>
+                                <tr><td>Non-Alc Beer C</td><td>3</td><td>€4.00</td><td>€12.00</td></tr>
+                                <tr><td>Non-Alc Beer D</td><td>7</td><td>€4.20</td><td>€29.40</td></tr>
+                                <tr><td>Non-Alc Beer E</td><td>2</td><td>€5.50</td><td>€11.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-card"> <div class="card-header">
+                    <h3>A la carte</h3>
+                    <span class="ellipsis-icon">...</span>
+                </div>
+                <div class="card-content-text">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Dish</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Pasta Carbonara</td><td>2</td><td>€18.00</td><td>€36.00</td></tr>
+                                <tr><td>Steak Frites</td><td>1</td><td>€25.00</td><td>€25.00</td></tr>
+                                <tr><td>Caesar Salad</td><td>3</td><td>€12.50</td><td>€37.50</td></tr>
+                                <tr><td>Burger Deluxe</td><td>4</td><td>€16.00</td><td>€64.00</td></tr>
+                                <tr><td>Soup of the Day</td><td>5</td><td>€7.00</td><td>€35.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="dashboard-admin.js"></script>
+</body>
+</html>

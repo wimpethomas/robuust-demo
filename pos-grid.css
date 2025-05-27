@@ -1,0 +1,573 @@
+/* CSS Variables for POS Theme (Inspired by dashboard-2.css) */
+:root {
+    --bg-color: #1a1a2e; /* Dark background */
+    --card-bg: #16213e; /* Darker card/pane background */
+    --text-color: #e0e0e0; /* Light text */
+    --header-bg: #4a148c; /* Purple from Kassa.png header */
+    --accent-color: #9ac2ed; /* Light blue accent */
+    --button-bg: #444; /* Dark button background */
+    --button-text: #e0e0e0; /* Light button text */
+    --button-hover-bg: #555;
+    --border-color: #3a3a5f; /* Dark border */
+    --input-bg: #2d3142;
+    --input-text: #e0e0e0;
+    --input-border: #5a5a7f;
+    --product-item-bg: #333; /* Background for product squares */
+    --product-item-hover-bg: #007bff; /* Blue hover for products */
+    --product-item-selected-bg: #0056b3; /* Darker blue for selected */
+    --category-button-bg: #2d3142;
+    --category-button-active-bg: #007bff;
+    --category-button-text: #e0e0e0;
+    --order-action-bg: #666;
+    --order-action-hover-bg: #777;
+    --order-action-active-bg: #28a745; /* Green for "Sluit" */
+    --order-action-active-text: #ffffff;
+    --order-item-bg: #333;
+    --order-item-border: #444;
+    --quantity-button-bg: #555;
+    --quantity-button-hover-bg: #666;
+    --table-header-bg: #2a2a4a;
+    --bill-item-bg: #22223b;
+    --total-bg: #3a3f52;
+}
+
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: hidden; /* Prevent body scroll */
+}
+
+.pos-grid-container {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: var(--card-bg); /* Background for main content area */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* Define Grid Areas */
+    grid-template-areas:
+        "header header header"
+        "search product-list order-actions"
+        "categories product-list order-box"
+        "categories product-list bill-summary";
+
+    /* Define Columns and Rows */
+    grid-template-columns: 200px 1fr 450px; /* Categories | Products | Order/Bill */
+    grid-template-rows: auto auto 1fr 1fr; /* Header | Search/Order Actions | Product Grid/Order List | Bill Summary */
+    gap: 15px; /* Gap between grid areas */
+    padding: 15px; /* Padding around the main grid content */
+}
+
+/* Assign Grid Areas */
+.pos-header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg);
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Match container border radius */
+    margin: -15px -15px 0 -15px; /* Adjust margin to fill the header space, compensate for container padding */
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .table-info {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.pos-header h1 {
+    font-size: 1.4em;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icon-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.product-search-area {
+    grid-area: search;
+    display: flex;
+    gap: 10px;
+    padding: 15px; /* Add padding to match other areas */
+    background-color: var(--card-bg); /* Background for area */
+    border-radius: 8px; /* Optional: if you want individual background */
+}
+
+.product-search-area input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+}
+
+.product-search-area button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.product-search-area button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.product-grid-area {
+    grid-area: product-list;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto; /* Independent scrolling */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.product-item {
+    background-color: var(--product-item-bg);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.product-item:hover {
+    background-color: var(--product-item-hover-bg);
+}
+
+.product-item.selected {
+    background-color: var(--product-item-selected-bg);
+    border: 2px solid var(--accent-color);
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 1.1em;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.product-code {
+    font-size: 0.7em;
+    color: var(--subtitle-color);
+    margin-top: 5px;
+}
+
+.product-categories-area {
+    grid-area: categories;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px;
+    overflow-y: auto; /* For many categories */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-button {
+    background-color: var(--category-button-bg);
+    color: var(--category-button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    text-align: left; /* Align text left for column layout */
+}
+
+.category-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.category-button.active {
+    background-color: var(--category-button-active-bg);
+    font-weight: bold;
+}
+
+.order-actions-area {
+    grid-area: order-actions;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}
+
+.order-actions-area .action-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.order-actions-area .action-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.order-actions-area .table-number-display {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    border-radius: 5px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.order-actions-area .printer-button, .order-actions-area .diner-button {
+    background-color: #007bff;
+}
+.order-actions-area .printer-button:hover, .order-actions-area .diner-button:hover {
+    background-color: #0056b3;
+}
+
+
+.order-box-area {
+    grid-area: order-box;
+    background-color: var(--order-item-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    overflow: hidden; /* Ensures rounded corners */
+}
+
+.order-box-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+}
+
+.order-box-header span {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.order-action-button {
+    background-color: var(--order-action-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    margin-left: 5px;
+}
+
+.order-action-button:hover {
+    background-color: var(--order-action-hover-bg);
+}
+
+.order-action-button.active {
+    background-color: var(--order-action-active-bg);
+    color: var(--order-action-active-text);
+}
+
+.order-list {
+    list-style: none;
+    flex-grow: 1; /* Allows order list to take available space */
+    overflow-y: auto; /* Independent scrolling for order items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--order-item-border);
+}
+
+.order-item-name {
+    flex-grow: 1;
+    font-size: 0.95em;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-controls button {
+    background-color: var(--quantity-button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: var(--quantity-button-hover-bg);
+}
+
+.quantity-controls .quantity {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.bill-summary-area {
+    grid-area: bill-summary;
+    background-color: var(--order-item-bg);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    overflow: hidden; /* Ensures rounded corners */
+}
+
+.bill-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* Dish, Qty, Price, Gang */
+    padding: 10px 15px;
+    background-color: var(--table-header-bg);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+}
+
+.bill-items {
+    list-style: none;
+    flex-grow: 1; /* Allows bill items to take available space */
+    overflow-y: auto; /* Independent scrolling for bill items */
+    padding: 10px 15px;
+    padding-right: 25px; /* Space for scrollbar + padding */
+    margin-right: -10px; /* Compensate for padding */
+}
+
+.bill-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--order-item-border);
+    font-size: 0.9em;
+}
+
+.bill-item:last-child {
+    border-bottom: none;
+}
+
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: var(--total-bg);
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* Scrollbar styling for Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--button-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-bg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .pos-grid-container {
+        grid-template-areas:
+            "header header"
+            "search order-actions"
+            "product-list order-box"
+            "product-list bill-summary"
+            "categories categories"; /* Categories move to bottom */
+        grid-template-columns: 1fr 450px; /* Left pane auto, right pane fixed */
+        grid-template-rows: auto auto 1fr 1fr auto; /* Header | Search/Actions | Product/Order | Product/Bill | Categories */
+        overflow-y: auto; /* Allow overall container to scroll */
+    }
+
+    .order-box-area, .bill-summary-area {
+        max-height: 400px; /* Limit height for scrollable sections */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-grid-container {
+        grid-template-areas:
+            "header"
+            "order-actions"
+            "order-box"
+            "bill-summary"
+            "search"
+            "product-list"
+            "categories"; /* Stack all areas vertically */
+        grid-template-columns: 1fr; /* Single column */
+        grid-template-rows: auto auto auto auto auto 1fr auto; /* Explicit row heights for each section */
+    }
+
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .pos-header h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.2em;
+    }
+
+    .order-actions-area {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .order-actions-area .table-number-display {
+        flex-grow: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .product-item {
+        height: 90px;
+    }
+
+    .product-grid-area, .order-box-area, .bill-summary-area {
+        height: auto; /* Let content define height */
+        max-height: 500px; /* Add a max-height for scrolling if content is too long */
+    }
+
+    .product-search-area, .product-categories-area {
+        height: auto; /* Let content define height */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .product-item {
+        height: 80px;
+        padding: 8px;
+    }
+
+    .product-name {
+        font-size: 0.8em;
+    }
+
+    .product-price {
+        font-size: 1em;
+    }
+
+    .category-button, .action-button, .order-action-button {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+}
