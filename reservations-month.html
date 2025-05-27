@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="reservations-month.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Reservations</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="filter-group">
+                <label for="monthSelect">Month:</label>
+                <select id="monthSelect" class="filter-input">
+                    </select>
+                <label for="yearSelect">Year:</label>
+                <select id="yearSelect" class="filter-input">
+                    </select>
+            </div>
+            <div class="actions-group">
+                <button class="action-button primary-button"><i class="fas fa-file-export"></i> Export Report</button>
+                <button class="action-button secondary-button"><i class="fas fa-print"></i> Print</button>
+            </div>
+        </div>
+
+        <main class="pos-main-content reservations-content">
+            <section class="calendar-section stats-section">
+                <div class="calendar-header-controls">
+                    <button id="prevMonthBtn" class="calendar-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                    <h2 id="currentMonthYear"></h2>
+                    <button id="nextMonthBtn" class="calendar-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-weekdays">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span class="weekend-weekday">Sat</span>
+                    <span class="weekend-weekday">Sun</span>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    </div>
+            </section>
+
+            <section class="room-summary-section stats-section">
+                <h2>Guests per Room (Monthly Total)</h2>
+                <div class="room-list-container">
+                    <ul id="roomGuestList" class="room-guest-list">
+                        </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="reservations-month.js"></script>
+</body>
+</html>

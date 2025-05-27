@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Reservations - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="reservations-day.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="page-title">Reservations - Day View</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="action-icon-button" id="prevDayBtn" title="Previous Day">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span id="currentDateDisplay" class="date-display"></span>
+                <button class="action-icon-button" id="nextDayBtn" title="Next Day">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="action-icon-button" id="headerButton3" title="Add Reservation">
+                    <span class="icon">&#43;</span>
+                </button>
+                <span class="menu-icon">&#9776;</span>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="filter-group">
+                <label for="roomFilter">Room:</label>
+                <select id="roomFilter" class="filter-select">
+                    <option value="all">All Rooms</option>
+                    <option value="main">Main Dining</option>
+                    <option value="terrace">Terrace</option>
+                    <option value="private">Private Room</option>
+                </select>
+            </div>
+            <div class="search-group">
+                <input type="text" id="reservationSearch" class="filter-input search-input" placeholder="Search reservations...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="view-toggle">
+                <button class="toggle-btn active" id="dayViewBtn">Day</button>
+                <button class="toggle-btn" id="monthViewBtn">Month</button>
+            </div>
+        </div>
+
+        <div class="reservation-grid-container">
+            <div class="reservation-grid">
+                </div>
+        </div>
+    </div>
+
+    <script src="reservations-day.js"></script>
+</body>
+</html>

@@ -1,0 +1,654 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme (Consistent with existing pages like day-reports.css) */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Card specific colors */
+    --card-border: #e0e0e0;
+    --card-header-bg: #f8f9fa;
+    --card-footer-bg: #f2f2f2;
+    --positive-color: #28a745; /* Green for positive metrics */
+    --negative-color: #dc3545; /* Red for negative metrics like discounts/cancellations */
+
+    /* Calendar specific colors */
+    --calendar-day-bg: var(--card-bg);
+    --calendar-day-border: var(--border-color);
+    --calendar-weekend-bg: #f7f7f7; /* Light grey for weekends */
+    --calendar-current-day-bg: #e0f2f7; /* Light blue for current day */
+    --calendar-current-day-border: var(--accent-color);
+    --calendar-selected-day-bg: #cce0ff; /* Light blue for selected day (if implemented later) */
+    --calendar-nav-btn-bg: var(--header-button-bg);
+    --calendar-nav-btn-hover-bg: var(--header-button-hover-bg);
+    --calendar-empty-day-bg: #eee;
+    --calendar-empty-day-text: #aaa;
+    --reservation-indicator-color: var(--accent-color);
+    --reservation-indicator-text: #ffffff;
+    --room-list-bg: var(--card-footer-bg);
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #1f283e;
+    --text-color: #e0e0e0;
+    --h-color: #92a8d1;
+    --subtitle-color: #a0a0a0;
+    --border-color: #333;
+    --shadow-color-rgb: 0, 0, 0; /* Adjust shadow for dark if needed */
+    --accent-color: #92a8d1;
+    --button-hover-color: #6a8bb1;
+    --input-bg: #28283d;
+    --input-border: #555;
+    --table-header-bg: #2a3a4e;
+    --table-border: #444;
+    --table-row-hover: #28384d;
+
+    /* Header button colors for dark mode */
+    --header-button-bg: #3e4c6c;
+    --header-button-text: #e0e0e0;
+    --header-button-border: #555;
+    --header-button-hover-bg: #4a5c7c;
+
+    /* Card specific colors for dark mode */
+    --card-border: #333;
+    --card-header-bg: #2a3a4e;
+    --card-footer-bg: #28283d;
+    --positive-color: #4CAF50; /* Slightly brighter green for dark mode */
+    --negative-color: #FF6347; /* Slightly brighter red for dark mode */
+
+    /* Calendar specific colors for dark mode */
+    --calendar-day-bg: #1f283e;
+    --calendar-day-border: #333;
+    --calendar-weekend-bg: #28283d;
+    --calendar-current-day-bg: #2a3a4e;
+    --calendar-current-day-border: #92a8d1;
+    --calendar-selected-day-bg: #4a5c7c;
+    --calendar-nav-btn-bg: var(--header-button-bg);
+    --calendar-nav-btn-hover-bg: var(--header-button-hover-bg);
+    --calendar-empty-day-bg: #1a1a2e;
+    --calendar-empty-day-text: #555;
+    --reservation-indicator-color: var(--accent-color);
+    --reservation-indicator-text: #ffffff;
+    --room-list-bg: var(--card-footer-bg);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1400px; /* Max width applied here */
+    margin: 0 auto; /* Center the container */
+    background-color: var(--bg-color); /* Ensure container background adapts */
+    box-shadow: 0 0 10px rgba(var(--shadow-color-rgb), 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Header (Consistent) */
+.pos-header {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .fas.fa-arrow-left {
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.page-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.header-center h1 {
+    font-size: 1.8em;
+    margin: 0;
+    color: var(--h-color);
+    text-align: center;
+}
+
+.header-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--accent-color);
+}
+
+/* Dark Mode Toggle (Consistent) */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.dark-mode-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dark-mode-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5px;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label {
+    background-color: var(--accent-color);
+}
+
+.dark-mode-label .ball {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    left: 2px;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(24px);
+}
+
+.moon-icon, .sun-icon {
+    color: #f1c40f; /* Yellow for sun/moon */
+    font-size: 0.8em;
+    z-index: 1;
+}
+
+.moon-icon {
+    margin-right: auto;
+}
+
+.sun-icon {
+    margin-left: auto;
+}
+
+/* Top Controls (Similar to reviews/stats) */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    gap: 15px;
+    flex-wrap: wrap;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-group, .actions-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.filter-input {
+    padding: 8px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-input:focus {
+    border-color: var(--accent-color);
+}
+
+.action-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--accent-color);
+}
+
+.action-button.primary-button {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.action-button.primary-button:hover {
+    background-color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+}
+
+.action-button.secondary-button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.action-button.secondary-button:hover {
+    background-color: var(--table-row-hover);
+    border-color: var(--accent-color);
+}
+
+/* Main Content Area */
+.pos-main-content.reservations-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: grid; /* Use grid for layout */
+    grid-template-columns: 1.5fr 0.5fr; /* Calendar takes 2/3, Room Summary 1/3 */
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.stats-section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-section h2 {
+    color: var(--h-color);
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Calendar Specific Styles */
+.calendar-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header-controls h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--text-color);
+    border-bottom: none; /* Override stats-section h2 border */
+    padding-bottom: 0; /* Override stats-section h2 padding */
+}
+
+.calendar-nav-btn {
+    background-color: var(--calendar-nav-btn-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.calendar-nav-btn:hover {
+    background-color: var(--calendar-nav-btn-hover-bg);
+    border-color: var(--accent-color);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 10px;
+    color: var(--subtitle-color);
+}
+
+.calendar-weekdays .weekend-weekday {
+    color: var(--negative-color); /* Red color for weekend labels */
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    flex-grow: 1; /* Allow calendar grid to take available space */
+}
+
+.calendar-day {
+    background-color: var(--calendar-day-bg);
+    border: 1px solid var(--calendar-day-border);
+    border-radius: 5px;
+    min-height: 100px; /* Adjust height based on content */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.calendar-day.weekend {
+    background-color: var(--calendar-weekend-bg);
+    border-color: var(--calendar-day-border); /* Keep border consistent */
+}
+
+.calendar-day.current-day {
+    background-color: var(--calendar-current-day-bg);
+    border: 2px solid var(--calendar-current-day-border);
+}
+
+.calendar-day.empty {
+    background-color: var(--calendar-empty-day-bg);
+    color: var(--calendar-empty-day-text);
+    border-color: var(--calendar-day-border);
+    pointer-events: none; /* Make empty days unclickable */
+    opacity: 0.7;
+}
+
+.calendar-day .day-number {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.calendar-day .total-guests {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.calendar-day .total-guests i {
+    font-size: 0.9em;
+}
+
+.calendar-day .room-guest-details {
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+    line-height: 1.3;
+    width: 100%; /* Ensure full width for list */
+    max-height: 40px; /* Limit height to show scroll if many rooms */
+    overflow-y: auto; /* Enable scroll for room details */
+}
+
+.calendar-day .room-guest-details span {
+    display: block; /* Each room on a new line */
+}
+
+
+/* Room Summary Section */
+.room-summary-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.room-list-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling if many rooms */
+}
+
+.room-guest-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.room-guest-list li {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.room-guest-list li:last-child {
+    border-bottom: none;
+}
+
+.room-guest-list li:hover {
+    background-color: var(--table-row-hover);
+}
+
+.room-name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.room-guests {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .pos-main-content.reservations-content {
+        grid-template-columns: 1fr; /* Stack sections vertically */
+    }
+
+    .calendar-day {
+        min-height: 80px; /* Smaller height for calendar days */
+    }
+
+    .calendar-day .day-number {
+        font-size: 1.1em;
+    }
+
+    .calendar-day .total-guests {
+        font-size: 1em;
+    }
+
+    .calendar-day .room-guest-details {
+        max-height: none; /* Allow full height when stacked */
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .header-center h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    .filter-group, .actions-group {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .action-button {
+        width: 100%;
+    }
+
+    .pos-main-content.reservations-content {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .calendar-day {
+        min-height: 70px; /* Further reduce height */
+        padding: 8px;
+    }
+
+    .calendar-day .day-number {
+        font-size: 1em;
+    }
+
+    .calendar-day .total-guests {
+        font-size: 0.9em;
+    }
+
+    .calendar-day .room-guest-details {
+        font-size: 0.8em;
+    }
+
+    .calendar-header-controls h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        padding: 8px 10px;
+    }
+    .header-left .page-title {
+        font-size: 1em;
+    }
+    .header-center h1 {
+        font-size: 1.2em;
+    }
+    .header-icon-button {
+        padding: 6px 10px;
+        font-size: 1em;
+    }
+    .dark-mode-toggle-container {
+        width: 40px;
+        height: 20px;
+    }
+    .dark-mode-label .ball {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+    }
+    .dark-mode-checkbox:checked + .dark-mode-label .ball {
+        transform: translateX(18px);
+    }
+    .filter-input {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
+    .action-button {
+        font-size: 0.85em;
+        padding: 6px 10px;
+    }
+    .calendar-header-controls h2 {
+        font-size: 1.3em;
+    }
+    .calendar-nav-btn {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+    .calendar-day {
+        min-height: 60px; /* Even smaller height */
+        padding: 5px;
+    }
+    .calendar-day .day-number {
+        font-size: 0.9em;
+    }
+    .calendar-day .total-guests {
+        font-size: 0.8em;
+    }
+    .calendar-day .room-guest-details {
+        font-size: 0.75em;
+    }
+}

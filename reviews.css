@@ -1,0 +1,515 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme (Consistent with existing pages) */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Dark Mode Variables */
+    --dark-bg-color: #1a1a2e;
+    --dark-card-bg: #1f283e;
+    --dark-text-color: #e0e0e0;
+    --dark-h-color: #7fffd4; /* Light teal for dark mode headers */
+    --dark-subtitle-color: #b0b0b0;
+    --dark-border-color: #3e4451;
+    --dark-shadow-color-rgb: 0, 0, 0;
+    --dark-accent-color: #7fffd4;
+    --dark-button-hover-color: #64d4b3;
+    --dark-input-bg: #282f44;
+    --dark-input-border: #5a647d;
+    --dark-table-header-bg: #2b354d;
+    --dark-table-border: #4d566e;
+    --dark-table-row-hover: #37405b;
+
+    /* Specific for tables */
+    --table-bg: var(--card-bg);
+
+    /* Review specific colors */
+    --star-color: #FFD700; /* Gold */
+}
+
+/* Dark Mode styles */
+body.dark-mode {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+    --bg-color: var(--dark-bg-color);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text-color);
+    --h-color: var(--dark-h-color);
+    --subtitle-color: var(--dark-subtitle-color);
+    --border-color: var(--dark-border-color);
+    --shadow-color-rgb: var(--dark-shadow-color-rgb);
+    --accent-color: var(--dark-accent-color);
+    --button-hover-color: var(--dark-button-hover-color);
+    --input-bg: var(--dark-input-bg);
+    --input-border: var(--dark-input-border);
+    --table-header-bg: var(--dark-table-header-bg);
+    --table-border: var(--dark-table-border);
+    --table-row-hover: var(--dark-table-row-hover);    
+}
+
+body.dark-mode .pos-header,
+body.dark-mode .top-controls {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-color);
+    box-shadow: 0 2px 4px rgba(var(--dark-shadow-color-rgb), 0.2);
+}
+
+body.dark-mode .pos-header h1,
+body.dark-mode .page-title {
+    color: var(--dark-h-color);
+}
+
+body.dark-mode .header-icon-button,
+body.dark-mode .action-button,
+body.dark-mode .add-new-button {
+    background-color: var(--dark-header-button-bg);
+    color: var(--dark-header-button-text);
+    border: 1px solid var(--dark-header-button-border);
+}
+body.dark-mode .header-icon-button:hover,
+body.dark-mode .action-button:hover,
+body.dark-mode .add-new-button:hover {
+    background-color: var(--dark-header-button-hover-bg);
+}
+
+body.dark-mode .filter-input,
+body.dark-mode .search-input,
+body.dark-mode .filter-select {
+    background-color: var(--dark-input-bg);
+    color: var(--dark-input-text);
+    border: 1px solid var(--dark-input-border);
+}
+body.dark-mode .filter-select option {
+    background-color: var(--dark-input-bg); /* For options in dark mode */
+    color: var(--dark-input-text);
+}
+
+
+body.dark-mode .search-icon {
+    color: var(--dark-subtitle-color);
+}
+
+body.dark-mode .data-table {
+    background-color: var(--dark-table-bg);
+    border: 1px solid var(--dark-table-border);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .data-table th {
+    background-color: var(--dark-table-header-bg);
+    color: var(--dark-text-color);
+    border-bottom: 1px solid var(--dark-table-border);
+}
+
+body.dark-mode .data-table td {
+    border-bottom: 1px solid var(--dark-table-border);
+}
+
+body.dark-mode .data-table tbody tr:hover {
+    background-color: var(--dark-table-row-hover);
+}
+
+/* Page Layout */
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    max-width: 1400px;
+    margin: 0 auto; /* This centers the container */
+    padding: 20px; /* Add some padding if desired */
+}
+
+/* Header Styles (Consistent across all pages) */
+.pos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.1);
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .page-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.header-left i {
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+}
+
+.pos-header h1 {
+    font-size: 1.8em;
+    color: var(--h-color);
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.header-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: var(--subtitle-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .ball {
+    background-color: var(--card-bg);
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 2px;
+    top: 2.5px; /* Adjust if needed to center vertically */
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px);
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    color: var(--bg-color); /* Light color for icons */
+    font-size: 0.8em;
+    position: absolute;
+    padding: 0 5px;
+    z-index: 1;
+}
+
+.dark-mode-label .moon-icon {
+    left: 5px;
+}
+
+.dark-mode-label .sun-icon {
+    right: 5px;
+}
+
+/* Main Content Area */
+.pos-main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Top Controls */
+.top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.1);
+    align-items: center;
+    justify-content: space-between; /* Distribute items horizontally */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group, .search-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-input, .filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.95em;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-input:focus, .filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.search-group {
+    position: relative;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 300px;
+}
+
+.search-input {
+    padding-right: 35px; /* Make space for the icon */
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--subtitle-color);
+}
+
+.action-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--header-button-hover-bg);
+}
+
+.action-button.add-new-button {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.action-button.add-new-button:hover {
+    background-color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+}
+
+/* Table Styles */
+.reviews-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for wide tables */
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    flex-grow: 1; /* Allow table container to take remaining space */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px; /* Ensure minimum width for wide tables */
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    white-space: nowrap; /* Prevent text wrapping in cells */
+    transition: border-color 0.3s ease;
+}
+
+.data-table th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+    transition: background-color 0.3s ease;
+}
+
+.data-table .rating-stars {
+    color: var(--star-color);
+}
+
+/* Styles for ratings */
+.stars {
+    color: gold; /* Or a suitable star color */
+}
+
+.data-table .status-published { color: #28a745; } /* Green */
+.data-table .status-pending { color: #ffc107; } /* Yellow */
+.data-table .status-archived { color: #6c757d; } /* Grey */
+
+
+.data-table .actions-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center; /* Center action buttons in their cell */
+}
+
+.data-table .action-icon {
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--subtitle-color);
+    transition: color 0.2s ease;
+}
+
+.data-table .action-icon.edit:hover {
+    color: var(--accent-color);
+}
+
+.data-table .action-icon.delete:hover {
+    color: #dc3545; /* Red for delete */
+}
+.data-table .action-icon.publish:hover {
+    color: #28a745; /* Green for publish */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pos-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .header-left, .header-right, .header-center {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pos-header h1 {
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    .filter-group, .search-group {
+        width: 100%;
+    }
+
+    .search-group {
+        max-width: 100%; /* Remove max-width for full flexibility */
+    }
+
+    .actions-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .reviews-table-container {
+        border-radius: 0; /* Remove rounded corners for full width */
+    }
+
+    .data-table {
+        min-width: unset; /* Remove min-width to allow shrinking */
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        padding: 8px 10px;
+    }
+    .header-left .page-title {
+        font-size: 1em;
+    }
+    .pos-header h1 {
+        font-size: 1.2em;
+    }
+    .header-icon-button {
+        padding: 6px 10px;
+        font-size: 1em;
+    }
+    .dark-mode-toggle-container {
+        width: 40px;
+        height: 20px;
+    }
+    .dark-mode-label .ball {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        top: 2px;
+    }
+    .dark-mode-checkbox:checked + .dark-mode-label .ball {
+        transform: translateX(18px);
+    }
+    .dark-mode-label .moon-icon,
+    .dark-mode-label .sun-icon {
+        font-size: 0.7em;
+        padding: 0 4px;
+    }
+}

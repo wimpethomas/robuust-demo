@@ -1,0 +1,551 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme (Consistent with existing pages like reviews.css, dashboard-2.css) */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Card specific colors */
+    --card-border: #e0e0e0;
+    --card-header-bg: #f8f9fa;
+    --card-footer-bg: #f2f2f2;
+    --positive-color: #28a745; /* Green for positive metrics */
+    --negative-color: #dc3545; /* Red for negative metrics like discounts/cancellations */
+
+    /* Chart Colors (for Google Charts, passed via JS) */
+    --chart-bg-google: #ffffff;
+    --chart-text-google: #666;
+    --chart-grid-google: #e0e0e0;
+    --chart-title-google: #333;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --card-bg: #1f283e;
+    --text-color: #e0e0e0;
+    --h-color: #92a8d1;
+    --subtitle-color: #a0a0a0;
+    --border-color: #333;
+    --shadow-color-rgb: 0, 0, 0; /* Adjust shadow for dark if needed */
+    --accent-color: #92a8d1;
+    --button-hover-color: #6a8bb1;
+    --input-bg: #28283d;
+    --input-border: #555;
+    --table-header-bg: #2a3a4e;
+    --table-border: #444;
+    --table-row-hover: #28384d;
+
+    /* Header button colors for dark mode */
+    --header-button-bg: #3e4c6c;
+    --header-button-text: #e0e0e0;
+    --header-button-border: #555;
+    --header-button-hover-bg: #4a5c7c;
+
+    /* Card specific colors for dark mode */
+    --card-border: #333;
+    --card-header-bg: #2a3a4e;
+    --card-footer-bg: #28283d;
+    --positive-color: #4CAF50; /* Slightly brighter green for dark mode */
+    --negative-color: #FF6347; /* Slightly brighter red for dark mode */
+
+    /* Chart Colors for dark mode */
+    --chart-bg-google: #1f283e;
+    --chart-text-google: #a0a0a0;
+    --chart-grid-google: #444;
+    --chart-title-google: #e0e0e0;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1400px; /* Max width applied here */
+    margin: 0 auto; /* Center the container */
+    background-color: var(--bg-color); /* Ensure container background adapts */
+    box-shadow: 0 0 10px rgba(var(--shadow-color-rgb), 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Header (Copied from existing pages) */
+.pos-header {
+    background-color: var(--card-bg); /* Using card-bg for header consistency */
+    color: var(--text-color); /* Header text color */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .fas.fa-arrow-left {
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.page-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.header-center h1 {
+    font-size: 1.8em;
+    margin: 0;
+    color: var(--h-color); /* Consistent header color */
+    text-align: center;
+}
+
+.header-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.header-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--accent-color);
+}
+
+/* Dark Mode Toggle (Consistent) */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.dark-mode-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dark-mode-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5px;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label {
+    background-color: var(--accent-color); /* Dark mode toggle active color */
+}
+
+.dark-mode-label .ball {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    left: 2px;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(24px);
+}
+
+.moon-icon, .sun-icon {
+    color: #f1c40f; /* Yellow for sun/moon */
+    font-size: 0.8em;
+    z-index: 1;
+}
+
+.moon-icon {
+    margin-right: auto;
+}
+
+.sun-icon {
+    margin-left: auto;
+}
+
+/* Top Controls (Similar to reviews/stats) */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    gap: 15px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.filter-group, .actions-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.filter-input {
+    padding: 8px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-input:focus {
+    border-color: var(--accent-color);
+}
+
+.action-button {
+    background-color: var(--header-button-bg); /* Reusing header button styles */
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.action-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--accent-color);
+}
+
+.action-button.primary-button {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.action-button.primary-button:hover {
+    background-color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+}
+
+.action-button.secondary-button {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.action-button.secondary-button:hover {
+    background-color: var(--table-row-hover);
+    border-color: var(--accent-color);
+}
+
+/* Main Content Area */
+.pos-main-content.day-reports-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto; /* Enable scrolling for content if it overflows */
+}
+
+.stats-section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-section h2 {
+    color: var(--h-color);
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Summary Cards */
+.summary-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card.negative-card .card-value {
+    color: var(--negative-color);
+}
+
+.summary-card .card-header {
+    padding: 15px 20px;
+    background-color: var(--card-header-bg);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.summary-card .card-header h3 {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.summary-card .card-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--accent-color); /* Default for positive values */
+    transition: color 0.3s ease;
+}
+
+.summary-card .card-footer {
+    padding: 10px 20px;
+    background-color: var(--card-footer-bg);
+    border-top: 1px solid var(--card-border);
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Data Table Styles (Consistent) */
+.data-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Ensure table is wide enough for columns */
+    transition: color 0.3s ease;
+}
+
+.data-table th,
+.data-table td {
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.data-table th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color); /* Keep text color for headers */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+    transition: background-color 0.2s ease;
+}
+
+/* Chart Placeholders */
+.chart-section .chart-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+    min-height: 350px; /* Give charts some height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-section .chart-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    transition: color 0.3s ease;
+}
+
+.chart-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: var(--input-bg); /* A subtle background for the chart area */
+    border: 1px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--subtitle-color);
+    font-style: italic;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Adjustments (Copy and adapt from other CSS files) */
+@media (max-width: 1024px) {
+    .summary-cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    .header-center h1 {
+        width: 100%;
+        order: -1;
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    .filter-group, .actions-group {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .action-button {
+        width: 100%; /* Make buttons full width in actions group */
+    }
+
+    .pos-main-content.day-reports-content {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .summary-cards-container {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    }
+
+    .stats-section h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        padding: 8px 10px;
+    }
+    .header-left .page-title {
+        font-size: 1em;
+    }
+    .header-center h1 {
+        font-size: 1.2em;
+    }
+    .header-icon-button {
+        padding: 6px 10px;
+        font-size: 1em;
+    }
+    .dark-mode-toggle-container {
+        width: 40px;
+        height: 20px;
+    }
+    .dark-mode-label .ball {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+    }
+    .dark-mode-checkbox:checked + .dark-mode-label .ball {
+        transform: translateX(18px);
+    }
+    .summary-card .card-value {
+        font-size: 1.8em;
+    }
+    .summary-card .card-header h3 {
+        font-size: 1em;
+    }
+    .stats-table th, .stats-table td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+    .data-table {
+        min-width: 600px; /* Adjust min-width if columns stack too much */
+    }
+}

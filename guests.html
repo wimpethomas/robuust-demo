@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guests - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="guests.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Guests</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <main class="pos-main-content guests-content">
+            <div class="top-controls">
+                <div class="filter-group">
+                    <label for="guestTypeFilter">Type:</label>
+                    <select id="guestTypeFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="regular">Regular</option>
+                        <option value="new">New</option>
+                        <option value="vip">VIP</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="lastVisitFilter">Last Visit:</label>
+                    <select id="lastVisitFilter" class="filter-select">
+                        <option value="all">Anytime</option>
+                        <option value="month">Last Month</option>
+                        <option value="3months">Last 3 Months</option>
+                        <option value="year">Last Year</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <input type="text" id="guestSearch" class="filter-input search-input" placeholder="Search guests...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="actions-group">
+                    <button class="action-button"><i class="fas fa-file-export"></i> Export</button>
+                    <button class="action-button add-new-button"><i class="fas fa-user-plus"></i> Add New Guest</button>
+                </div>
+            </div>
+
+            <div class="guests-table-container">
+                <table class="data-table guests-table">
+                    <thead>
+                        <tr>
+                            <th>Guest ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Total Visits</th>
+                            <th>Last Visit</th>
+                            <th>Loyalty Points</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="guests.js"></script>
+</body>
+</html>

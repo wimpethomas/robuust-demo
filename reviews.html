@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="reviews.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Reviews</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                
+                <button class="header-icon-button"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+
+        <main class="pos-main-content reviews-content">
+            <div class="top-controls">
+                <div class="filter-group">
+                    <label for="ratingFilter">Rating:</label>
+                    <select id="ratingFilter" class="filter-select">
+                        <option value="all">All Ratings</option>
+                        <option value="5">★★★★★ (5 Stars)</option>
+                        <option value="4">★★★★☆ (4 Stars)</option>
+                        <option value="3">★★★☆☆ (3 Stars)</option>
+                        <option value="2">★★☆☆☆ (2 Stars)</option>
+                        <option value="1">★☆☆☆☆ (1 Star)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Statuses</option>
+                        <option value="published">Published</option>
+                        <option value="pending">Pending</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <input type="text" id="reviewSearch" class="filter-input search-input" placeholder="Search reviews...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="actions-group">
+                    <button class="action-button"><i class="fas fa-file-export"></i> Export</button>
+                    <button class="action-button add-new-button"><i class="fas fa-comment-dots"></i> Add New Review</button>
+                </div>
+            </div>
+
+            <div class="reviews-table-container">
+                <table class="data-table reviews-table">
+                    <thead>
+                        <tr>
+                            <th>Review ID</th>
+                            <th>Guest Name</th>
+                            <th>Date</th>
+                            <th>Rating</th>
+                            <th>Comment</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="reviews.js"></script>
+</body>
+</html>
