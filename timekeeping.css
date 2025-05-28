@@ -1,0 +1,223 @@
+/* Import the shared CSS if it's not already linked in HTML */
+@import url("timesheet-admin-coworker.css");
+
+/* Specific styles for the timekeeping page */
+
+.pos-main-content.timekeeping-content {
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+}
+
+.pos-main-content.timekeeping-content h2 {
+    font-size: 2em;
+    color: var(--h-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 25px; /* Increase gap between month nav and clock buttons */
+    margin-bottom: 25px;
+    width: 100%; /* Ensure controls take full width for centering */
+}
+
+.month-navigation {
+    flex-grow: 0; /* Prevent it from taking too much space */
+    justify-content: center;
+}
+
+.clock-action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-grow: 0; /* Prevent it from taking too much space */
+}
+
+.clock-in-button {
+    background-color: var(--approved-status-color); /* Green for clock in */
+}
+
+.clock-in-button:hover {
+    background-color: #218838;
+}
+
+.clock-in-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.clock-out-button {
+    background-color: var(--rejected-status-color); /* Red for clock out */
+}
+
+.clock-out-button:hover {
+    background-color: #c82333;
+}
+
+.clock-out-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Summary Cards specific to timekeeping */
+.summary-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%; /* Ensure it spans the main content width */
+    max-width: 900px; /* Match modal max-width for consistency */
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 20px;
+    text-align: center;
+}
+
+.summary-card .card-value {
+    font-size: 2.5em; /* Larger values for key metrics */
+}
+
+/* Daily Clock Entries Table (similar to admin detail view) */
+.daily-clock-entries {
+    width: 100%;
+    max-width: 900px; /* Match summary cards max-width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.daily-clock-entries h4 {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.add-entry-row {
+    text-align: left; /* Align button to the left */
+}
+
+.add-new-button.correction-button {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.add-new-button.correction-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Correction Request Modal Form Group adjustments */
+#correctionForm .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left; /* Ensure form elements are left-aligned */
+}
+
+#correctionForm label {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#correctionForm input,
+#correctionForm select,
+#correctionForm textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#correctionForm input:focus,
+#correctionForm select:focus,
+#correctionForm textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pos-main-content.timekeeping-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    .top-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .month-navigation, .clock-action-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    .clock-action-buttons button {
+        flex-grow: 1; /* Make buttons take full width */
+    }
+    .summary-cards-container {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        margin-bottom: 15px;
+    }
+    .summary-card .card-value {
+        font-size: 2em;
+    }
+    .daily-clock-entries h4 {
+        text-align: center;
+    }
+    .add-entry-row {
+        text-align: center; /* Center button on small screens */
+    }
+    .add-new-button.correction-button {
+        width: 100%;
+        max-width: 300px; /* Limit width for visual appeal */
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-main-content.timekeeping-content h2 {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    .top-controls {
+        gap: 10px;
+    }
+    .month-navigation {
+        gap: 8px;
+    }
+    .current-month-display {
+        font-size: 0.95em;
+    }
+    .action-button.nav-button,
+    .clock-action-buttons button {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+    .summary-card {
+        padding: 15px;
+    }
+    .summary-card .card-value {
+        font-size: 1.5em;
+    }
+    .daily-clock-entries h4 {
+        font-size: 1em;
+    }
+    .daily-entries-table th,
+    .daily-entries-table td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+    #correctionForm input,
+    #correctionForm select,
+    #correctionForm textarea {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    .modal-footer .action-button {
+        padding: 8px 15px;
+    }
+}

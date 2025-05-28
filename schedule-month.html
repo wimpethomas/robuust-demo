@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week Schedule - 1892 Eten & Drinken</title>
-    <link rel="stylesheet" href="schedule-week.css">
+    <title>Month Schedule - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="schedule-month.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +13,7 @@
         <header class="pos-header">
             <div class="header-left">
                 <i class="fas fa-arrow-left"></i>
-                <span class="page-title">Week Schedule</span>
+                <span class="page-title">Month Schedule</span>
             </div>
             <div class="header-center">
                 <h1>1892 Eten & Drinken</h1>
@@ -37,10 +37,10 @@
 
         <main class="pos-main-content schedule-content">
             <div class="top-controls">
-                <div class="week-navigation">
-                    <button class="action-button nav-button" id="prevWeekBtn"><i class="fas fa-chevron-left"></i> Previous Week</button>
-                    <h2 id="currentWeekDisplay" class="week-display">Week <span id="weekNumber">22</span>: <span id="weekDates">May 27 - June 2, 2024</span></h2>
-                    <button class="action-button nav-button" id="nextWeekBtn">Next Week <i class="fas fa-chevron-right"></i></button>
+                <div class="month-navigation">
+                    <button class="action-button nav-button" id="prevMonthBtn"><i class="fas fa-chevron-left"></i> Previous Month</button>
+                    <h2 id="currentMonthDisplay" class="month-display">June 2024</h2>
+                    <button class="action-button nav-button" id="nextMonthBtn">Next Month <i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div class="filter-group">
                     <label for="departmentFilter">Department</label>
@@ -53,30 +53,37 @@
                 </div>
             </div>
 
-            <div class="schedule-table-container">
-                <table class="data-table schedule-table">
+            <div class="schedule-calendar-container">
+                <div class="calendar-header">
+                    <div class="day-name">Mon</div>
+                    <div class="day-name">Tue</div>
+                    <div class="day-name">Wed</div>
+                    <div class="day-name">Thu</div>
+                    <div class="day-name">Fri</div>
+                    <div class="day-name weekend-day">Sat</div>
+                    <div class="day-name weekend-day">Sun</div>
+                </div>
+                <div id="calendarGrid" class="calendar-grid">
+                    </div>
+            </div>
+
+            <div class="monthly-totals-container">
+                <h3>Monthly Totals per Coworker</h3>
+                <table class="data-table monthly-totals-table">
                     <thead>
                         <tr>
-                            <th class="coworker-col">Coworker</th>
-                            <th>Mon <span class="date-small">27/5</span></th>
-                            <th>Tue <span class="date-small">28/5</span></th>
-                            <th>Wed <span class="date-small">29/5</span></th>
-                            <th>Thu <span class="date-small">30/5</span></th>
-                            <th>Fri <span class="date-small">31/5</span></th>
-                            <th>Sat <span class="date-small">1/6</span></th>
-                            <th>Sun <span class="date-small">2/6</span></th>
-                            <th class="total-col">Weekly Total</th>
+                            <th>Coworker</th>
+                            <th>Department</th>
+                            <th>Total Scheduled Hours</th>
                         </tr>
                     </thead>
-                    <tbody id="scheduleTableBody">
+                    <tbody id="monthlyTotalsTableBody">
                         </tbody>
-                    <tfoot id="scheduleTableFoot">
-                        </tfoot>
                 </table>
             </div>
         </main>
     </div>
 
-    <script src="schedule-week.js"></script>
+    <script src="schedule-month.js"></script>
 </body>
 </html>

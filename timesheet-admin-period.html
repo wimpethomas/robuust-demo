@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timesheet Admin - Monthly Overview</title>
+    <link rel="stylesheet" href="timesheet-admin-period.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Timesheet Admin</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="pos-main-content timesheet-content">
+            <div class="top-controls">
+                <div class="month-navigation">
+                    <button class="action-button nav-button" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="currentMonthDisplay" class="current-month-display">May 2025</span>
+                    <button class="action-button nav-button" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="filter-group">
+                    <label for="coworkerFilter">Coworker:</label>
+                    <select id="coworkerFilter" class="filter-select">
+                        <option value="all">All Coworkers</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="calendar-grid-container">
+                <div class="calendar-header">Mon</div>
+                <div class="calendar-header">Tue</div>
+                <div class="calendar-header">Wed</div>
+                <div class="calendar-header">Thu</div>
+                <div class="calendar-header">Fri</div>
+                <div class="calendar-header">Sat</div>
+                <div class="calendar-header">Sun</div>
+                
+                <div id="calendarDays" class="calendar-days">
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="dailyDetailModalOverlay" class="modal-overlay">
+        <div id="dailyDetailModal" class="modal">
+            <div class="modal-header">
+                <h3 id="dailyDetailModalTitle"></h3>
+                <button class="close-modal-btn" id="closeDailyDetailModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-summary-cards">
+                    <div class="summary-card">
+                        <span class="card-label">Total Hours</span>
+                        <span class="card-value" id="detailTotalHours">0.0h</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="card-label">Breaks Taken</span>
+                        <span class="card-value" id="detailBreaks">0</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="card-label">Adjustments</span>
+                        <span class="card-value" id="detailAdjustments">0h</span>
+                    </div>
+                </div>
+
+                <div class="detail-clock-entries">
+                    <h4>Clock Entries for <span id="detailCoworkerName"></span></h4>
+                    <table class="data-table clock-entries-table">
+                        <thead>
+                            <tr>
+                                <th>Time In</th>
+                                <th>Time Out</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clockEntriesTableBody">
+                            </tbody>
+                    </table>
+                    <div class="add-entry-row">
+                        <button class="action-button add-new-button" id="addClockEntryBtn"><i class="fas fa-plus"></i> Add New Entry</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button" id="cancelDailyDetailModalBtn">Close</button>
+                <button class="action-button save-button" id="saveDailyDetailModalBtn"><i class="fas fa-save"></i> Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="timesheet-admin-period.js"></script>
+</body>
+</html>

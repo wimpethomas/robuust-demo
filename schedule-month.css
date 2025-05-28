@@ -43,33 +43,10 @@ body {
     --scheduled-color: #28a745; /* Green for scheduled */
     --available-color: #ffc107; /* Yellow/Orange for available */
     --day-off-color: #dc3545; /* Red for day off */
+    --partially-scheduled-color: #17a2b8; /* Cyan for partially scheduled */
+    --partially-available-color: #fd7e14; /* Orange for partially available */
     --weekend-bg: #f8f8f8; /* Light background for weekend columns */
-
-    /* Dark Mode Variables */
-    --dark-bg-color: #1a1a2e;
-    --dark-card-bg: #1f283e;
-    --dark-text-color: #e0e0e0;
-    --dark-h-color: #7a9cff; /* Lighter blue for headers in dark mode */
-    --dark-subtitle-color: #a0a0a0;
-    --dark-border-color: #3a3a5a;
-    --dark-shadow-color-rgb: 0, 0, 0;
-    --dark-accent-color: #7a9cff;
-    --dark-button-hover-color: #5a7bd9;
-    --dark-input-bg: #2a2a4a;
-    --dark-input-border: #5a5a7a;
-    --dark-table-header-bg: #2c2c4c;
-    --dark-table-border: #4a4a6a;
-    --dark-table-row-hover: #3a3a5a;
-    --dark-header-button-bg: #3a3a5a;
-    --dark-header-button-text: #e0e0e0;
-    --dark-header-button-border: #5a5a7a;
-    --dark-header-button-hover-bg: #4a4a6a;
-
-    /* Dark Mode specific schedule colors */
-    --dark-scheduled-color: #66bb6a; /* Lighter green */
-    --dark-available-color: #ffee58; /* Lighter yellow */
-    --dark-day-off-color: #ef5350; /* Lighter red */
-    --dark-weekend-bg: #282838; /* Darker background for weekend columns */
+    --past-month-day-color: #ccc; /* Color for days outside the current month */
 }
 
 /* Dark Mode styles */
@@ -78,9 +55,41 @@ body.dark-mode {
     color: var(--dark-text-color);
 }
 
+body.dark-mode :root {
+    --bg-color: var(--dark-bg-color);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text-color);
+    --h-color: var(--dark-h-color);
+    --subtitle-color: var(--dark-subtitle-color);
+    --border-color: var(--dark-border-color);
+    --shadow-color-rgb: var(--dark-shadow-color-rgb);
+    --accent-color: var(--dark-accent-color);
+    --accent-color-rgb: 122, 156, 255; /* RGB values for accent color in dark mode */
+    --button-hover-color: var(--dark-button-hover-color);
+    --input-bg: var(--dark-input-bg);
+    --input-border: var(--dark-input-border);
+    --table-header-bg: var(--dark-table-header-bg);
+    --table-border: var(--dark-table-border);
+    --table-row-hover: var(--dark-table-row-hover);
+    --header-button-bg: var(--dark-header-button-bg);
+    --header-button-text: var(--dark-header-button-text);
+    --header-button-border: var(--dark-header-button-border);
+    --header-button-hover-bg: var(--dark-header-button-hover-bg);
+
+    /* Dark Mode specific schedule colors */
+    --scheduled-color: #66bb6a; /* Lighter green */
+    --available-color: #ffee58; /* Lighter yellow */
+    --day-off-color: #ef5350; /* Lighter red */
+    --partially-scheduled-color: #4dd0e1; /* Lighter cyan */
+    --partially-available-color: #ffb74d; /* Lighter orange */
+    --weekend-bg: #282838; /* Darker background for weekend columns */
+    --past-month-day-color: #555; /* Darker color for days outside current month */
+}
+
 body.dark-mode .pos-header,
 body.dark-mode .top-controls,
-body.dark-mode .schedule-table-container {
+body.dark-mode .schedule-calendar-container,
+body.dark-mode .monthly-totals-container {
     background-color: var(--dark-card-bg);
     border-color: var(--dark-border-color);
     box-shadow: 0 2px 8px rgba(var(--dark-shadow-color-rgb), 0.1);
@@ -96,7 +105,8 @@ body.dark-mode .header-left .fa-arrow-left:hover {
 
 body.dark-mode .page-title,
 body.dark-mode .header-center h1,
-body.dark-mode .week-display {
+body.dark-mode .month-display,
+body.dark-mode .monthly-totals-container h3 {
     color: var(--dark-h-color);
 }
 
@@ -135,7 +145,7 @@ body.dark-mode .filter-select {
 
 body.dark-mode .filter-select:focus {
     border-color: var(--dark-accent-color);
-    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2); /* Use accent-color-rgb here */
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
 }
 
 body.dark-mode .action-button.nav-button {
@@ -146,56 +156,70 @@ body.dark-mode .action-button.nav-button:hover {
     background-color: var(--dark-button-hover-color);
 }
 
-body.dark-mode .schedule-table thead th,
-body.dark-mode .schedule-table tfoot td {
+body.dark-mode .calendar-header .day-name {
+    background-color: var(--dark-table-header-bg);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .calendar-header .weekend-day {
+    background-color: var(--dark-weekend-bg);
+}
+
+body.dark-mode .calendar-day {
+    border-color: var(--dark-table-border);
+    background-color: var(--dark-card-bg);
+}
+
+body.dark-mode .calendar-day.weekend {
+    background-color: var(--dark-weekend-bg);
+}
+
+body.dark-mode .calendar-day.empty-day .day-date,
+body.dark-mode .calendar-day.past-month-day .day-date {
+    color: var(--dark-past-month-day-color);
+}
+
+body.dark-mode .calendar-day:hover {
+    background-color: var(--dark-table-row-hover);
+}
+
+body.dark-mode .calendar-day .schedule-item {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .schedule-item.scheduled {
+    color: var(--dark-scheduled-color);
+}
+
+body.dark-mode .schedule-item.available {
+    color: var(--dark-available-color);
+}
+
+body.dark-mode .schedule-item.day-off {
+    color: var(--dark-day-off-color);
+}
+
+body.dark-mode .schedule-item.partially-scheduled {
+    color: var(--dark-partially-scheduled-color);
+}
+
+body.dark-mode .schedule-item.partially-available {
+    color: var(--dark-partially-available-color);
+}
+
+body.dark-mode .monthly-totals-table thead th,
+body.dark-mode .monthly-totals-table tbody td {
     background-color: var(--dark-table-header-bg);
     color: var(--dark-text-color);
     border-color: var(--dark-table-border);
 }
 
-body.dark-mode .schedule-table tbody td {
-    border-color: var(--dark-table-border);
-}
-
-body.dark-mode .schedule-table tbody tr:nth-child(even) {
+body.dark-mode .monthly-totals-table tbody tr:nth-child(even) {
     background-color: var(--dark-input-bg);
 }
 
-body.dark-mode .schedule-table tbody tr:hover {
+body.dark-mode .monthly-totals-table tbody tr:hover {
     background-color: var(--dark-table-row-hover);
-}
-
-body.dark-mode .schedule-table .date-small {
-    color: var(--dark-subtitle-color);
-}
-
-body.dark-mode .schedule-table .total-col {
-    background-color: var(--dark-table-header-bg);
-    border-left-color: var(--dark-accent-color);
-}
-
-body.dark-mode .schedule-table tfoot td {
-    border-top-color: var(--dark-accent-color);
-}
-
-/* Dark Mode specific schedule entry colors */
-body.dark-mode .schedule-entry.scheduled {
-    color: var(--dark-scheduled-color);
-}
-
-body.dark-mode .schedule-entry.available {
-    color: var(--dark-available-color);
-}
-
-body.dark-mode .schedule-entry.day-off {
-    color: var(--dark-day-off-color);
-}
-
-body.dark-mode .schedule-table th:nth-child(7), /* Saturday */
-body.dark-mode .schedule-table td:nth-child(7),
-body.dark-mode .schedule-table th:nth-child(8), /* Sunday */
-body.dark-mode .schedule-table td:nth-child(8) {
-    background-color: var(--dark-weekend-bg);
 }
 
 
@@ -334,7 +358,7 @@ body.dark-mode .schedule-table td:nth-child(8) {
     gap: 25px;
 }
 
-/* Top Controls (Week Navigation & Filter) */
+/* Top Controls (Month Navigation & Filter) */
 .top-controls {
     display: flex;
     flex-wrap: wrap;
@@ -347,22 +371,18 @@ body.dark-mode .schedule-table td:nth-child(8) {
     box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
 }
 
-.week-navigation {
+.month-navigation {
     display: flex;
     align-items: center;
     gap: 15px;
-    flex-grow: 1; /* Allow it to take available space */
-    justify-content: center; /* Center buttons and display */
+    flex-grow: 1;
+    justify-content: center;
 }
 
-.week-display {
+.month-display {
     font-size: 1.5em;
     color: var(--h-color);
-    white-space: nowrap; /* Prevent wrapping */
-}
-
-.week-display .week-number {
-    font-weight: bold;
+    white-space: nowrap;
 }
 
 .action-button.nav-button {
@@ -386,7 +406,7 @@ body.dark-mode .schedule-table td:nth-child(8) {
 .filter-group {
     display: flex;
     flex-direction: column;
-    min-width: 180px; /* Ensure some minimum width for filter */
+    min-width: 180px;
 }
 
 .filter-group label {
@@ -413,116 +433,189 @@ body.dark-mode .schedule-table td:nth-child(8) {
     outline: none;
 }
 
-/* Schedule Table Container */
-.schedule-table-container {
+/* Schedule Calendar Container */
+.schedule-calendar-container {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
-    padding: 15px; /* Slightly less padding for a compact look */
-    overflow-x: auto; /* Enable horizontal scrolling for table on small screens */
+    padding: 15px;
+    overflow-x: auto; /* Enable scrolling if calendar gets too wide */
 }
 
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 900px; /* Minimum width to prevent excessive squeezing */
-}
-
-.schedule-table thead th,
-.schedule-table tfoot td {
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     background-color: var(--table-header-bg);
+    border: 1px solid var(--table-border);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden; /* For rounded corners */
+}
+
+.calendar-header .day-name {
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
     color: var(--text-color);
-    font-weight: bold;
-    padding: 10px 8px; /* Compact padding */
-    text-align: center;
-    border: 1px solid var(--table-border);
-    white-space: nowrap; /* Prevent header text from wrapping */
+    font-size: 0.9em;
 }
 
-.schedule-table thead th.coworker-col,
-.schedule-table tfoot td.coworker-col {
-    text-align: left; /* Align coworker name to the left */
-    padding-left: 15px; /* More padding for readability */
-}
-
-.schedule-table tbody td {
-    padding: 8px; /* Compact padding for body cells */
-    text-align: center;
-    border: 1px solid var(--table-border);
-    vertical-align: top; /* Align content to the top */
-}
-
-.schedule-table tbody tr:nth-child(even) {
-    background-color: var(--input-bg); /* Alternate row background for readability */
-}
-
-.schedule-table tbody tr:hover {
-    background-color: var(--table-row-hover);
-}
-
-.schedule-table .coworker-col {
-    font-weight: bold;
-    text-align: left;
-    padding-left: 15px;
-}
-
-.schedule-table .date-small {
-    display: block;
-    font-size: 0.8em;
-    font-weight: normal;
-    color: var(--subtitle-color);
-}
-
-/* Weekend column styling */
-.schedule-table th:nth-child(7), /* Saturday */
-.schedule-table td:nth-child(7),
-.schedule-table th:nth-child(8), /* Sunday */
-.schedule-table td:nth-child(8) {
+.calendar-header .weekend-day {
     background-color: var(--weekend-bg);
 }
 
-/* Specific styling for schedule entries */
-.schedule-entry {
-    font-size: 0.9em;
-    line-height: 1.3;
-    padding: 3px 0;
-    word-break: break-word; /* Allow long times to break */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid var(--table-border);
+    border-top: none;
 }
 
-.schedule-entry.scheduled {
+.calendar-day {
+    min-height: 120px; /* Minimum height for a day cell */
+    border: 1px solid var(--table-border);
+    border-top: none;
+    border-left: none; /* Only left border for grid effect */
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    position: relative;
+    background-color: var(--card-bg);
+    transition: background-color 0.2s ease;
+}
+
+/* First column days need left border */
+.calendar-grid .calendar-day:nth-child(7n+1) {
+    border-left: 1px solid var(--table-border);
+}
+
+.calendar-day.weekend {
+    background-color: var(--weekend-bg);
+}
+
+.calendar-day:hover {
+    background-color: var(--table-row-hover);
+}
+
+.calendar-day .day-date {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    align-self: flex-end; /* Push date to top-right */
+    color: var(--text-color);
+}
+
+.calendar-day.empty-day .day-date,
+.calendar-day.past-month-day .day-date {
+    color: var(--past-month-day-color);
+}
+
+.calendar-day-content {
+    width: 100%;
+    overflow-y: auto; /* Scroll if too many items */
+    flex-grow: 1;
+    padding-right: 3px; /* To prevent scrollbar overlapping content */
+}
+
+.schedule-item {
+    font-size: 0.8em;
+    line-height: 1.3;
+    padding: 2px 0;
+    word-break: break-word;
+    white-space: normal; /* Allow text to wrap within the cell */
+    color: var(--text-color); /* Default text color */
+}
+
+.schedule-item strong {
+    display: block; /* Coworker name on new line */
+    font-weight: 500;
+}
+
+.schedule-item.scheduled {
     color: var(--scheduled-color);
     font-weight: bold;
 }
 
-.schedule-entry.available {
+.schedule-item.available {
     color: var(--available-color);
-}
-
-.schedule-entry.day-off {
-    color: var(--day-off-color);
     font-style: italic;
 }
 
-/* Total column styling */
-.schedule-table .total-col {
+.schedule-item.day-off {
+    color: var(--day-off-color);
+    font-style: italic;
     font-weight: bold;
-    background-color: var(--table-header-bg); /* Match header for totals */
-    border-left: 2px solid var(--accent-color); /* Visual separator */
 }
 
-.schedule-table tfoot td {
-    background-color: var(--table-header-bg);
-    font-size: 1.1em;
-    padding: 12px 8px;
-    border-top: 2px solid var(--accent-color); /* Visual separator */
+.schedule-item.partially-scheduled {
+    color: var(--partially-scheduled-color);
+    font-weight: bold;
 }
 
-.schedule-table tfoot td:first-child {
+.schedule-item.partially-available {
+    color: var(--partially-available-color);
+}
+
+/* Monthly Totals Table */
+.monthly-totals-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.monthly-totals-container h3 {
+    font-size: 1.6em;
+    color: var(--h-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.monthly-totals-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.monthly-totals-table thead th,
+.monthly-totals-table tbody td {
+    padding: 10px 15px;
     text-align: left;
+    border: 1px solid var(--table-border);
+    font-size: 0.95em;
+}
+
+.monthly-totals-table thead th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.monthly-totals-table tbody tr:nth-child(even) {
+    background-color: var(--input-bg);
+}
+
+.monthly-totals-table tbody tr:hover {
+    background-color: var(--table-row-hover);
 }
 
 /* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .calendar-day {
+        min-height: 100px;
+    }
+    .schedule-item {
+        font-size: 0.75em;
+    }
+    .calendar-day .day-date {
+        font-size: 1em;
+    }
+}
+
 @media (max-width: 1024px) {
     .pos-header {
         padding: 12px 20px;
@@ -537,11 +630,11 @@ body.dark-mode .schedule-table td:nth-child(8) {
     .top-controls {
         gap: 15px;
         padding: 15px;
-        flex-direction: column; /* Stack controls vertically */
+        flex-direction: column;
         align-items: stretch;
     }
-    .week-navigation {
-        flex-direction: column; /* Stack week buttons and display */
+    .month-navigation {
+        flex-direction: column;
         gap: 10px;
         width: 100%;
     }
@@ -553,21 +646,17 @@ body.dark-mode .schedule-table td:nth-child(8) {
         width: 100%;
         min-width: unset;
     }
-    .schedule-table-container {
+    .schedule-calendar-container {
         padding: 10px;
     }
-    .schedule-table {
-        min-width: 700px; /* Reduce minimum width for medium screens */
+    .calendar-day {
+        min-height: 90px;
     }
-    .schedule-table thead th,
-    .schedule-table tfoot td {
-        padding: 8px 6px; /* Further compact padding */
+    .schedule-item {
+        font-size: 0.7em;
     }
-    .schedule-table tbody td {
-        padding: 6px;
-    }
-    .schedule-entry {
-        font-size: 0.85em;
+    .monthly-totals-table {
+        font-size: 0.9em;
     }
 }
 
@@ -595,23 +684,29 @@ body.dark-mode .schedule-table td:nth-child(8) {
         padding: 15px;
         gap: 15px;
     }
-    .week-display {
+    .month-display {
         font-size: 1.2em;
     }
-    .schedule-table {
-        min-width: 550px; /* Smaller min-width for small tablets */
+    .calendar-day {
+        min-height: 70px; /* Further reduce height for small tablets */
     }
-    .schedule-table thead th,
-    .schedule-table tfoot td {
+    .calendar-header .day-name {
+        font-size: 0.8em;
+        padding: 8px 3px;
+    }
+    .calendar-day .day-date {
         font-size: 0.9em;
-        padding: 6px 4px;
     }
-    .schedule-table tbody td {
-        font-size: 0.8em;
-        padding: 4px;
+    .schedule-item {
+        font-size: 0.65em;
     }
-    .schedule-entry {
-        font-size: 0.8em;
+    .monthly-totals-container h3 {
+        font-size: 1.4em;
+    }
+    .monthly-totals-table thead th,
+    .monthly-totals-table tbody td {
+        padding: 8px 10px;
+        font-size: 0.85em;
     }
 }
 
@@ -649,26 +744,29 @@ body.dark-mode .schedule-table td:nth-child(8) {
     .pos-main-content.schedule-content {
         padding: 10px;
     }
-    .week-display {
+    .month-display {
         font-size: 1em;
         text-align: center;
     }
-    .schedule-table {
-        min-width: 400px;
+    .calendar-day {
+        min-height: 60px; /* Smallest height for phone */
     }
-    .schedule-table thead th,
-    .schedule-table tfoot td {
+    .calendar-header .day-name {
+        font-size: 0.7em;
+        padding: 6px 2px;
+    }
+    .calendar-day .day-date {
         font-size: 0.8em;
-        padding: 4px 3px;
     }
-    .schedule-table tbody td {
-        font-size: 0.75em;
-        padding: 3px;
+    .schedule-item {
+        font-size: 0.6em;
     }
-    .schedule-entry {
-        font-size: 0.7em;
+    .monthly-totals-container h3 {
+        font-size: 1.2em;
     }
-    .schedule-table .date-small {
-        font-size: 0.7em;
+    .monthly-totals-table thead th,
+    .monthly-totals-table tbody td {
+        padding: 6px 8px;
+        font-size: 0.8em;
     }
 }

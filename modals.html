@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modals Showcase</title>
+    <link rel="stylesheet" href="timesheet-admin-coworker.css"> <link rel="stylesheet" href="modals.css"> <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Modals Showcase</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="pos-main-content modals-content">
+            <h2>Click a button to open a modal:</h2>
+            <div class="modal-buttons-container">
+                <button class="action-button open-modal-btn" data-modal-id="modal1">Open Modal 1 (Success)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal2">Open Modal 2 (Confirm Delete)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal3">Open Modal 3 (Warning)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal4">Open Modal 4 (Info / Tip)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal5">Open Modal 5 (Input Short)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal6">Open Modal 6 (Input Long)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal7">Open Modal 7 (Error)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal8">Open Modal 8 (Simple List)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal9">Open Modal 9 (Text Options)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal10">Open Modal 10 (Action Buttons)</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal1Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal1">
+            <div class="modal-header">
+                <h3>Success!</h3>
+                <button class="close-modal-btn" data-modal-id="modal1"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Your changes have been saved successfully.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal1">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal2">
+            <div class="modal-header">
+                <h3>Confirm Deletion</h3>
+                <button class="close-modal-btn" data-modal-id="modal2"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal2">Cancel</button>
+                <button class="action-button delete-button close-modal-btn" data-modal-id="modal2">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal3">
+            <div class="modal-header">
+                <h3>Warning</h3>
+                <button class="close-modal-btn" data-modal-id="modal3"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Some data might be incomplete. Please review before proceeding.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal3">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal4">
+            <div class="modal-header">
+                <h3>Information</h3>
+                <button class="close-modal-btn" data-modal-id="modal4"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>This feature allows you to quickly adjust stock levels directly from the inventory overview.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal4">Got It!</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal5Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal5">
+            <div class="modal-header">
+                <h3>Enter Value</h3>
+                <button class="close-modal-btn" data-modal-id="modal5"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="shortInput">New Value:</label>
+                    <input type="text" id="shortInput" class="filter-input" placeholder="e.g., 12.50">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal5">Cancel</button>
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal5">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal6Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal6">
+            <div class="modal-header">
+                <h3>Add Notes</h3>
+                <button class="close-modal-btn" data-modal-id="modal6"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="longInput">Enter your notes:</label>
+                    <textarea id="longInput" class="filter-input" rows="5" placeholder="Type your detailed notes here..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal6">Cancel</button>
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal6">Save Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal7Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal7">
+            <div class="modal-header">
+                <h3>Error!</h3>
+                <button class="close-modal-btn" data-modal-id="modal7"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Failed to process your request. Please try again later or contact support.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal7">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal8Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal8">
+            <div class="modal-header">
+                <h3>Select Item</h3>
+                <button class="close-modal-btn" data-modal-id="modal8"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body modal-list-options">
+                <ul class="simple-list">
+                    <li>Option A (Item 1)</li>
+                    <li>Option B (Item 2)</li>
+                    <li>Option C (Item 3)</li>
+                    <li>Option D (Item 4)</li>
+                    <li>Option E (Item 5)</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal8">Select</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal9Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal9">
+            <div class="modal-header">
+                <h3>Choose an Option</h3>
+                <button class="close-modal-btn" data-modal-id="modal9"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body modal-option-groups">
+                <div class="option-group">
+                    <span class="option-text">Perform Action A</span>
+                    <button class="action-button secondary-action-button close-modal-btn" data-modal-id="modal9">Action A</button>
+                </div>
+                <div class="option-group">
+                    <span class="option-text">Proceed with Option B</span>
+                    <button class="action-button secondary-action-button close-modal-btn" data-modal-id="modal9">Option B</button>
+                </div>
+                <div class="option-group">
+                    <span class="option-text">Review and Submit C</span>
+                    <button class="action-button secondary-action-button close-modal-btn" data-modal-id="modal9">Submit C</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div id="modal10Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal10">
+            <div class="modal-header">
+                <h3>Actions</h3>
+                <button class="close-modal-btn" data-modal-id="modal10"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body modal-action-buttons-only">
+                <button class="action-button primary-action-button close-modal-btn" data-modal-id="modal10">Action 1</button>
+                <button class="action-button secondary-action-button close-modal-btn" data-modal-id="modal10">Action 2</button>
+                <button class="action-button delete-button close-modal-btn" data-modal-id="modal10">Action 3</button>
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal10">Close</button>
+            </div>
+            </div>
+    </div>
+
+    <script src="modals.js"></script>
+</body>
+</html>

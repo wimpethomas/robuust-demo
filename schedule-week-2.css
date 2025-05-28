@@ -1,0 +1,1148 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Font */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* CSS Variables for Theme */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --accent-color-rgb: 0, 123, 255; /* RGB values for accent color */
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Schedule specific colors (from schedule-list) */
+    --scheduled-color: #28a745; /* Green for scheduled */
+    --available-color: #ffc107; /* Yellow/Orange for available */
+    --day-off-color: #dc3545; /* Red for day off */
+    --partially-scheduled-color: #17a2b8; /* Cyan for partially scheduled */
+    --partially-available-color: #fd7e14; /* Orange for partially available */
+    --staffing-needed-color: #dc3545; /* Red for staffing needed */
+    --staffing-met-color: #28a745; /* Green for staffing met */
+    --shift-bg: #e9f5ff; /* Light blue for shifts */
+    --shift-border: #cce7ff;
+    --job-box-bg: #f0f8ff; /* Lighter background for job title boxes */
+    --job-box-border: #bbdfff;
+
+    /* Weekly schedule specific */
+    --weekly-grid-border: #e0e0e0;
+    --weekly-cell-bg: #ffffff;
+    --weekly-header-bg: #e9ecef;
+    --weekly-shift-card-bg: #dbeaff; /* Light blue for shift cards */
+    --weekly-shift-card-border: #bbdfff;
+    --no-shift-placeholder-color: #888;
+}
+
+/* Dark Mode Variables (defined globally) */
+:root {
+    --dark-bg-color: #1a1a2e;
+    --dark-card-bg: #1f283e;
+    --dark-text-color: #e0e0e0;
+    --dark-h-color: #7a9cff;
+    --dark-subtitle-color: #a0a0a0;
+    --dark-border-color: #3a3a5e;
+    --dark-shadow-color-rgb: 0, 0, 0;
+    --dark-accent-color: #7a9cff;
+    --dark-button-hover-color: #5d7cc7;
+    --dark-input-bg: #2b354a;
+    --dark-input-border: #505d7b;
+    --dark-table-header-bg: #2f3e5c;
+    --dark-table-border: #4a5472;
+    --dark-table-row-hover: #3a4768;
+
+    /* Dark Mode specific header button colors */
+    --dark-header-button-bg: #2f3e5c;
+    --dark-header-button-text: #e0e0e0;
+    --dark-header-button-border: #4a5472;
+    --dark-header-button-hover-bg: #3a4768;
+
+    /* Dark Mode specific schedule colors */
+    --dark-scheduled-color: #66bb6a;
+    --dark-available-color: #ffee58;
+    --dark-day-off-color: #ef5350;
+    --dark-partially-scheduled-color: #4dd0e1;
+    --dark-partially-available-color: #ffb74d;
+    --dark-staffing-needed-color: #ff7043;
+    --dark-staffing-met-color: #a5d6a7;
+    --dark-shift-bg: #2b354a;
+    --dark-shift-border: #3a4768;
+    --dark-job-box-bg: #222e43;
+    --dark-job-box-border: #3a4768;
+
+    /* Dark mode weekly schedule specific */
+    --dark-weekly-grid-border: #3a3a5e;
+    --dark-weekly-cell-bg: #1f283e;
+    --dark-weekly-header-bg: #2f3e5c;
+    --dark-weekly-shift-card-bg: #3f4e72;
+    --dark-weekly-shift-card-border: #5c6e91;
+    --dark-no-shift-placeholder-color: #777;
+}
+
+/* Dark Mode styles: Override light mode variables with dark mode variables when body has 'dark-mode' class */
+body.dark-mode {
+    --bg-color: var(--dark-bg-color);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text-color);
+    --h-color: var(--dark-h-color);
+    --subtitle-color: var(--dark-subtitle-color);
+    --border-color: var(--dark-border-color);
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: var(--dark-accent-color);
+    --accent-color-rgb: 122, 156, 255;
+    --button-hover-color: var(--dark-button-hover-color);
+    --input-bg: var(--dark-input-bg);
+    --input-border: var(--dark-input-border);
+    --table-header-bg: var(--dark-table-header-bg);
+    --table-border: var(--dark-table-border);
+    --table-row-hover: var(--dark-table-row-hover);
+
+    /* Header button colors override */
+    --header-button-bg: var(--dark-header-button-bg);
+    --header-button-text: var(--dark-header-button-text);
+    --header-button-border: var(--dark-header-button-border);
+    --header-button-hover-bg: var(--dark-header-button-hover-bg);
+
+    /* Schedule specific colors override */
+    --scheduled-color: var(--dark-scheduled-color);
+    --available-color: var(--dark-available-color);
+    --day-off-color: var(--dark-day-off-color);
+    --partially-scheduled-color: var(--dark-partially-scheduled-color);
+    --partially-available-color: var(--dark-partially-available-color);
+    --staffing-needed-color: var(--dark-staffing-needed-color);
+    --staffing-met-color: var(--dark-staffing-met-color);
+    --shift-bg: var(--dark-shift-bg);
+    --shift-border: var(--dark-shift-border);
+    --job-box-bg: var(--dark-job-box-bg);
+    --job-box-border: var(--dark-job-box-border);
+
+    /* Dark mode weekly schedule specific */
+    --weekly-grid-border: var(--dark-weekly-grid-border);
+    --weekly-cell-bg: var(--dark-weekly-cell-bg);
+    --weekly-header-bg: var(--dark-weekly-header-bg);
+    --weekly-shift-card-bg: var(--dark-weekly-shift-card-bg);
+    --weekly-shift-card-border: var(--dark-weekly-shift-card-border);
+    --no-shift-placeholder-color: var(--dark-no-shift-placeholder-color);
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header Styles (Consistent across pages) --- */
+.pos-header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .fa-arrow-left {
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.header-left .fa-arrow-left:hover {
+    color: var(--accent-color);
+}
+
+.page-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--h-color);
+}
+
+.header-center h1 {
+    font-size: 1.8em;
+    color: var(--h-color);
+    margin: 0;
+}
+
+.header-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    gap: 8px; /* Space for icon and text */
+}
+
+.header-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--button-hover-color);
+    color: var(--text-color);
+}
+
+/* Dark Mode Toggle (Consistent) */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: var(--subtitle-color);
+    display: flex;
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform: scale(1);
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    color: #f1c40f; /* Yellow for sun/moon */
+    font-size: 1.1em;
+}
+
+.dark-mode-label .moon-icon {
+    margin-right: 5px;
+}
+
+.dark-mode-label .sun-icon {
+    margin-left: 5px;
+}
+
+.dark-mode-label .ball {
+    background-color: var(--card-bg); /* Ball matches card background */
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 2px;
+    top: 2.5px;
+    border-radius: 50%;
+    transition: transform 0.3s linear, background-color 0.3s ease;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px);
+    background-color: var(--card-bg);
+}
+
+
+/* Main Content Area */
+.pos-main-content.schedule-week-content {
+    flex-grow: 1;
+    padding: 25px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Top Controls (Week Navigation & Department Filter) */
+.top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.date-time-navigation { /* Reused for week navigation */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.current-week-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.action-button.nav-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.action-button.nav-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.filter-group label {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+/* Weekly Schedule Grid */
+.schedule-week-grid-container {
+    display: grid;
+    grid-template-columns: 150px repeat(7, 1fr); /* Job Title | Mon | Tue | ... | Sun */
+    border: 1px solid var(--weekly-grid-border);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners */
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
+    background-color: var(--weekly-cell-bg);
+}
+
+.day-header, .job-title-cell {
+    background-color: var(--weekly-header-bg);
+    padding: 10px 15px;
+    font-weight: bold;
+    text-align: center;
+    border-right: 1px solid var(--weekly-grid-border);
+    border-bottom: 1px solid var(--weekly-grid-border);
+    color: var(--h-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.day-header:last-child, .job-title-cell:last-child {
+    border-right: none;
+}
+
+.day-date {
+    font-size: 0.85em;
+    font-weight: normal;
+    color: var(--subtitle-color);
+}
+
+.job-title-row {
+    display: contents; /* Makes children participate in grid layout */
+}
+
+.job-title-row .job-title-cell { /* Specific style for the job title cells in rows */
+    background-color: var(--weekly-cell-bg);
+    border-right: 1px solid var(--weekly-grid-border);
+    border-bottom: 1px solid var(--weekly-grid-border);
+    text-align: left;
+    padding-left: 15px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.job-title-row:last-of-type .job-title-cell,
+.job-title-row:last-of-type .schedule-day-cell {
+    border-bottom: none;
+}
+
+
+.schedule-day-cell {
+    padding: 10px;
+    border-right: 1px solid var(--weekly-grid-border);
+    border-bottom: 1px solid var(--weekly-grid-border);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 80px; /* Ensure cells have minimum height */
+    overflow-y: auto; /* Allow scrolling if many shifts */
+}
+
+.schedule-day-cell:last-child {
+    border-right: none;
+}
+
+.weekly-shift-card {
+    background-color: var(--weekly-shift-card-bg);
+    border: 1px solid var(--weekly-shift-card-border);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 1px 3px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.weekly-shift-card .coworker-name {
+    font-weight: bold;
+    color: var(--text-color);
+}
+.weekly-shift-card .shift-time {
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+}
+.weekly-shift-card .shift-title {
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--h-color);
+}
+
+.no-shift-placeholder {
+    color: var(--no-shift-placeholder-color);
+    font-style: italic;
+    font-size: 0.85em;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Modal Styles (New) --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--shadow-color-rgb), 0.7); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Above everything else */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(var(--shadow-color-rgb), 0.2);
+    width: 90%;
+    max-width: 1000px; /* Adjust max width as needed */
+    max-height: 90vh; /* Limit height to prevent overflow on smaller screens */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--weekly-header-bg); /* Use a slightly distinct header color */
+    color: var(--h-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--day-off-color); /* Red for close button */
+}
+
+.modal-body {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto; /* Allow internal scrolling if content is too tall */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-week-nav { /* Day navigation within modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+}
+
+.modal-week-nav span {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.modal-week-nav button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+.modal-week-nav button:hover {
+    background-color: var(--button-hover-color);
+}
+
+
+.modal-scheduling-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Available on left, Scheduled on right */
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.modal-available-coworkers,
+.modal-scheduled-shifts {
+    background-color: var(--bg-color); /* Lighter background than modal itself */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-available-coworkers h4,
+.modal-scheduled-shifts h4 {
+    font-size: 1.2em;
+    color: var(--h-color);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-available-coworkers h4 span {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+}
+
+/* Re-using classes from schedule-list.css for available coworkers and scheduled shifts */
+.coworker-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.job-title-group {
+    margin-bottom: 15px;
+}
+.job-title-header {
+    background-color: var(--table-header-bg);
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1em;
+}
+.coworker-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    margin-bottom: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    font-size: 0.9em;
+    cursor: grab; /* Indicate draggable */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.coworker-item:hover {
+    background-color: var(--table-row-hover);
+    border-color: var(--accent-color);
+}
+
+.modal-scheduled-shifts {
+    position: relative; /* For drop target */
+}
+
+.modal-scheduled-shifts.drag-over {
+    border: 2px dashed var(--accent-color);
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+}
+
+.no-shifts-message-modal {
+    text-align: center;
+    color: var(--subtitle-color);
+    padding: 20px;
+    font-style: italic;
+    height: 100%; /* Make it take full height if no shifts */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Re-using classes for scheduled shifts in modal */
+.job-title-shift-box {
+    background-color: var(--job-box-bg);
+    border: 1px solid var(--job-box-border);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.03);
+}
+
+.job-title-box-header {
+    font-size: 1.1em; /* Slightly smaller in modal */
+    color: var(--h-color);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: bold;
+}
+
+.shift-entry {
+    background-color: var(--shift-bg);
+    border: 1px solid var(--shift-border);
+    border-radius: 5px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(var(--shadow-color-rgb), 0.05);
+}
+.shift-entry:hover {
+    background-color: #dbeaff; /* Slightly darker blue on hover */
+    border-color: #aaccff;
+}
+body.dark-mode .shift-entry:hover {
+    background-color: #3f4e72;
+    border-color: #5c6e91;
+}
+
+.shift-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1em;
+    color: var(--h-color);
+}
+.shift-time {
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+}
+.shift-actions {
+    position: absolute;
+    top: 8px; /* Adjusted position */
+    right: 8px;
+    display: flex;
+    gap: 5px;
+}
+.shift-actions .action-icon {
+    font-size: 1em; /* Smaller icons in modal */
+}
+.shift-actions .action-icon.delete-shift:hover {
+    color: var(--day-off-color);
+}
+
+
+.modal-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    background-color: var(--weekly-header-bg);
+}
+
+.modal-footer .action-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 6px;
+}
+
+.modal-footer .cancel-button {
+    background-color: var(--subtitle-color);
+    color: white;
+    border: none;
+}
+.modal-footer .cancel-button:hover {
+    background-color: #555;
+}
+
+.modal-footer .save-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+}
+.modal-footer .save-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .schedule-week-grid-container {
+        grid-template-columns: 120px repeat(7, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .pos-header {
+        padding: 12px 20px;
+    }
+    .header-center h1 {
+        font-size: 1.6em;
+    }
+    .pos-main-content.schedule-week-content {
+        padding: 20px;
+        gap: 20px;
+    }
+    .top-controls {
+        gap: 15px;
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .date-time-navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .current-week-display {
+        font-size: 1.1em;
+    }
+    .action-button.nav-button {
+        flex: 1 1 auto;
+        min-width: 100px;
+    }
+    .filter-group {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .schedule-week-grid-container {
+        grid-template-columns: 100px repeat(7, 1fr);
+        font-size: 0.9em;
+    }
+    .day-header, .job-title-cell {
+        padding: 8px 10px;
+    }
+    .schedule-day-cell {
+        min-height: 70px;
+        padding: 8px;
+    }
+    .weekly-shift-card {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+    .weekly-shift-card .coworker-name {
+        font-size: 0.9em;
+    }
+    .weekly-shift-card .shift-time, .weekly-shift-card .shift-title {
+        font-size: 0.75em;
+    }
+
+    /* Modal responsiveness */
+    .modal {
+        width: 95%;
+        max-width: 800px;
+    }
+    .modal-body {
+        padding: 15px;
+    }
+    .modal-scheduling-grid {
+        grid-template-columns: 1fr; /* Stack available and scheduled vertically */
+        gap: 15px;
+    }
+    .modal-available-coworkers h4,
+    .modal-scheduled-shifts h4 {
+        font-size: 1.1em;
+    }
+    .coworker-item {
+        font-size: 0.85em;
+        padding: 5px 8px;
+    }
+    .job-title-shift-box {
+        padding: 12px;
+    }
+    .shift-entry {
+        padding: 8px 10px;
+    }
+    .shift-header {
+        font-size: 0.95em;
+    }
+    .shift-time {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+    .header-left, .header-right, .header-center {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+    .header-center h1 {
+        font-size: 1.5em;
+        order: -1;
+        margin-bottom: 5px;
+    }
+    .page-title {
+        font-size: 1.1em;
+    }
+    .header-icon-button {
+        font-size: 1em;
+        padding: 6px 12px;
+    }
+    .pos-main-content.schedule-week-content {
+        padding: 15px;
+        gap: 15px;
+    }
+    .date-time-navigation {
+        gap: 10px;
+    }
+    .current-week-display {
+        font-size: 1em;
+    }
+    .action-button.nav-button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+
+    .schedule-week-grid-container {
+        grid-template-columns: 80px repeat(7, 1fr); /* Further reduce job title column */
+        font-size: 0.8em;
+    }
+    .day-header, .job-title-cell {
+        padding: 6px 8px;
+        font-size: 0.9em;
+    }
+    .day-date {
+        font-size: 0.75em;
+    }
+    .schedule-day-cell {
+        min-height: 60px;
+        padding: 6px;
+    }
+    .weekly-shift-card {
+        padding: 5px;
+        font-size: 0.75em;
+    }
+    .weekly-shift-card .coworker-name {
+        font-size: 0.85em;
+    }
+
+    /* Modal responsiveness */
+    .modal-header h3 {
+        font-size: 1.3em;
+    }
+    .modal-week-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 8px;
+    }
+    .modal-week-nav span {
+        font-size: 1em;
+    }
+    .modal-week-nav button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+    .modal-available-coworkers h4,
+    .modal-scheduled-shifts h4 {
+        font-size: 1em;
+    }
+    .coworker-item {
+        font-size: 0.8em;
+        padding: 4px 6px;
+    }
+    .shift-entry {
+        padding: 6px 8px;
+    }
+    .shift-header {
+        font-size: 0.9em;
+    }
+    .shift-time {
+        font-size: 0.75em;
+    }
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+    .modal-footer .action-button {
+        width: 100%;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        padding: 8px;
+    }
+    .header-left, .header-right, .header-center {
+        gap: 8px;
+    }
+    .page-title {
+        font-size: 0.9em;
+    }
+    .header-icon-button {
+        padding: 5px 8px;
+        font-size: 0.9em;
+        gap: 5px;
+    }
+    .dark-mode-toggle-container {
+        width: 40px;
+        height: 20px;
+    }
+    .dark-mode-label .ball {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        top: 2px;
+    }
+    .dark-mode-checkbox:checked + .dark-mode-label .ball {
+        transform: translateX(18px);
+    }
+    .dark-mode-label .moon-icon,
+    .dark-mode-label .sun-icon {
+        font-size: 0.9em;
+    }
+
+    .pos-main-content.schedule-week-content {
+        padding: 10px;
+    }
+    .top-controls {
+        padding: 10px;
+        gap: 10px;
+    }
+    .date-time-navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .current-week-display {
+        text-align: center;
+    }
+    .action-button.nav-button {
+        width: 100%;
+    }
+    .filter-group {
+        width: 100%;
+    }
+
+    .schedule-week-grid-container {
+        grid-template-columns: 1fr; /* Stack everything, less a grid, more a list */
+        font-size: 0.75em;
+    }
+    /* Hide day headers for very small screens, or reformat dramatically */
+    .day-header:not(.header-label) {
+        display: none; /* Hide individual day headers, job title will be main grouping */
+    }
+    .day-header.header-label {
+        grid-column: 1 / -1; /* Make job title header span all columns if day headers are hidden */
+        text-align: center;
+        background-color: var(--weekly-header-bg);
+        border-bottom: 1px solid var(--weekly-grid-border);
+    }
+    .job-title-row .job-title-cell {
+        grid-column: 1 / -1; /* Make job title cells span full width */
+        text-align: center;
+        background-color: var(--card-bg); /* Use card background for section dividers */
+        border-bottom: 1px solid var(--weekly-grid-border);
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: 10px;
+        margin-top: 10px; /* Space out sections */
+    }
+    .schedule-day-cell {
+        grid-column: 1 / -1; /* Each day cell takes full width */
+        border: 1px solid var(--weekly-grid-border);
+        border-top: none; /* Remove top border as job-title-cell acts as separator */
+        margin-bottom: 5px; /* Space between days */
+        min-height: auto; /* Allow height to adjust */
+        padding: 10px;
+    }
+    /* Add a pseudo-element to show day name within the cell */
+    .schedule-day-cell::before {
+        content: attr(data-day-name) " " attr(data-day-date); /* Will need to add these data attributes in JS */
+        font-weight: bold;
+        color: var(--h-color);
+        margin-bottom: 5px;
+        display: block;
+        text-align: left;
+    }
+    /* Remove padding from bottom of day cell if no shifts */
+    .schedule-day-cell:has(.no-shift-placeholder) {
+        padding-bottom: 10px;
+    }
+    .no-shift-placeholder {
+        padding: 10px 0;
+    }
+
+
+    /* Modal responsiveness */
+    .modal {
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        max-height: 100vh;
+    }
+    .modal-header {
+        padding: 10px 15px;
+    }
+    .modal-header h3 {
+        font-size: 1.1em;
+    }
+    .close-modal-btn {
+        font-size: 1.2em;
+    }
+    .modal-body {
+        padding: 10px;
+        gap: 10px;
+    }
+    .modal-week-nav {
+        padding: 6px;
+    }
+    .modal-week-nav span {
+        font-size: 0.9em;
+    }
+    .modal-week-nav button {
+        padding: 5px 8px;
+        font-size: 0.85em;
+    }
+    .modal-available-coworkers h4,
+    .modal-scheduled-shifts h4 {
+        font-size: 0.9em;
+    }
+    .job-title-group {
+        margin-bottom: 10px;
+    }
+    .job-title-header {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+    .coworker-item {
+        font-size: 0.75em;
+        padding: 3px 5px;
+    }
+    .job-title-shift-box {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .job-title-box-header {
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+    .shift-entry {
+        padding: 5px 8px;
+        margin-bottom: 6px;
+    }
+    .shift-header {
+        font-size: 0.85em;
+    }
+    .shift-time {
+        font-size: 0.7em;
+    }
+    .modal-footer {
+        padding: 8px 10px;
+    }
+    .modal-footer .action-button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}

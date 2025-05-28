@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Statistics - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="reservations-stats.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Reservation Statistics</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-cog"></i></button>
+                
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="pos-main-content stats-content">
+            <div class="top-controls">
+                <div class="filter-group date-filter-group">
+                    <label for="startDate">From:</label>
+                    <input type="date" id="startDate" class="filter-input">
+                </div>
+                <div class="filter-group date-filter-group">
+                    <label for="endDate">To:</label>
+                    <input type="date" id="endDate" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label for="mealTypeFilter">Meal Type:</label>
+                    <select id="mealTypeFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="drinks">Drinks Only</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="departmentFilter">Department:</label>
+                    <select id="departmentFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bar">Bar</option>
+                        <option value="service">Service</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="roomFilter">Room:</label>
+                    <select id="roomFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="main">Main Dining</option>
+                        <option value="private">Private Room</option>
+                        <option value="terrace">Terrace</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="stats-sections-wrapper">
+                <div class="summary-cards-container">
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-euro-sign card-icon"></i>
+                            <h4>Total Sales</h4>
+                        </div>
+                        <div class="card-value" id="overallTotalSales">€ 0.00</div>
+                        <div class="card-description">Across selected period</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-money-bill-wave card-icon"></i>
+                            <h4>Avg. Order Value</h4>
+                        </div>
+                        <div class="card-value" id="overallAvgOrderValue">€ 0.00</div>
+                        <div class="card-description">Per order</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-users card-icon"></i>
+                            <h4>Avg. Covers</h4>
+                        </div>
+                        <div class="card-value" id="overallAvgCovers">0</div>
+                        <div class="card-description">Per reservation</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-trophy card-icon"></i>
+                            <h4>Top Meal</h4>
+                        </div>
+                        <div class="card-value" id="overallTopMeal">N/A</div>
+                        <div class="card-description">Most ordered dish</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-hourglass-half card-icon"></i>
+                            <h4>Avg. Wait Time</h4>
+                        </div>
+                        <div class="card-value" id="overallAvgWaitTime">0 min</div>
+                        <div class="card-description">Before seating</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-sync-alt card-icon"></i>
+                            <h4>Table Turnover</h4>
+                        </div>
+                        <div class="card-value" id="overallTableTurnover">0 times</div>
+                        <div class="card-description">Daily average</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-star card-icon"></i>
+                            <h4>Customer Sat.</h4>
+                        </div>
+                        <div class="card-value" id="overallCustomerSat">0 / 5</div>
+                        <div class="card-description">Out of 5 stars</div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Daily Sales Trend</h3>
+                        <div id="daily_sales_trend_chart" class="chart-placeholder"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Meal Type Breakdown</h3>
+                        <div id="meal_type_breakdown_chart" class="chart-placeholder"></div>
+                    </div>
+                </div>
+
+                <div class="daily-table-container">
+                    <h3>Daily Statistics Breakdown</h3>
+                    <table class="stats-table daily-stats-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Total Sales</th>
+                                <th>Total Orders</th>
+                                <th>Avg Order Value</th>
+                                <th>Top Meal Today</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="reservations-stats.js"></script>
+</body>
+</html>

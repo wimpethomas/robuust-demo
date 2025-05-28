@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Schedule - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="schedule-week-2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Weekly Schedule</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-icon-button" id="openSchedulingModalBtn">
+                    <i class="fas fa-calendar-alt"></i> Schedule
+                </button>
+
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="pos-main-content schedule-week-content">
+            <div class="top-controls">
+                <div class="date-time-navigation">
+                    <button class="action-button nav-button" id="prevWeekBtn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="currentWeekDisplay" class="current-week-display"></span>
+                    <button class="action-button nav-button" id="nextWeekBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="filter-group">
+                    <label for="departmentFilter">Department:</label>
+                    <select id="departmentFilter" class="filter-select">
+                        <option value="all">All Departments</option>
+                        <option value="service">Service</option>
+                        <option value="kitchen">Kitchen</option>
+                        <option value="bar">Bar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="schedule-week-grid-container">
+                <div class="day-header header-label">Job Title</div>
+                <div class="day-header">Mon <span class="day-date"></span></div>
+                <div class="day-header">Tue <span class="day-date"></span></div>
+                <div class="day-header">Wed <span class="day-date"></span></div>
+                <div class="day-header">Thu <span class="day-date"></span></div>
+                <div class="day-header">Fri <span class="day-date"></span></div>
+                <div class="day-header">Sat <span class="day-date"></span></div>
+                <div class="day-header">Sun <span class="day-date"></span></div>
+
+                <div id="weeklyScheduleGridContent"></div>
+            </div>
+        </main>
+    </div>
+
+    <div id="schedulingModalOverlay" class="modal-overlay">
+        <div id="schedulingModal" class="modal">
+            <div class="modal-header">
+                <h3 id="schedulingModalTitle">Schedule Coworkers</h3>
+                <button class="close-modal-btn" id="closeSchedulingModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-week-nav">
+                    <button id="modalPrevDayBtn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="modalCurrentDayDisplay"></span>
+                    <button id="modalNextDayBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+
+                <div class="modal-scheduling-grid">
+                    <div class="modal-available-coworkers">
+                        <h4>Available Coworkers <span id="modalAvailableCount"></span></h4>
+                        <div id="modalAvailableCoworkersList" class="coworker-list">
+                            </div>
+                    </div>
+
+                    <div class="modal-scheduled-shifts">
+                        <h4>Scheduled for <span id="modalScheduledDayTitle"></span></h4>
+                        <div id="modalScheduledShiftsDiv">
+                            <p class="no-shifts-message-modal">Drag & drop coworkers here to schedule them.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button" id="cancelSchedulingModalBtn">Cancel</button>
+                <button class="action-button save-button" id="saveSchedulingModalBtn"><i class="fas fa-save"></i> Save Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="schedule-week-2.js"></script>
+</body>
+</html>

@@ -1,104 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('darkModeToggle');
+    const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
-    const weekDisplay = document.getElementById('weekDisplay');
-    const prevWeekBtn = document.getElementById('prevWeek');
-    const nextWeekBtn = document.getElementById('nextWeek');
-    const scheduleGrid = document.querySelector('.schedule-grid');
-    const dayHeaders = document.querySelectorAll('.day-header .date-info');
+    const currentWeekDisplay = document.getElementById('currentWeekDisplay');
+    const weekNumberSpan = document.getElementById('weekNumber');
+    const weekDatesSpan = document.getElementById('weekDates');
+    const prevWeekBtn = document.getElementById('prevWeekBtn');
+    const nextWeekBtn = document.getElementById('nextWeekBtn');
+    const departmentFilter = document.getElementById('departmentFilter');
+    const scheduleTableBody = document.getElementById('scheduleTableBody');
+    const scheduleTableFoot = document.getElementById('scheduleTableFoot');
 
-    let currentWeekStart = new Date(); // Start from today's week
-    currentWeekStart.setHours(0, 0, 0, 0); // Normalize to start of day
+    let currentWeekStart = new Date(); // Start with current week
+    currentWeekStart.setDate(currentWeekStart.getDate() - currentWeekStart.getDay() + (currentWeekStart.getDay() === 0 ? -6 : 1)); // Adjust to Monday of the current week
 
-    // Adjust currentWeekStart to be the Monday of the current week
-    const dayOfWeek = currentWeekStart.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-    const diff = currentWeekStart.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust if Sunday
-    currentWeekStart.setDate(diff); // Set to Monday
-
-    // Mock Schedule Data for a week view: by coworker, then by day
-    // Each day can have multiple shifts or "Vrij" (off)
-    const mockWeekSchedule = {
-        // Data for a specific week, keyed by the Monday's date of that week (YYYY-MM-DD)
-        "2025-05-26": { // Example for the week starting May 26, 2025 (assuming Monday)
-            "Jan Jansen": {
-                "Monday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Tuesday": [{ type: 'Vrij' }],
-                "Wednesday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Thursday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Friday": [{ type: 'Ochtend', time: '08:00 - 12:00' }, { type: 'Middag', time: '12:00 - 18:00' }],
-                "Saturday": [{ type: 'Custom', text: 'Training' }],
-                "Sunday": [{ type: 'Vrij' }]
-            },
-            "Piet de Vries": {
-                "Monday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Tuesday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Wednesday": [{ type: 'Vrij' }],
-                "Thursday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Friday": [{ type: 'Vrij' }],
-                "Saturday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Sunday": [{ type: 'Avond', time: '18:00 - 23:00' }]
-            },
-            "Anna Klaassen": {
-                "Monday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Tuesday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Wednesday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Thursday": [{ type: 'Vrij' }],
-                "Friday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Saturday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Sunday": [{ type: 'Middag', time: '12:00 - 18:00' }]
-            },
-            "Dirk Brandsen": {
-                "Monday": [{ type: 'Vrij' }],
-                "Tuesday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Wednesday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Thursday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Friday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Saturday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Sunday": [{ type: 'Vrij' }]
-            },
-             "Eva Schmidt": {
-                "Monday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Tuesday": [{ type: 'Vrij' }],
-                "Wednesday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Thursday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Friday": [{ type: 'Ochtend', time: '08:00 - 12:00' }, { type: 'Middag', time: '12:00 - 18:00' }],
-                "Saturday": [{ type: 'Custom', text: 'Overleg' }],
-                "Sunday": [{ type: 'Vrij' }]
-            }
-            // Add more coworkers and their weekly schedules
-        },
-        // Add more weeks if needed
-        "2025-06-02": { // Example for the week starting June 2, 2025
-            "Jan Jansen": {
-                "Monday": [{ type: 'Vrij' }],
-                "Tuesday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Wednesday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Thursday": [{ type: 'Vrij' }],
-                "Friday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Saturday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Sunday": [{ type: 'Middag', time: '12:00 - 18:00' }]
-            },
-            "Piet de Vries": {
-                "Monday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Tuesday": [{ type: 'Vrij' }],
-                "Wednesday": [{ type: 'Ochtend', time: '08:00 - 12:00' }],
-                "Thursday": [{ type: 'Middag', time: '12:00 - 18:00' }],
-                "Friday": [{ type: 'Vrij' }],
-                "Saturday": [{ type: 'Avond', time: '18:00 - 23:00' }],
-                "Sunday": [{ type: 'Ochtend', time: '08:00 - 12:00' }]
-            }
-        }
-    };
-
-    // --- Theme Toggle Logic (retained from previous versions) ---
+    // --- Dark Mode Toggle Logic (Consistent across pages) ---
     function applyTheme(theme) {
         if (theme === 'dark') {
             body.classList.add('dark-mode');
-            themeToggle.checked = true;
+            darkModeToggle.checked = true;
         } else {
             body.classList.remove('dark-mode');
-            themeToggle.checked = false;
+            darkModeToggle.checked = false;
         }
         localStorage.setItem('theme', theme);
     }
@@ -110,159 +33,163 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme('light'); // Default to light mode
     }
 
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
+    darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
             applyTheme('dark');
         } else {
             applyTheme('light');
         }
     });
 
-    // --- Week Schedule Generation Logic ---
+    // --- Sample Schedule Data (Simulated for demonstration) ---
+    // In a real application, this would come from a backend API
+    const coworkersData = [
+        { id: 'C001', name: 'Alice Smith', department: 'service' },
+        { id: 'C002', name: 'Bob Johnson', department: 'kitchen' },
+        { id: 'C003', name: 'Charlie Brown', department: 'bar' },
+        { id: 'C004', name: 'Diana Prince', department: 'service' },
+        { id: 'C005', name: 'Eve Davis', department: 'kitchen' },
+        { id: 'C006', name: 'Frank White', department: 'service' },
+        { id: 'C007', name: 'Grace Taylor', department: 'bar' },
+    ];
 
-    // Helper to get week number (ISO 8601)
-    function getWeekNumber(d) {
-        // Copy date so don't modify original
-        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        // Set to nearest Thursday: current date + 4 - current day number
-        // Make Sunday's day number 7
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-        // Get first day of year
-        var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-        // Calculate full weeks to nearest Thursday
-        var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-        return weekNo;
-    }
+    // Function to generate dummy schedule data for a given week
+    // This will create a mix of 'scheduled', 'available', and 'day-off' entries
+    function generateScheduleForWeek(startDate) {
+        const schedule = {};
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-    function formatDate(date) {
-        const d = new Date(date);
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-        return `${day}-${month}`;
-    }
+        coworkersData.forEach(coworker => {
+            schedule[coworker.id] = {
+                name: coworker.name,
+                department: coworker.department,
+                days: {}
+            };
+            for (let i = 0; i < 7; i++) {
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i);
+                const dayKey = days[i];
 
-    function renderWeekSchedule() {
-        // Clear all dynamically generated rows/cells
-        const existingCoworkerRows = scheduleGrid.querySelectorAll('.coworker-row');
-        existingCoworkerRows.forEach(row => row.remove());
-
-        // Update week display (e.g., "Week 22, 2024")
-        const weekNum = getWeekNumber(currentWeekStart);
-        weekDisplay.textContent = `Week ${weekNum}, ${currentWeekStart.getFullYear()}`;
-
-        // Update day headers with actual dates
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        let tempDate = new Date(currentWeekStart);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // Normalize today for comparison
-
-        for (let i = 0; i < 7; i++) {
-            dayHeaders[i].textContent = formatDate(tempDate);
-            // Highlight current day column
-            const headerCell = dayHeaders[i].closest('.grid-header');
-            if (tempDate.toDateString() === today.toDateString()) {
-                headerCell.classList.add('current-day-column');
-            } else {
-                headerCell.classList.remove('current-day-column');
+                const random = Math.random();
+                if (random < 0.2) { // 20% chance of Day Off
+                    schedule[coworker.id].days[dayKey] = { status: 'Day Off', hours: 0 };
+                } else if (random < 0.6) { // 40% chance of being Scheduled
+                    const startHour = Math.floor(Math.random() * (16 - 9) + 9); // Between 9 AM and 4 PM
+                    const duration = Math.floor(Math.random() * (9 - 4) + 4); // Between 4 and 8 hours
+                    const endHour = startHour + duration;
+                    schedule[coworker.id].days[dayKey] = { status: 'Scheduled', time: `${startHour}:00 - ${endHour}:00`, hours: duration };
+                } else { // 40% chance of being Available
+                    schedule[coworker.id].days[dayKey] = { status: 'Available', hours: 0 };
+                }
             }
-            tempDate.setDate(tempDate.getDate() + 1);
+        });
+        return schedule;
+    }
+
+    function renderSchedule() {
+        const selectedDepartment = departmentFilter.value;
+        const scheduleData = generateScheduleForWeek(currentWeekStart);
+        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        const weekDates = [];
+
+        // Clear existing table content
+        scheduleTableBody.innerHTML = '';
+        scheduleTableFoot.innerHTML = '';
+
+        // Update week display
+        const weekNumber = Math.ceil((currentWeekStart - new Date(currentWeekStart.getFullYear(), 0, 1)) / 86400000 / 7) + 1; // Approximate week number
+        weekNumberSpan.textContent = weekNumber;
+
+        const endDate = new Date(currentWeekStart);
+        endDate.setDate(currentWeekStart.getDate() + 6);
+        const dateFormatter = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+        weekDatesSpan.textContent = `${dateFormatter.format(currentWeekStart)} - ${dateFormatter.format(endDate)}, ${currentWeekStart.getFullYear()}`;
+
+        // Update header dates
+        const headerCells = document.querySelectorAll('.schedule-table thead th');
+        for (let i = 0; i < days.length; i++) {
+            const dayDate = new Date(currentWeekStart);
+            dayDate.setDate(currentWeekStart.getDate() + i);
+            weekDates.push(dayDate);
+            headerCells[i + 1].innerHTML = `${days[i]} <span class="date-small">${dayDate.getDate()}/${(dayDate.getMonth() + 1)}</span>`;
         }
 
-        // Reset tempDate to Monday for cell generation
-        tempDate = new Date(currentWeekStart);
 
-        // Get schedule for the current week (key is Monday's date)
-        const weekKey = `${currentWeekStart.getFullYear()}-${String(currentWeekStart.getMonth() + 1).padStart(2, '0')}-${String(currentWeekStart.getDate()).padStart(2, '0')}`;
-        const currentWeekData = mockWeekSchedule[weekKey] || {};
+        let departmentTotals = {};
+        coworkersData.forEach(coworker => {
+            if (selectedDepartment === 'all' || coworker.department === selectedDepartment) {
+                const row = scheduleTableBody.insertRow();
+                let weeklyTotalHours = 0;
 
-        // Get sorted list of all coworker names
-        const allCoworkerNames = Object.keys(currentWeekData).sort();
+                const nameCell = row.insertCell();
+                nameCell.textContent = coworker.name;
+                nameCell.classList.add('coworker-col');
 
-        // Generate rows for each coworker
-        allCoworkerNames.forEach(coworkerName => {
-            const coworkerRow = document.createElement('div');
-            coworkerRow.classList.add('coworker-row'); // A class for the whole row (optional, can be implicit)
-
-            // Coworker Name Cell
-            const nameCell = document.createElement('div');
-            nameCell.classList.add('coworker-name-cell');
-            nameCell.textContent = coworkerName;
-            coworkerRow.appendChild(nameCell);
-
-            // Availability Cells for each day
-            for (let i = 0; i < 7; i++) {
-                const dayName = days[i]; // 'Monday', 'Tuesday', etc.
-                const cell = document.createElement('div');
-                cell.classList.add('availability-cell');
-
-                // Check if this cell's date is today
-                let cellDate = new Date(currentWeekStart);
-                cellDate.setDate(currentWeekStart.getDate() + i);
-                cellDate.setHours(0,0,0,0); // Normalize
-
-                if (cellDate.toDateString() === today.toDateString()) {
-                    cell.classList.add('current-day-highlight');
-                }
-
-                const dayAvailability = currentWeekData[coworkerName] ? currentWeekData[coworkerName][dayName] : null;
-
-                if (dayAvailability && dayAvailability.length > 0) {
-                    dayAvailability.forEach(shift => {
-                        const shiftBlock = document.createElement('div');
-                        shiftBlock.classList.add('shift-block', `shift-${shift.type.toLowerCase().replace(' ', '-')}`);
-                        shiftBlock.textContent = shift.type === 'Vrij' ? 'Vrij' : (shift.text || `${shift.type} ${shift.time}`);
-                        cell.appendChild(shiftBlock);
-                    });
-                } else {
-                    // Optionally display 'Geen dienst' or similar if no shifts
-                    // const noShift = document.createElement('div');
-                    // noShift.classList.add('shift-block', 'shift-off');
-                    // noShift.textContent = 'Geen dienst';
-                    // cell.appendChild(noShift);
-                }
-
-                // Add '+' button for adding shifts to an individual cell
-                const addShiftBtn = document.createElement('button');
-                addShiftBtn.classList.add('add-shift-btn');
-                addShiftBtn.innerHTML = '&#43;'; // Plus icon
-                addShiftBtn.title = `Add shift for ${coworkerName} on ${dayName}`;
-                addShiftBtn.addEventListener('click', () => {
-                    alert(`Add shift for ${coworkerName} on ${dayName} ${formatDate(cellDate)}`);
-                    // In a real application, this would open a modal for adding/editing shifts
+                days.forEach(day => {
+                    const cell = row.insertCell();
+                    const entry = scheduleData[coworker.id].days[day];
+                    if (entry.status === 'Scheduled') {
+                        cell.innerHTML = `<div class="schedule-entry scheduled">${entry.time}</div>`;
+                        weeklyTotalHours += entry.hours;
+                    } else if (entry.status === 'Available') {
+                        cell.innerHTML = `<div class="schedule-entry available">${entry.status}</div>`;
+                    } else { // Day Off
+                        cell.innerHTML = `<div class="schedule-entry day-off">${entry.status}</div>`;
+                    }
                 });
-                cell.appendChild(addShiftBtn);
 
-                coworkerRow.appendChild(cell);
+                const totalCell = row.insertCell();
+                totalCell.textContent = `${weeklyTotalHours} hrs`;
+                totalCell.classList.add('total-col');
+
+                // Aggregate department totals
+                if (!departmentTotals[coworker.department]) {
+                    departmentTotals[coworker.department] = 0;
+                }
+                departmentTotals[coworker.department] += weeklyTotalHours;
             }
-            scheduleGrid.appendChild(coworkerRow);
         });
 
-        // Apply bottom border removal to the true last row of cells
-        const allCells = scheduleGrid.querySelectorAll('.coworker-row .availability-cell, .coworker-row .coworker-name-cell');
-        const numRows = allCoworkerNames.length; // Number of coworker rows
-        const cellsPerRow = 8; // 1 name cell + 7 availability cells
+        // Render totals row
+        const totalRow = scheduleTableFoot.insertRow();
+        const totalLabelCell = totalRow.insertCell();
+        totalLabelCell.textContent = 'Totals';
+        totalLabelCell.classList.add('coworker-col');
 
-        for (let i = 0; i < allCells.length; i++) {
-            const rowIdx = Math.floor(i / cellsPerRow);
-            if (rowIdx === numRows - 1) { // Cells in the last logical row (last coworker)
-                allCells[i].style.borderBottom = 'none';
-            } else {
-                allCells[i].style.borderBottom = '1px solid var(--schedule-border)';
-            }
-        }
+        let grandTotalHours = 0;
+        days.forEach(day => {
+            const dayTotalCell = totalRow.insertCell();
+            let dayScheduledHours = 0;
+            Object.values(scheduleData).forEach(coworkerSchedule => {
+                if (selectedDepartment === 'all' || coworkerSchedule.department === selectedDepartment) {
+                    const entry = coworkerSchedule.days[day];
+                    if (entry.status === 'Scheduled') {
+                        dayScheduledHours += entry.hours;
+                    }
+                }
+            });
+            dayTotalCell.textContent = `${dayScheduledHours} hrs`;
+            grandTotalHours += dayScheduledHours;
+        });
+
+        const grandTotalCell = totalRow.insertCell();
+        grandTotalCell.textContent = `${grandTotalHours} hrs`;
+        grandTotalCell.classList.add('total-col');
     }
 
-    // Event Listeners for Week Navigation
+    // --- Event Listeners ---
     prevWeekBtn.addEventListener('click', () => {
         currentWeekStart.setDate(currentWeekStart.getDate() - 7);
-        renderWeekSchedule();
+        renderSchedule();
     });
 
     nextWeekBtn.addEventListener('click', () => {
         currentWeekStart.setDate(currentWeekStart.getDate() + 7);
-        renderWeekSchedule();
+        renderSchedule();
     });
 
-    // Initial render of the week schedule
-    renderWeekSchedule();
+    departmentFilter.addEventListener('change', renderSchedule);
+
+    // Initial render
+    renderSchedule();
 });

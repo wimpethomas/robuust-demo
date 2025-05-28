@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Timekeeping</title>
+    <link rel="stylesheet" href="timesheet-admin-coworker.css"> <link rel="stylesheet" href="timekeeping.css"> <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">My Timekeeping</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <div class="dark-mode-toggle-container">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="pos-main-content timekeeping-content">
+            <h2 id="coworkerNameDisplay"></h2>
+            <div class="top-controls">
+                <div class="month-navigation">
+                    <button class="action-button nav-button" id="prevMonthBtn"><i class="fas fa-chevron-left"></i></button>
+                    <span id="currentMonthDisplay" class="current-month-display">May 2025</span>
+                    <button class="action-button nav-button" id="nextMonthBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+
+                <div class="clock-action-buttons">
+                    <button class="action-button clock-in-button" id="clockInBtn"><i class="fas fa-sign-in-alt"></i> Clock In</button>
+                    <button class="action-button clock-out-button" id="clockOutBtn" disabled><i class="fas fa-sign-out-alt"></i> Clock Out</button>
+                </div>
+            </div>
+
+            <div class="summary-cards-container">
+                <div class="summary-card">
+                    <span class="card-label">Total Hours This Month</span>
+                    <span class="card-value" id="totalHoursMonth">0.0h</span>
+                </div>
+                <div class="summary-card">
+                    <span class="card-label">Average Hours/Day</span>
+                    <span class="card-value" id="avgHoursDay">0.0h</span>
+                </div>
+                <div class="summary-card">
+                    <span class="card-label">Pending Entries</span>
+                    <span class="card-value" id="pendingEntries">0</span>
+                </div>
+                <div class="summary-card">
+                    <span class="card-label">Next Shift</span>
+                    <span class="card-value" id="nextShift">N/A</span>
+                </div>
+            </div>
+
+            <div class="daily-clock-entries table-container">
+                <h4>My Daily Clock Entries</h4>
+                <table class="data-table daily-entries-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dailyClockEntriesTableBody">
+                        </tbody>
+                </table>
+                <div class="add-entry-row">
+                    <button class="action-button add-new-button" id="requestCorrectionBtn"><i class="fas fa-history"></i> Request Correction</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="correctionRequestModalOverlay" class="modal-overlay">
+        <div id="correctionRequestModal" class="modal">
+            <div class="modal-header">
+                <h3 id="correctionModalTitle">Request Correction</h3>
+                <button class="close-modal-btn" id="closeCorrectionModalBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="correctionForm">
+                    <input type="hidden" id="correctionEntryId">
+                    <input type="hidden" id="correctionOriginalDate">
+                    <input type="hidden" id="correctionCoworkerId">
+
+                    <div class="form-group">
+                        <label for="correctionDate">Date:</label>
+                        <input type="date" id="correctionDate" class="filter-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correctionTimeIn">Time In:</label>
+                        <input type="time" id="correctionTimeIn" class="filter-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correctionTimeOut">Time Out:</label>
+                        <input type="time" id="correctionTimeOut" class="filter-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="correctionStatus">Status:</label>
+                        <select id="correctionStatus" class="filter-select">
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="correctionNotes">Notes / Reason for Correction:</label>
+                        <textarea id="correctionNotes" class="filter-input" rows="3" placeholder="Explain why this correction is needed..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button" id="cancelCorrectionModalBtn">Cancel</button>
+                <button class="action-button save-button" id="submitCorrectionRequestBtn"><i class="fas fa-paper-plane"></i> Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="timekeeping.js"></script>
+</body>
+</html>

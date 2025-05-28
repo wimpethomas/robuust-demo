@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week Schedule - 1892 Eten & Drinken</title>
-    <link rel="stylesheet" href="schedule-week.css">
+    <title>Schedule List - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="schedule-list-2.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +13,7 @@
         <header class="pos-header">
             <div class="header-left">
                 <i class="fas fa-arrow-left"></i>
-                <span class="page-title">Week Schedule</span>
+                <span class="page-title">Schedule List</span>
             </div>
             <div class="header-center">
                 <h1>1892 Eten & Drinken</h1>
@@ -35,12 +35,19 @@
             </div>
         </header>
 
-        <main class="pos-main-content schedule-content">
+        <main class="pos-main-content schedule-list-content">
             <div class="top-controls">
-                <div class="week-navigation">
-                    <button class="action-button nav-button" id="prevWeekBtn"><i class="fas fa-chevron-left"></i> Previous Week</button>
-                    <h2 id="currentWeekDisplay" class="week-display">Week <span id="weekNumber">22</span>: <span id="weekDates">May 27 - June 2, 2024</span></h2>
-                    <button class="action-button nav-button" id="nextWeekBtn">Next Week <i class="fas fa-chevron-right"></i></button>
+                <div class="date-time-navigation">
+                    <button class="action-button nav-button" id="prevDayBtn"><i class="fas fa-chevron-left"></i></button>
+                    <input type="date" id="scheduleDate" class="filter-input date-input">
+                    <button class="action-button nav-button" id="nextDayBtn"><i class="fas fa-chevron-right"></i></button>
+                    <select id="scheduleTime" class="filter-select time-select">
+                        <option value="all">All Day</option>
+                        <option value="morning">Morning (06:00-12:00)</option>
+                        <option value="afternoon">Afternoon (12:00-18:00)</option>
+                        <option value="evening">Evening (18:00-24:00)</option>
+                        <option value="late-night">Late Night (00:00-06:00)</option>
+                    </select>
                 </div>
                 <div class="filter-group">
                     <label for="departmentFilter">Department</label>
@@ -53,30 +60,22 @@
                 </div>
             </div>
 
-            <div class="schedule-table-container">
-                <table class="data-table schedule-table">
-                    <thead>
-                        <tr>
-                            <th class="coworker-col">Coworker</th>
-                            <th>Mon <span class="date-small">27/5</span></th>
-                            <th>Tue <span class="date-small">28/5</span></th>
-                            <th>Wed <span class="date-small">29/5</span></th>
-                            <th>Thu <span class="date-small">30/5</span></th>
-                            <th>Fri <span class="date-small">31/5</span></th>
-                            <th>Sat <span class="date-small">1/6</span></th>
-                            <th>Sun <span class="date-small">2/6</span></th>
-                            <th class="total-col">Weekly Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="scheduleTableBody">
-                        </tbody>
-                    <tfoot id="scheduleTableFoot">
-                        </tfoot>
-                </table>
+            <div class="schedule-grid-container">
+                <div class="available-coworkers-panel">
+                    <h3>Available Staff <span id="availableCount">(0)</span></h3>
+                    <div id="availableCoworkersList" class="coworker-list">
+                        </div>
+                </div>
+
+                <div class="schedule-main-panel">
+                    <h3>Scheduled Shifts & Staffing Needs</h3>
+                    <div id="scheduledShifts" class="scheduled-shifts">
+                        </div>
+                </div>
             </div>
         </main>
     </div>
 
-    <script src="schedule-week.js"></script>
+    <script src="schedule-list-2.js"></script>
 </body>
 </html>

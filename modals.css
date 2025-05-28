@@ -1,0 +1,321 @@
+/* Import the shared CSS if it's not already linked in HTML */
+@import url("timesheet-admin-coworker.css");
+
+/* Specific styles for the modals showcase page */
+
+.pos-main-content.modals-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    padding: 30px 20px;
+    min-height: calc(100vh - var(--header-height) - 40px); /* Ensure content pushes footer down if needed */
+    text-align: center;
+}
+
+.pos-main-content.modals-content h2 {
+    font-size: 1.8em;
+    color: var(--h-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.modal-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adaptive grid for buttons */
+    gap: 20px;
+    width: 100%;
+    max-width: 900px; /* Limit width of button container */
+    margin-bottom: 50px;
+}
+
+.modal-buttons-container .action-button {
+    width: 100%; /* Make buttons fill their grid cell */
+    padding: 12px 15px;
+    font-size: 1.1em;
+    display: flex; /* Allow content to be centered horizontally */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Specific button colors for better distinction */
+.open-modal-btn[data-modal-id="modal1"] { background-color: var(--approved-status-color); }
+.open-modal-btn[data-modal-id="modal1"]:hover { background-color: #218838; }
+
+.open-modal-btn[data-modal-id="modal2"] { background-color: var(--rejected-status-color); } /* Delete */
+.open-modal-btn[data-modal-id="modal2"]:hover { background-color: #c82333; }
+
+.open-modal-btn[data-modal-id="modal3"] { background-color: var(--pending-status-color); } /* Warning/Orange */
+.open-modal-btn[data-modal-id="modal3"]:hover { background-color: #e0a800; }
+
+.open-modal-btn[data-modal-id="modal4"] { background-color: var(--h-color); } /* Info/Blue */
+.open-modal-btn[data-modal-id="modal4"]:hover { background-color: var(--button-hover-color); }
+
+.open-modal-btn[data-modal-id="modal5"],
+.open-modal-btn[data-modal-id="modal6"] { background-color: var(--accent-color); } /* Input forms */
+.open-modal-btn[data-modal-id="modal5"]:hover,
+.open-modal-btn[data-modal-id="modal6"]:hover { background-color: var(--button-hover-color); }
+
+.open-modal-btn[data-modal-id="modal7"] { background-color: #dc3545; } /* Error */
+.open-modal-btn[data-modal-id="modal7"]:hover { background-color: #c82333; }
+
+/* NEW MODAL BUTTON COLORS */
+.open-modal-btn[data-modal-id="modal8"] { background-color: #6c757d; } /* Grey for list select */
+.open-modal-btn[data-modal-id="modal8"]:hover { background-color: #5a6268; }
+
+.open-modal-btn[data-modal-id="modal9"] { background-color: #28a745; } /* Green for text options */
+.open-modal-btn[data-modal-id="modal9"]:hover { background-color: #218838; }
+
+.open-modal-btn[data-modal-id="modal10"] { background-color: #17a2b8; } /* Cyan for action buttons */
+.open-modal-btn[data-modal-id="modal10"]:hover { background-color: #138496; }
+
+
+/* Modal specific adjustments (reusing common modal styles from timesheet-admin-coworker.css) */
+/* The base modal styles are already defined in timesheet-admin-coworker.css.
+   We just need to make sure any specific content within these simple modals looks good. */
+
+.modal-body p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    text-align: center; /* Center the text for simple messages */
+}
+
+/* Form Group styling for input modals (Modal 5 & 6) */
+.modal-body .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left; /* Keep form labels left-aligned */
+}
+
+.modal-body .form-group label {
+    font-size: 0.95em;
+    color: var(--subtitle-color);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.modal-body .form-group input,
+.modal-body .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-body .form-group input:focus,
+.modal-body .form-group textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+/* Ensure modal footer buttons behave correctly */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-footer .action-button {
+    min-width: 90px; /* Give buttons a consistent minimum width */
+}
+
+/* NEW MODAL BODY STYLES */
+
+/* Modal 8: Simple List */
+.modal-body.modal-list-options {
+    padding: 15px 20px; /* Adjust padding for list content */
+}
+
+.simple-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+    max-height: 250px; /* Limit height for scrollability */
+    overflow-y: auto; /* Enable scrolling if list is too long */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-bg); /* Use input background for list container */
+}
+
+.simple-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1em;
+    cursor: pointer;
+    text-align: left; /* Align list items left */
+    transition: background-color 0.2s ease;
+}
+
+.simple-list li:last-child {
+    border-bottom: none;
+}
+
+.simple-list li:hover {
+    background-color: var(--table-row-hover); /* Use table row hover color */
+}
+
+/* Modal 9: Options with Text and Action Buttons */
+.modal-body.modal-option-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between option groups */
+    padding: 20px;
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out text and button */
+    padding: 10px 15px;
+    background-color: var(--card-bg); /* Card background for each option */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow); /* Reusing card shadow */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.option-group:hover {
+    background-color: var(--table-row-hover);
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.option-group .option-text {
+    flex-grow: 1; /* Allow text to take available space */
+    text-align: left;
+    color: var(--text-color);
+    font-size: 1em;
+    line-height: 1.4;
+    margin-right: 15px; /* Space between text and button */
+}
+
+.option-group .secondary-action-button {
+    min-width: 100px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: var(--accent-color); /* A lighter accent for these action buttons */
+}
+.option-group .secondary-action-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Modal 10: Several Action Buttons */
+.modal-body.modal-action-buttons-only {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between buttons */
+    padding: 20px;
+    padding-bottom: 15px; /* Less padding at bottom if no separate footer */
+}
+
+.modal-action-buttons-only .action-button {
+    width: 100%; /* Make buttons fill the width */
+    padding: 12px 20px;
+    font-size: 1.1em;
+}
+
+.modal-action-buttons-only .primary-action-button {
+    background-color: var(--accent-color);
+}
+.modal-action-buttons-only .primary-action-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.modal-action-buttons-only .secondary-action-button {
+    background-color: #6c757d; /* Grey button */
+}
+.modal-action-buttons-only .secondary-action-button:hover {
+    background-color: #5a6268;
+}
+
+/* Overriding default modal footer for modal 9 & 10 if no footer content is desired */
+.modal-body.modal-option-groups + .modal-footer,
+.modal-body.modal-action-buttons-only + .modal-footer {
+    display: none; /* Hide default footer if content is all in body */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pos-main-content.modals-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 25px;
+    }
+    .modal-buttons-container {
+        grid-template-columns: 1fr; /* Stack buttons vertically on small screens */
+        max-width: 300px; /* Limit width for stacked buttons */
+    }
+    .modal-body p {
+        font-size: 1em;
+    }
+    .modal-footer {
+        flex-direction: column; /* Stack footer buttons on small screens */
+        gap: 10px;
+    }
+    .modal-footer .action-button {
+        width: 100%;
+        min-width: unset;
+    }
+    .modal-body .form-group label {
+        font-size: 0.9em;
+    }
+    .modal-body .form-group input,
+    .modal-body .form-group textarea {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+
+    /* New modal responsiveness */
+    .modal-body.modal-option-groups {
+        gap: 10px;
+    }
+    .option-group {
+        flex-direction: column; /* Stack text and button */
+        align-items: flex-start; /* Align text to left */
+        gap: 10px;
+        padding: 12px;
+    }
+    .option-group .option-text {
+        margin-right: 0;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    .option-group .secondary-action-button {
+        width: 100%; /* Make button full width */
+    }
+    .modal-action-buttons-only .action-button {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-main-content.modals-content {
+        padding: 20px 15px;
+    }
+    .pos-main-content.modals-content h2 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    .modal-buttons-container {
+        gap: 15px;
+    }
+    .modal-buttons-container .action-button {
+        padding: 10px 12px;
+        font-size: 1em;
+    }
+    .simple-list li {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}

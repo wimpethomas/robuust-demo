@@ -1,0 +1,966 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Font */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* CSS Variables for Theme (Copied from previous pages for consistency) */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --accent-color-rgb: 0, 123, 255; /* RGB values for accent color */
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Status colors */
+    --pending-status-color: #ffc107; /* Orange/Yellow for pending */
+    --approved-status-color: #28a745; /* Green for approved */
+    --rejected-status-color: #dc3545; /* Red for rejected */
+}
+
+/* Dark Mode Variables (defined globally) */
+:root {
+    --dark-bg-color: #1a1a2e;
+    --dark-card-bg: #1f283e;
+    --dark-text-color: #e0e0e0;
+    --dark-h-color: #7a9cff;
+    --dark-subtitle-color: #a0a0a0;
+    --dark-border-color: #3a3a5e;
+    --dark-shadow-color-rgb: 0, 0, 0;
+    --dark-accent-color: #7a9cff;
+    --dark-button-hover-color: #5d7cc7;
+    --dark-input-bg: #2b354a;
+    --dark-input-border: #505d7b;
+    --dark-table-header-bg: #2f3e5c;
+    --dark-table-border: #4a5472;
+    --dark-table-row-hover: #3a4768;
+
+    /* Dark Mode specific header button colors */
+    --dark-header-button-bg: #2f3e5c;
+    --dark-header-button-text: #e0e0e0;
+    --dark-header-button-border: #4a5472;
+    --dark-header-button-hover-bg: #3a4768;
+
+    /* Dark Mode status colors */
+    --dark-pending-status-color: #ffc107;
+    --dark-approved-status-color: #66bb6a;
+    --dark-rejected-status-color: #ef5350;
+}
+
+/* Dark Mode styles: Override light mode variables with dark mode variables when body has 'dark-mode' class */
+body.dark-mode {
+    --bg-color: var(--dark-bg-color);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text-color);
+    --h-color: var(--dark-h-color);
+    --subtitle-color: var(--dark-subtitle-color);
+    --border-color: var(--dark-border-color);
+    --shadow-color-rgb: 0, 0, 0;
+    --accent-color: var(--dark-accent-color);
+    --accent-color-rgb: 122, 156, 255;
+    --button-hover-color: var(--dark-button-hover-color);
+    --input-bg: var(--dark-input-bg);
+    --input-border: var(--dark-input-border);
+    --table-header-bg: var(--dark-table-header-bg);
+    --table-border: var(--dark-table-border);
+    --table-row-hover: var(--dark-table-row-hover);
+
+    /* Header button colors override */
+    --header-button-bg: var(--dark-header-button-bg);
+    --header-button-text: var(--dark-header-button-text);
+    --header-button-border: var(--dark-header-button-border);
+    --header-button-hover-bg: var(--dark-header-button-hover-bg);
+
+    /* Status colors override */
+    --pending-status-color: var(--dark-pending-status-color);
+    --approved-status-color: var(--dark-approved-status-color);
+    --rejected-status-color: var(--dark-rejected-status-color);
+}
+
+.pos-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header Styles (Consistent across pages) --- */
+.pos-header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left, .header-center, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .fa-arrow-left {
+    font-size: 1.2em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.header-left .fa-arrow-left:hover {
+    color: var(--accent-color);
+}
+
+.page-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--h-color);
+}
+
+.header-center h1 {
+    font-size: 1.8em;
+    color: var(--h-color);
+    margin: 0;
+}
+
+.header-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    gap: 8px; /* Space for icon and text */
+}
+
+.header-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--button-hover-color);
+    color: var(--text-color);
+}
+
+/* Dark Mode Toggle (Consistent) */
+.dark-mode-toggle-container {
+    position: relative;
+    width: 50px;
+    height: 25px;
+}
+
+.dark-mode-checkbox {
+    display: none;
+}
+
+.dark-mode-label {
+    background-color: var(--subtitle-color);
+    display: flex;
+    border-radius: 50px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform: scale(1);
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-label .moon-icon,
+.dark-mode-label .sun-icon {
+    color: #f1c40f; /* Yellow for sun/moon */
+    font-size: 1.1em;
+}
+
+.dark-mode-label .moon-icon {
+    margin-right: 5px;
+}
+
+.dark-mode-label .sun-icon {
+    margin-left: 5px;
+}
+
+.dark-mode-label .ball {
+    background-color: var(--card-bg); /* Ball matches card background */
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 2px;
+    top: 2.5px;
+    border-radius: 50%;
+    transition: transform 0.3s linear, background-color 0.3s ease;
+}
+
+.dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(25px);
+    background-color: var(--card-bg);
+}
+
+/* Main Content Area */
+.pos-main-content.timesheet-content {
+    flex-grow: 1;
+    padding: 25px;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Top Controls (Month Navigation, Department Filter & Search) */
+.top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.month-navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.current-month-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+    min-width: 150px;
+    text-align: center;
+}
+
+.action-button.nav-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.action-button.nav-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.filter-group, .search-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.filter-group label {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.search-group {
+    position: relative;
+    flex-grow: 1; /* Allow search to take remaining space */
+    max-width: 300px; /* Limit search input width */
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px 10px 40px; /* Add padding for icon */
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--subtitle-color);
+    font-size: 1em;
+}
+
+/* Coworker List Table */
+.coworker-list-container.table-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.05);
+    overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+}
+
+.data-table.coworker-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Ensure table doesn't get too small */
+}
+
+.data-table.coworker-table th,
+.data-table.coworker-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.data-table.coworker-table th {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+    color: var(--h-color);
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.data-table.coworker-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+    cursor: pointer;
+}
+
+.data-table.coworker-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+/* Detail button inside table */
+.action-button.small-button {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-button.small-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* --- Modal Styles (Consistent with other modals) --- */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--shadow-color-rgb), 0.7); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Above everything else */
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(var(--shadow-color-rgb), 0.2);
+    width: 90%;
+    max-width: 900px; /* Adjust max width as needed for detail view */
+    max-height: 90vh; /* Limit height to prevent overflow on smaller screens */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--table-header-bg); /* Use a slightly distinct header color */
+    color: var(--h-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: var(--subtitle-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: var(--rejected-status-color); /* Red for close button */
+}
+
+.modal-body {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto; /* Allow internal scrolling if content is too tall */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Detail Summary Cards */
+.detail-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust card size */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.05);
+}
+
+.summary-card .card-label {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    margin-bottom: 5px;
+}
+
+.summary-card .card-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Daily Clock Entries Table */
+.daily-clock-entries h4 {
+    font-size: 1.2em;
+    color: var(--h-color);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table.daily-entries-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden; /* For rounded corners */
+    margin-bottom: 15px;
+    min-width: 500px; /* Ensure table doesn't get too small in modal */
+}
+
+.data-table.daily-entries-table th,
+.data-table.daily-entries-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+
+.data-table.daily-entries-table th {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+    color: var(--h-color);
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.data-table.daily-entries-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+.data-table.daily-entries-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.status-approved {
+    color: var(--approved-status-color);
+    font-weight: bold;
+}
+
+.status-pending {
+    color: var(--pending-status-color);
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: var(--rejected-status-color);
+    font-weight: bold;
+}
+
+.actions-cell {
+    white-space: nowrap; /* Prevent icons from wrapping */
+    text-align: right; /* Align icons to the right */
+}
+
+.action-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.1em;
+    transition: color 0.2s ease;
+}
+
+.action-icon.edit-entry:hover {
+    color: var(--accent-color);
+}
+
+.action-icon.delete-entry:hover {
+    color: var(--rejected-status-color);
+}
+
+.add-entry-row {
+    text-align: right;
+}
+
+.add-entry-row .add-new-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.add-entry-row .add-new-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+
+.modal-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    background-color: var(--table-header-bg);
+}
+
+.modal-footer .action-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 6px;
+}
+
+.modal-footer .cancel-button {
+    background-color: var(--subtitle-color);
+    color: white;
+    border: none;
+}
+.modal-footer .cancel-button:hover {
+    background-color: #555;
+}
+
+.modal-footer .save-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+}
+.modal-footer .save-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+
+/* Animations (Consistent) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .pos-header {
+        padding: 12px 20px;
+    }
+    .header-center h1 {
+        font-size: 1.6em;
+    }
+    .pos-main-content.timesheet-content {
+        padding: 20px;
+        gap: 20px;
+    }
+    .top-controls {
+        gap: 15px;
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .month-navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .current-month-display {
+        font-size: 1.1em;
+    }
+    .action-button.nav-button {
+        flex: 1 1 auto;
+        min-width: 100px;
+    }
+    .filter-group, .search-group {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+    }
+    .search-input {
+        padding: 10px 12px 10px 40px;
+    }
+    .search-icon {
+        left: 15px;
+    }
+
+    .data-table.coworker-table th,
+    .data-table.coworker-table td {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    /* Modal responsiveness */
+    .modal {
+        width: 95%;
+        max-width: 700px;
+    }
+    .modal-body {
+        padding: 15px;
+    }
+    .detail-summary-cards {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .summary-card .card-value {
+        font-size: 1.5em;
+    }
+    .data-table.daily-entries-table th,
+    .data-table.daily-entries-table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .action-icon {
+        font-size: 1em;
+    }
+    .add-entry-row .add-new-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .pos-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+    .header-left, .header-right, .header-center {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+    .header-center h1 {
+        font-size: 1.5em;
+        order: -1;
+        margin-bottom: 5px;
+    }
+    .page-title {
+        font-size: 1.1em;
+    }
+    .header-icon-button {
+        font-size: 1em;
+        padding: 6px 12px;
+    }
+    .pos-main-content.timesheet-content {
+        padding: 15px;
+        gap: 15px;
+    }
+    .month-navigation {
+        gap: 10px;
+        width: 100%; /* Take full width */
+    }
+    .current-month-display {
+        font-size: 1em;
+    }
+    .action-button.nav-button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+        flex: 1 1 auto;
+    }
+    .filter-group, .search-group {
+        width: 100%;
+    }
+    .search-input {
+        padding: 8px 10px 8px 35px; /* Adjust padding for smaller search icon */
+    }
+    .search-icon {
+        left: 12px;
+        font-size: 0.9em;
+    }
+
+    .data-table.coworker-table {
+        min-width: unset; /* Allow table to shrink more */
+    }
+    .data-table.coworker-table th,
+    .data-table.coworker-table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .action-button.small-button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+
+    /* Modal responsiveness */
+    .modal-header h3 {
+        font-size: 1.3em;
+    }
+    .detail-summary-cards {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+    .summary-card {
+        padding: 12px;
+    }
+    .summary-card .card-value {
+        font-size: 1.3em;
+    }
+    .daily-clock-entries h4 {
+        font-size: 1.1em;
+    }
+    .data-table.daily-entries-table {
+        min-width: unset;
+    }
+    .data-table.daily-entries-table th,
+    .data-table.daily-entries-table td {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+    .actions-cell {
+        display: flex; /* Make icons stack or align better */
+        justify-content: flex-end;
+        gap: 5px;
+    }
+    .action-icon {
+        margin-left: 0; /* Remove left margin for better spacing in flex */
+    }
+    .add-entry-row .add-new-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+    .modal-footer .action-button {
+        width: 100%;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-header {
+        padding: 8px;
+    }
+    .header-left, .header-right, .header-center {
+        gap: 8px;
+    }
+    .page-title {
+        font-size: 0.9em;
+    }
+    .header-icon-button {
+        padding: 5px 8px;
+        font-size: 0.9em;
+        gap: 5px;
+    }
+    .dark-mode-toggle-container {
+        width: 40px;
+        height: 20px;
+    }
+    .dark-mode-label .ball {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        top: 2px;
+    }
+    .dark-mode-checkbox:checked + .dark-mode-label .ball {
+        transform: translateX(18px);
+    }
+    .dark-mode-label .moon-icon,
+    .dark-mode-label .sun-icon {
+        font-size: 0.9em;
+    }
+
+    .pos-main-content.timesheet-content {
+        padding: 10px;
+    }
+    .top-controls {
+        padding: 10px;
+        gap: 10px;
+    }
+    .month-navigation {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .current-month-display {
+        text-align: center;
+    }
+    .action-button.nav-button {
+        width: 100%;
+    }
+    .filter-group, .search-group {
+        width: 100%;
+    }
+    .search-input {
+        padding: 6px 8px 6px 30px;
+        font-size: 0.9em;
+    }
+    .search-icon {
+        left: 10px;
+        font-size: 0.8em;
+    }
+
+    .data-table.coworker-table th,
+    .data-table.coworker-table td {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+    .action-button.small-button {
+        padding: 4px 8px;
+        font-size: 0.75em;
+    }
+
+    /* Modal responsiveness */
+    .modal {
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+        max-height: 100vh;
+    }
+    .modal-header {
+        padding: 10px 15px;
+    }
+    .modal-header h3 {
+        font-size: 1.1em;
+    }
+    .close-modal-btn {
+        font-size: 1.2em;
+    }
+    .modal-body {
+        padding: 10px;
+        gap: 10px;
+    }
+    .detail-summary-cards {
+        gap: 10px;
+    }
+    .summary-card {
+        padding: 10px;
+    }
+    .summary-card .card-value {
+        font-size: 1.1em;
+    }
+    .daily-clock-entries h4 {
+        font-size: 1em;
+    }
+    .data-table.daily-entries-table th,
+    .data-table.daily-entries-table td {
+        padding: 6px 8px;
+        font-size: 0.8em;
+    }
+    .action-icon {
+        font-size: 0.9em;
+    }
+    .add-entry-row .add-new-button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+        gap: 5px;
+    }
+    .modal-footer {
+        padding: 8px 10px;
+    }
+    .modal-footer .action-button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}

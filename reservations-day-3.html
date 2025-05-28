@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="reservations-day-3.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="page-title">Reserveringen</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button class="action-icon-button" id="addReservationBtn">
+                    <span class="icon fas fa-plus"></span>
+                </button>
+                <div class="dark-mode-toggle">
+                    <input type="checkbox" id="darkModeToggle" class="dark-mode-checkbox">
+                    <label for="darkModeToggle" class="dark-mode-label">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                        <span class="ball"></span>
+                    </label>
+                </div>
+                <span class="menu-icon fas fa-bars"></span>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="date-navigation">
+                <button class="action-icon-button" id="prevDayBtn"><i class="fas fa-chevron-left"></i></button>
+                <span class="date-display" id="currentDateDisplay"></span>
+                <button class="action-icon-button" id="nextDayBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="filter-group">
+                <label for="roomFilter" class="filter-label">Room:</label>
+                <select id="roomFilter" class="filter-select">
+                    <option value="all">All Rooms</option>
+                    <option value="main">Main Dining Area</option>
+                    <option value="terrace">Terrace</option>
+                    <option value="private">Private Dining</option>
+                </select>
+            </div>
+
+            <div class="search-group">
+                <input type="text" id="reservationSearch" class="filter-input search-input"
+                    placeholder="Search reservations...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="view-toggle">
+                <button class="toggle-btn active" id="dayViewBtn">Day</button>
+                <button class="toggle-btn" id="monthViewBtn">Month</button>
+            </div>
+        </div>
+
+        <div class="reservation-grid-container">
+            <div class="reservation-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="reservationModalOverlay">
+        <div class="reservation-modal" id="reservationModal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Reservation</h2>
+                <button class="modal-close-btn fas fa-times" id="closeModalBtn"></button>
+            </div>
+
+            <div class="modal-content">
+                            <div class="modal-tabs">
+                <button class="modal-tab-btn active" data-tab="details">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Details</span>
+                </button>
+                <button class="modal-tab-btn" data-tab="guests">
+                    <i class="fas fa-users"></i>
+                    <span>Guests</span>
+                </button>
+                <button class="modal-tab-btn" data-tab="meal">
+                    <i class="fas fa-utensils"></i>
+                    <span>Meal</span>
+                </button>
+                <button class="modal-tab-btn" data-tab="payment">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Payment</span>
+                </button>
+                <button class="modal-tab-btn" data-tab="notes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Notes</span>
+                </button>
+            </div>
+                
+                <form id="reservationForm">
+                    <input type="hidden" id="reservationId">
+
+                    <div class="modal-content-wrapper">
+                        <div class="modal-content-section active" id="details-tab">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="guestName">Guest Name</label>
+                                    <input type="text" id="guestName" placeholder="e.g., John Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="guests">Number of Guests</label>
+                                    <input type="number" id="guests" min="1" value="2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reservationDate">Date</label>
+                                    <input type="date" id="reservationDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reservationTime">Time</label>
+                                    <input type="time" id="reservationTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tableSelect">Table</label>
+                                    <select id="tableSelect" required>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Duration (minutes)</label>
+                                    <input type="number" id="duration" min="30" step="15" value="90">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section" id="guests-tab">
+                            <h3>Guest Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contactNumber">Contact Number</label>
+                                    <input type="tel" id="contactNumber" placeholder="+31 6 12345678">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" placeholder="guest@example.com">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="allergies">Allergies/Dietary Restrictions</label>
+                                    <textarea id="allergies" rows="3"
+                                        placeholder="e.g., Nut allergy, Vegetarian"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section" id="meal-tab">
+                            <h3>Meal Preferences / Pre-orders</h3>
+                            <div class="form-group">
+                                <label for="mealType">Meal Type</label>
+                                <select id="mealType">
+                                    <option value="dinner">Dinner</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="drinks">Drinks Only</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="preOrder">Pre-order Details (Optional)</label>
+                                <textarea id="preOrder" rows="4" placeholder="Specific dishes or requests"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section" id="payment-tab">
+                            <h3>Payment Information</h3>
+                            <div class="form-group">
+                                <label for="paymentStatus">Payment Status</label>
+                                <select id="paymentStatus">
+                                    <option value="pending">Pending</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="deposit">Deposit Received</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="depositAmount">Deposit Amount (€)</label>
+                                <input type="number" id="depositAmount" step="0.01" value="0.00">
+                            </div>
+                        </div>
+
+                        <div class="modal-content-section" id="notes-tab">
+                            <h3>Additional Notes</h3>
+                            <div class="form-group full-width">
+                                <label for="notes">General Notes</label>
+                                <textarea id="notes" rows="6"
+                                    placeholder="Any special requests or internal notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="modal-action-btn cancel-button" id="cancelModalBtn">Cancel</button>
+                        <button type="button" class="modal-action-btn delete-button" id="deleteReservationBtn"
+                            style="display: none;">Delete</button>
+                        <button type="submit" class="modal-action-btn save-button" id="saveReservationBtn">Save
+                            Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="reservations-day-3.js"></script>
+</body>
+
+</html>

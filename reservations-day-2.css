@@ -1,0 +1,822 @@
+/* Basic Reset & Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* CSS Variables for Theme (Consistent with existing pages) */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --h-color: #007bff; /* General header color */
+    --subtitle-color: #666;
+    --border-color: #ddd;
+    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
+    --accent-color: #007bff;
+    --button-hover-color: #0056b3;
+    --input-bg: #f5f5f5;
+    --input-border: #999;
+    --table-header-bg: #e9ecef;
+    --table-border: #dee2e6;
+    --table-row-hover: #f1f1f1;
+
+    /* Header button colors */
+    --header-button-bg: #e0e0e0;
+    --header-button-text: #333;
+    --header-button-border: #ccc;
+    --header-button-hover-bg: #d0d0d0;
+
+    /* Dark Mode Variables */
+    --dark-bg-color: #1a1a2e;
+    --dark-card-bg: #1f283e;
+    --dark-text-color: #e0e0e0;
+    --dark-h-color: #4da6ff;
+    --dark-subtitle-color: #a0a0a0;
+    --dark-border-color: #3a3a5e;
+    --dark-shadow-color-rgb: 0, 0, 0;
+    --dark-accent-color: #6a9eff;
+    --dark-button-hover-color: #5a8be0;
+    --dark-input-bg: #28334e;
+    --dark-input-border: #505d7d;
+    --dark-table-header-bg: #2b3a5b;
+    --dark-table-border: #3a4a6e;
+    --dark-table-row-hover: #243048;
+    --dark-header-button-bg: #3f4e6e;
+    --dark-header-button-text: #e0e0e0;
+    --dark-header-button-border: #505d7d;
+    --dark-header-button-hover-bg: #4a5d7d;
+}
+
+/* Dark Mode specific styles */
+body.dark-mode {
+    --bg-color: var(--dark-bg-color);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text-color);
+    --h-color: var(--dark-h-color);
+    --subtitle-color: var(--dark-subtitle-color);
+    --border-color: var(--dark-border-color);
+    --shadow-color-rgb: var(--dark-shadow-color-rgb);
+    --accent-color: var(--dark-accent-color);
+    --button-hover-color: var(--dark-button-hover-color);
+    --input-bg: var(--dark-input-bg);
+    --input-text: var(--dark-text-color);
+    --input-border: var(--dark-input-border);
+    --table-header-bg: var(--dark-table-header-bg);
+    --table-border: var(--dark-table-border);
+    --table-row-hover: var(--dark-table-row-hover);
+    --header-button-bg: var(--dark-header-button-bg);
+    --header-button-text: var(--dark-header-button-text);
+    --header-button-border: var(--dark-header-button-border);
+    --header-button-hover-bg: var(--dark-header-button-hover-bg);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1600px; /* Wider than POS for reservation grid */
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(var(--shadow-color-rgb), 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* For rounded corners */
+}
+
+/* Header Styles (Consistent with POS header) */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--h-color);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(var(--shadow-color-rgb), 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left .fa-calendar-alt {
+    font-size: 1.5em;
+}
+
+.page-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.header-center h1 {
+    font-size: 1.8em;
+    margin: 0;
+    color: #fff;
+}
+
+.action-icon-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.action-icon-button:hover {
+    background-color: var(--header-button-hover-bg);
+    border-color: var(--subtitle-color);
+}
+
+.action-icon-button .icon {
+    font-size: 1.2em;
+    line-height: 1; /* Ensure icon is vertically centered */
+}
+
+.date-display {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.menu-icon {
+    font-size: 1.8em;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Top Controls */
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg); /* Use card background for this section */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* Space between filter groups */
+}
+
+.filter-group, .search-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.filter-select, .filter-input {
+    padding: 8px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-select:focus, .filter-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+}
+
+.search-group {
+    position: relative;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 300px; /* Limit search bar width */
+}
+
+.search-input {
+    width: 100%;
+    padding-right: 35px; /* Space for search icon */
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--subtitle-color);
+}
+
+.view-toggle {
+    display: flex;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    padding: 8px 15px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: var(--table-row-hover);
+}
+
+.toggle-btn.active {
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Reservation Grid Container */
+.reservation-grid-container {
+    padding: 20px 25px;
+    overflow-x: auto; /* Enable horizontal scrolling for the grid */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    background-color: var(--card-bg);
+    flex-grow: 1; /* Allow container to take available height */
+}
+
+.reservation-grid {
+    display: grid;
+    /* Grid columns will be set by JS: 1 for table name + N for time slots */
+    /* Grid rows will be set by JS: 1 for time headers + M for tables */
+    border: 1px solid var(--table-border);
+    border-radius: 5px;
+    overflow: hidden; /* Ensures borders are contained */
+    min-width: 1000px; /* Minimum width to prevent squishing on smaller screens */
+}
+
+.grid-header-cell,
+.grid-table-label,
+.grid-time-slot {
+    padding: 5px; /* Reduced padding */
+    border: 1px solid var(--table-border);
+    text-align: center;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-header-cell {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+    color: var(--text-color);
+    position: sticky;
+    top: 0; /* Make headers sticky horizontally */
+    z-index: 2; /* Ensure headers stay on top of content */
+}
+
+.grid-table-label {
+    background-color: var(--table-header-bg);
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: left;
+    padding-left: 15px;
+    position: sticky;
+    left: 0; /* Make table labels sticky vertically */
+    z-index: 1; /* Ensure table labels stay on top of slots */
+    min-width: 100px; /* Ensure table label column has enough width */
+    justify-content: flex-start;
+    height: 35px; /* Fixed height for table labels */
+}
+body.dark-mode .grid-table-label,
+body.dark-mode .grid-header-cell {
+    background-color: var(--dark-table-header-bg);
+}
+
+.grid-time-slot {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    min-width: 60px; /* Minimum width for each time slot */
+    height: 35px; /* Reduced height for slots to match table labels */
+}
+
+.grid-time-slot:hover {
+    background-color: var(--table-row-hover);
+}
+
+.grid-time-slot.reserved {
+    background-color: #ffc107; /* Orange for reserved slots */
+    color: #333;
+    font-weight: bold;
+    position: relative; /* For reservation details */
+    /* Remove padding and adjust display for combined cells */
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85em; /* Slightly smaller font for combined text */
+    line-height: 1.2;
+    overflow: hidden; /* Ensure text doesn't spill out */
+}
+
+body.dark-mode .grid-time-slot.reserved {
+    background-color: #e0a800; /* Slightly darker orange for dark mode */
+}
+
+.grid-time-slot.reserved:hover {
+    background-color: #ffda6a; /* Lighter orange on hover */
+}
+body.dark-mode .grid-time-slot.reserved:hover {
+    background-color: #ffc61a;
+}
+
+.grid-time-slot.reservation-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    line-height: 1.2;
+    padding: 2px;
+}
+
+.grid-time-slot.reserved .guest-name {
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.grid-time-slot.reserved .guests-count {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-bottom: 2px;
+}
+
+/* Tooltip for reservation details */
+.grid-time-slot.reserved::after {
+    content: attr(data-reservation-info); /* Use data attribute for tooltip content */
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background for readability */
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: pre-wrap; /* Allow newlines in tooltip */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+    margin-bottom: 5px; /* Space between slot and tooltip */
+    pointer-events: none; /* Allows clicks on elements behind it */
+    text-align: left; /* Align tooltip text to left */
+}
+
+.grid-time-slot.reserved:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .main-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .header-center h1 {
+        width: 100%;
+        order: -1; /* Move title to the top */
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 15px;
+    }
+
+    .filter-group, .search-group {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-group {
+        max-width: 100%; /* Remove max-width for full flexibility */
+    }
+
+    .view-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .reservation-grid-container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .page-wrapper {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .main-header {
+        padding: 10px 15px;
+    }
+
+    .header-left .page-title {
+        font-size: 1em;
+    }
+
+    .header-center h1 {
+        font-size: 1.3em;
+    }
+
+    .action-icon-button {
+        padding: 6px 10px;
+        font-size: 1em;
+    }
+
+    .date-display {
+        font-size: 1em;
+    }
+
+    .menu-icon {
+        font-size: 1.5em;
+    }
+
+    .top-controls {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .filter-select, .filter-input, .toggle-btn {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+
+    .reservation-grid {
+        min-width: 700px; /* Adjust minimum width for smaller tablets */
+    }
+
+    .grid-header-cell,
+    .grid-table-label,
+    .grid-time-slot {
+        padding: 4px 3px; /* Further reduced padding */
+        font-size: 0.8em;
+        min-width: 50px; /* Smaller min-width for slots */
+        height: 30px; /* Smaller height */
+    }
+
+    .grid-table-label {
+        min-width: 80px; /* Smaller min-width for table labels */
+        padding-left: 10px;
+        height: 30px; /* Match slot height */
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 8px 10px;
+    }
+
+    .header-left .page-title {
+        font-size: 0.9em;
+    }
+
+    .header-center h1 {
+        font-size: 1.1em;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .action-icon-button {
+        padding: 5px 8px;
+        font-size: 0.9em;
+    }
+
+    .date-display {
+        font-size: 0.9em;
+    }
+
+    .menu-icon {
+        font-size: 1.3em;
+    }
+
+    .top-controls {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .filter-select, .filter-input, .toggle-btn {
+        padding: 5px 8px;
+        font-size: 0.8em;
+    }
+
+    .reservation-grid {
+        min-width: 450px; /* Further adjust for mobile */
+    }
+
+    .grid-header-cell,
+    .grid-table-label,
+    .grid-time-slot {
+        padding: 3px 2px; /* Even smaller padding */
+        font-size: 0.75em;
+        min-width: 40px; /* Even smaller min-width for slots */
+        height: 28px; /* Even smaller height */
+    }
+
+    .grid-table-label {
+        min-width: 60px; /* Even smaller min-width for table labels */
+        padding-left: 8px;
+        height: 28px; /* Match slot height */
+    }
+
+    .grid-time-slot.reserved {
+        font-size: 0.7em; /* Adjust font size for combined text on mobile */
+    }
+
+    .grid-time-slot.reserved .guest-name {
+        margin-top: 1px;
+    }
+    .grid-time-slot.reserved .guests-count {
+        margin-bottom: 1px;
+    }
+}
+
+/* --- Reservation Slider Styles --- */
+.slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+    z-index: 999; /* Below slider, above main content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.reservation-slider {
+    position: fixed;
+    top: 0;
+    right: -450px; /* Start off-screen */
+    width: 450px; /* Fixed width for the slider */
+    height: 100%;
+    background-color: var(--card-bg);
+    box-shadow: -4px 0 15px rgba(var(--shadow-color-rgb), 0.2);
+    z-index: 1000; /* On top of everything */
+    transition: right 0.3s ease-out; /* Slide in/out animation */
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-slider.visible {
+    right: 0; /* Slide into view */
+}
+
+.slider-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--h-color);
+    color: #fff;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.slider-header h2 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.slider-close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.slider-close-btn:hover {
+    color: #f0f0f0;
+}
+
+.slider-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling for content if it overflows */
+}
+
+.slider-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form groups */
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+}
+
+/* Specific styling for number inputs' spin buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+
+.slider-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    margin-top: auto; /* Push actions to the bottom */
+}
+
+.slider-actions .right-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: none; /* Remove default button border */
+}
+
+.save-button {
+    background-color: #28a745; /* Green */
+    color: #fff;
+}
+
+.save-button:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+.cancel-button {
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+}
+
+.cancel-button:hover {
+    background-color: var(--header-button-hover-bg);
+}
+
+.delete-button {
+    background-color: #dc3545; /* Red */
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Darker Red */
+}
+
+/* Dark mode adjustments for slider */
+body.dark-mode .reservation-slider {
+    background-color: var(--dark-card-bg);
+    box-shadow: -4px 0 15px rgba(var(--dark-shadow-color-rgb), 0.4);
+}
+
+body.dark-mode .slider-header {
+    background-color: var(--dark-h-color);
+    border-bottom-color: var(--dark-border-color);
+}
+
+body.dark-mode .slider-close-btn {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .form-group label {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-input-border);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .slider-actions {
+    background-color: var(--dark-card-bg);
+    border-top-color: var(--dark-border-color);
+}
+
+body.dark-mode .cancel-button {
+    background-color: var(--dark-header-button-bg);
+    color: var(--dark-header-button-text);
+    border-color: var(--dark-header-button-border);
+}
+
+body.dark-mode .cancel-button:hover {
+    background-color: var(--dark-header-button-hover-bg);
+}
+
+/* Media Queries for Slider Responsiveness */
+@media (max-width: 768px) {
+    .reservation-slider {
+        width: 100%; /* Full width on smaller screens */
+        right: -100%; /* Start off-screen */
+    }
+    .reservation-slider.visible {
+        right: 0;
+    }
+    .slider-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .slider-actions .action-button {
+        width: 100%; /* Full width buttons */
+    }
+    .slider-actions .right-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
