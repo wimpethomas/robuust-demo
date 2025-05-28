@@ -69,6 +69,9 @@
 .open-modal-btn[data-modal-id="modal10"] { background-color: #17a2b8; } /* Cyan for action buttons */
 .open-modal-btn[data-modal-id="modal10"]:hover { background-color: #138496; }
 
+.open-modal-btn[data-modal-id="modal11"] { background-color: #6f42c1; } /* Purple for advanced inputs */
+.open-modal-btn[data-modal-id="modal11"]:hover { background-color: #563d7c; }
+
 
 /* Modal specific adjustments (reusing common modal styles from timesheet-admin-coworker.css) */
 /* The base modal styles are already defined in timesheet-admin-coworker.css.
@@ -95,10 +98,12 @@
     color: var(--subtitle-color);
     margin-bottom: 8px;
     font-weight: bold;
+    line-height: 20px;
 }
 
 .modal-body .form-group input,
-.modal-body .form-group textarea {
+.modal-body .form-group textarea,
+.modal-body .form-group select { /* Added select here */
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--input-border);
@@ -110,7 +115,8 @@
 }
 
 .modal-body .form-group input:focus,
-.modal-body .form-group textarea:focus {
+.modal-body .form-group textarea:focus,
+.modal-body .form-group select:focus { /* Added select here */
     border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
     outline: none;
@@ -245,6 +251,251 @@
 }
 
 
+/* NEW MODAL 11: Advanced Inputs specific styles */
+.modal-body.modal-advanced-inputs {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+    max-height: 70vh; /* Allow scrolling for modal body if content is long */
+    overflow-y: auto;
+}
+
+/* Custom Select Dropdown Styling (for single select) */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select {
+    -webkit-appearance: none; /* Remove default browser styling for Chrome/Safari */
+    -moz-appearance: none; /* Remove default browser styling for Firefox */
+    appearance: none; /* Remove default browser styling */
+    padding-right: 40px; /* Make space for the custom arrow */
+    cursor: pointer;
+}
+
+.custom-select::-ms-expand {
+    display: none; /* Hide the default arrow in IE/Edge */
+}
+
+.custom-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Clicks go through to the select element */
+    color: var(--subtitle-color); /* Match subtitle color */
+    font-size: 0.8em;
+}
+
+/* Multiselect Checkboxes (re-added) */
+fieldset.multiselect-checkboxes {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 5px;
+    background-color: var(--card-bg);
+}
+
+fieldset.multiselect-checkboxes legend {
+    font-size: 1em;
+    color: var(--h-color);
+    padding: 0 10px;
+    font-weight: bold;
+    margin-left: -10px; /* Adjust legend position */
+}
+
+fieldset.multiselect-checkboxes .checkbox-container {
+    margin-bottom: 10px; /* Space between items in multiselect */
+}
+
+/* Multiselect Dropdown (Single Line - Simulated) */
+.multiselect-single-line-dropdown {
+    position: relative;
+    width: 100%;
+    /* No explicit cursor pointer here, let display-area handle it */
+}
+
+.multiselect-display-area {
+    width: 100%;
+    padding: 10px 12px;
+    padding-right: 40px; /* Space for arrow */
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--subtitle-color); /* Default text color for placeholder */
+    font-size: 1em;
+    height: 40px; /* Fixed height for single line */
+    line-height: 20px; /* Adjust line-height to vertically center text if needed */
+    display: flex;
+    align-items: center; /* Center content vertically */
+    overflow: hidden; /* Hide overflow text */
+    white-space: nowrap; /* Keep text on one line */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer; /* Indicate clickable area */
+}
+
+/* Style for when items are selected */
+.multiselect-display-area.selected-items {
+    color: var(--text-color); /* Change text color when items are selected */
+}
+
+
+/* Focused state for the display area (when the custom dropdown is interacted with) */
+.multiselect-single-line-dropdown .multiselect-display-area:focus-within,
+.multiselect-single-line-dropdown.active .multiselect-display-area { /* 'active' class can be added by JS */
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+    outline: none;
+}
+
+.multiselect-single-line-dropdown .multiselect-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Clicks go through to the display area */
+    color: var(--subtitle-color);
+    font-size: 0.8em;
+}
+
+.multiselect-options-container {
+    display: none; /* Hidden by default, toggled by JS */
+    position: absolute;
+    top: calc(100% + 5px); /* Position below the display area with a small gap */
+    left: 0;
+    width: 100%;
+    max-height: 200px; /* Max height for scrollable options */
+    overflow-y: auto;
+    background-color: var(--card-bg); /* Use card background for options */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: var(--card-shadow);
+    z-index: 10; /* Ensure it appears above other content */
+    padding: 10px 0; /* Padding for options */
+    animation: fadeIn 0.2s ease-out; /* Simple fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.multiselect-options-container.show {
+    display: block; /* Show when 'show' class is added by JS */
+}
+
+.multiselect-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 10px; /* Inner padding for checkboxes */
+}
+
+.multiselect-checkbox-list .checkbox-container {
+    margin-bottom: 0 !important; /* Reset margin */
+    padding: 4px 0 4px 30px; /* Padding per checkbox item, adjusted for padding */
+    transition: background-color 0.2s ease;
+    border-radius: 3px;
+}
+
+.multiselect-checkbox-list .checkbox-container:hover {
+    background-color: var(--table-row-hover);
+}
+
+/* Hide the native multiple select that backs the custom UI */
+.hidden-select {
+    display: none !important;
+}
+
+
+/* Checkbox Styling (reused) */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 30px; /* Space for the custom checkbox */
+    margin-bottom: 10px; /* Default margin for vertical groups */
+    cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: var(--text-color);
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    /* Removed top: 0; */
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: var(--table-row-hover);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Checkbox groups */
+.checkbox-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between vertical checkboxes */
+}
+
+.checkbox-group-horizontal {
+    display: flex;
+    flex-wrap: wrap; /* Allow checkboxes to wrap to next line */
+    gap: 15px; /* Space between horizontal checkboxes */
+}
+
+.checkbox-group-horizontal .checkbox-container {
+    margin-right: 0; /* Reset default margin */
+    margin-bottom: 0; /* Reset default margin */
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .pos-main-content.modals-content h2 {
@@ -270,7 +521,8 @@
         font-size: 0.9em;
     }
     .modal-body .form-group input,
-    .modal-body .form-group textarea {
+    .modal-body .form-group textarea,
+    .modal-body .form-group select {
         font-size: 0.9em;
         padding: 8px 10px;
     }
@@ -296,6 +548,43 @@
     .modal-action-buttons-only .action-button {
         padding: 10px 15px;
         font-size: 1em;
+    }
+
+    /* Modal 11 responsive */
+    .modal-body.modal-advanced-inputs {
+        padding: 15px;
+        gap: 15px;
+    }
+    .checkbox-container {
+        font-size: 0.9em;
+        padding-left: 25px;
+    }
+    .checkmark {
+        height: 18px;
+        width: 18px;
+    }
+    .checkmark:after {
+        left: 5px;
+        top: 1px;
+        width: 4px;
+        height: 8px;
+    }
+    .checkbox-group-horizontal {
+        gap: 10px;
+    }
+
+    /* Multiselect dropdown specific adjustments */
+    .multiselect-display-area {
+        min-height: 36px; /* Slightly smaller for mobile */
+        padding: 8px 10px;
+        padding-right: 35px; /* Adjust for smaller arrow */
+    }
+    .multiselect-single-line-dropdown .multiselect-arrow {
+        right: 10px;
+        font-size: 0.7em;
+    }
+    .multiselect-options-container {
+        max-height: 150px; /* Smaller max height for mobile */
     }
 }
 

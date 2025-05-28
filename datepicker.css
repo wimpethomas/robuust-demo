@@ -1,0 +1,276 @@
+/* Datepicker styles inspired by Angular Material */
+
+.date-picker-container {
+    position: relative;
+    display: inline-block; /* Allows side-by-side elements */
+    font-family: 'Roboto', sans-serif; /* Common Angular font */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.date-picker-input {
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 1em;
+    color: var(--text-color);
+    background-color: var(--input-bg);
+    cursor: pointer;
+    width: 250px; /* Adjust as needed */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.date-picker-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2); /* Soft focus glow */
+    outline: none;
+}
+
+.date-picker-calendar {
+    position: absolute;
+    top: calc(100% + 8px); /* Position below the input */
+    left: 0;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    display: none; /* Hidden by default */
+    transform-origin: top left;
+    animation: fadeIn 0.2s ease-out;
+    min-width: 300px; /* Ensure enough space for calendar */
+}
+
+.date-picker-calendar.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Calendar Header (Month/Year Navigation) */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+.calendar-header .nav-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.calendar-header .nav-button:hover {
+    background-color: var(--table-row-hover);
+    color: var(--accent-color);
+}
+
+.calendar-header .current-month-year {
+    font-weight: 500;
+    color: var(--h-color);
+    font-size: 1.1em;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+
+.day-of-week {
+    font-weight: bold;
+    color: var(--subtitle-color);
+    font-size: 0.85em;
+    padding: 8px 0;
+}
+
+.calendar-day {
+    padding: 8px;
+    border-radius: 50%; /* Make day cells round */
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    min-width: 32px; /* Ensure consistent size */
+    min-height: 32px; /* Ensure consistent size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-day.other-month {
+    color: var(--subtitle-color);
+    opacity: 0.6;
+}
+
+.calendar-day.disabled {
+    color: var(--input-border);
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.calendar-day:not(.disabled):hover {
+    background-color: var(--table-row-hover);
+    color: var(--accent-color);
+}
+
+/* Selected Day Styles */
+.calendar-day.selected {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-day.selected.start-date,
+.calendar-day.selected.end-date {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50%; /* Explicitly round for start/end */
+}
+
+/* Range Highlighting */
+.calendar-day.in-range {
+    background-color: rgba(var(--accent-color-rgb), 0.1); /* Lighter accent for range */
+    border-radius: 0; /* Straight edges for in-range */
+    color: var(--text-color);
+}
+
+/* Special styling for start/end dates within a range to ensure rounded ends */
+.calendar-day.in-range.start-date {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.calendar-day.in-range.end-date {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+/* If a single day is selected as a range */
+.calendar-day.in-range.start-date.end-date {
+    border-radius: 50%;
+}
+
+
+/* Calendar Footer (Action Buttons) */
+.calendar-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.calendar-actions .action-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: none; /* Default Material design buttons have no border */
+}
+
+.calendar-actions .action-button.clear-button {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.calendar-actions .action-button.clear-button:hover {
+    background-color: rgba(var(--text-color-rgb), 0.1); /* Lighter hover for clear */
+}
+
+.calendar-actions .action-button.done-button {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.calendar-actions .action-button.done-button:hover {
+    background-color: var(--button-hover-color);
+}
+
+/* Ensure text-color-rgb and accent-color-rgb are defined for rgba usage */
+/* You might need to add these to your base CSS variables if not already present */
+:root {
+    --accent-color-rgb: 0, 123, 255; /* Example for --accent-color: #007bff; */
+    --text-color-rgb: 51, 51, 51;    /* Example for --text-color: #333; */
+
+    /* Dark Mode equivalent if needed */
+    --dark-accent-color-rgb: 74, 105, 189; /* Example for --dark-h-color: #4a69bd; */
+    --dark-text-color-rgb: 224, 224, 224; /* Example for --dark-text-color: #e0e0e0; */
+}
+
+/* Dark mode adjustments */
+body.dark-mode .date-picker-input {
+    border-color: var(--dark-input-border);
+    background-color: var(--dark-input-bg);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .date-picker-input:focus {
+    box-shadow: 0 0 0 2px rgba(var(--dark-accent-color-rgb), 0.2);
+}
+
+body.dark-mode .date-picker-calendar {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-color);
+    box-shadow: var(--dark-card-shadow);
+}
+
+body.dark-mode .calendar-header .nav-button,
+body.dark-mode .calendar-day {
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .calendar-header .nav-button:hover {
+    background-color: var(--dark-table-row-hover);
+    color: var(--dark-h-color); /* Use dark accent for hover */
+}
+
+body.dark-mode .calendar-header .current-month-year {
+    color: var(--dark-h-color);
+}
+
+body.dark-mode .day-of-week,
+body.dark-mode .calendar-day.other-month,
+body.dark-mode .calendar-day.disabled {
+    color: var(--dark-subtitle-color);
+}
+
+body.dark-mode .calendar-day:not(.disabled):hover {
+    background-color: var(--dark-table-row-hover);
+    color: var(--dark-h-color);
+}
+
+body.dark-mode .calendar-day.selected {
+    background-color: var(--dark-accent-color);
+    color: white;
+}
+
+body.dark-mode .calendar-day.in-range {
+    background-color: rgba(var(--dark-accent-color-rgb), 0.1);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .calendar-actions .action-button.clear-button {
+    color: var(--dark-text-color);
+}
+body.dark-mode .calendar-actions .action-button.clear-button:hover {
+    background-color: rgba(var(--dark-text-color-rgb), 0.1);
+}
+body.dark-mode .calendar-actions .action-button.done-button {
+    background-color: var(--dark-accent-color);
+}
+body.dark-mode .calendar-actions .action-button.done-button:hover {
+    background-color: var(--dark-button-hover-color);
+}

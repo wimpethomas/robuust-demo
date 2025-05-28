@@ -1136,6 +1136,9 @@ body.dark-mode {
 .modal-content.large-modal-content { /* NEW */
     max-width: 900px; /* Wider modal for split payments */
     width: 95%;
+    max-height: 80vh; /* Adjust as needed, e.g., 80% of viewport height */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
 }
 
 /* ... existing modal styles ... */

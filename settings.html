@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Restaurant Jorge Mendoza</title>
+    <link rel="stylesheet" href="reviews.css"> <link rel="stylesheet" href="modals.css"> <link rel="stylesheet" href="settings.css"> <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <header class="pos-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left"></i>
+                <span class="page-title">Settings</span>
+            </div>
+            <div class="header-center">
+                <h1>Restaurant Jorge Mendoza</h1>
+            </div>
+            <div class="header-right">
+                <button id="darkModeButton" class="small-round-button" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i> </button>
+            </div>
+        </header>
+
+        <main class="pos-main-content settings-content">
+            <div class="settings-container">
+                <div class="settings-section">
+                    <h2><i class="fas fa-cog"></i> General</h2>
+                    <div class="settings-group toggle-setting">
+                        <label for="darkModeSetting">Dark Mode</label>
+                        <div class="dark-mode-toggle-container small-toggle">
+                            <input type="checkbox" id="darkModeSetting" class="dark-mode-checkbox">
+                            <label for="darkModeSetting" class="dark-mode-label">
+                                <i class="fas fa-moon moon-icon"></i>
+                                <i class="fas fa-sun sun-icon"></i>
+                                <div class="ball"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="settings-group toggle-setting">
+                        <label for="notificationsToggle">Enable Notifications</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="notificationsToggle" class="toggle-checkbox">
+                            <label for="notificationsToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+                    <div class="settings-group toggle-setting">
+                        <label for="soundEffectsToggle">Sound Effects</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="soundEffectsToggle" class="toggle-checkbox">
+                            <label for="soundEffectsToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+                    <div class="settings-group toggle-setting">
+                        <label for="orderConfirmationsToggle">Order Confirmations</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="orderConfirmationsToggle" class="toggle-checkbox">
+                            <label for="orderConfirmationsToggle" class="toggle-label"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2><i class="fas fa-user-circle"></i> Account & Privacy</h2>
+                    <ul class="settings-list clickable-list">
+                        <li>
+                            <span>Manage Profile</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </li>
+                        <li>
+                            <span>Change Password</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </li>
+                        <li>
+                            <span>Payment Methods</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </li>
+                        <li>
+                            <span>Privacy Policy</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="settings-section">
+                    <h2><i class="fas fa-palette"></i> Display</h2>
+                    <ul class="settings-list single-select-list" id="displayViewSetting">
+                        <li data-value="compact">
+                            <span>Compact View</span>
+                            <i class="fas fa-check"></i>
+                        </li>
+                        <li data-value="comfortable">
+                            <span>Comfortable View</span>
+                            <i class="fas fa-check"></i>
+                        </li>
+                        <li data-value="expanded">
+                            <span>Expanded View</span>
+                            <i class="fas fa-check"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="settings-section">
+                    <h2><i class="fas fa-chart-line"></i> Reporting & Analytics</h2>
+                    <div class="settings-group">
+                        <label>Select Report Types:</label>
+                        <div class="multiselect-options-display">
+                            <div class="multiselect-display-area" id="reportTypesDisplay" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="reportTypesOptions">
+                                Select report types...
+                            </div>
+                            <span class="multiselect-arrow fas fa-chevron-down"></span>
+                            <div class="multiselect-options-container" id="reportTypesOptions" role="listbox">
+                                <div class="multiselect-checkbox-list">
+                                    <label class="checkbox-container">Sales Report
+                                        <input type="checkbox" data-value="sales">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Inventory Report
+                                        <input type="checkbox" data-value="inventory">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Staff Performance
+                                        <input type="checkbox" data-value="staff_performance">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Customer Feedback
+                                        <input type="checkbox" data-value="customer_feedback">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Expense Report
+                                        <input type="checkbox" data-value="expense">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-group toggle-setting">
+                        <label for="autoGenerateReports">Auto-generate Monthly Reports</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="autoGenerateReports" class="toggle-checkbox">
+                            <label for="autoGenerateReports" class="toggle-label"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2><i class="fas fa-info-circle"></i> About</h2>
+                    <ul class="settings-list about-list">
+                        <li>
+                            <span>Version</span>
+                            <span>1.2.0</span>
+                        </li>
+                        <li>
+                            <span>Last Updated</span>
+                            <span>2024-05-28</span>
+                        </li>
+                        <li>
+                            <span>License Information</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+/* CSS Variables for Theme (Consistent with existing pages) */
+:root {
+    --sidebar-bg: #333;
+    --sidebar-text-color: #ffffff;
+    --sidebar-hover-bg: #007bff;
+    --sidebar-active-bg: #0056b3;
+    --sidebar-border-color: #555;
+    --submenu-bg: #444;
+    --submenu-hover-bg: #555;
+    --sidebar-header-bg: #222;
+    --sidebar-footer-bg: #222;
+    --sidebar-logo-border: #777;
+    --close-button-color: #ffffff;
+    --close-button-hover-color: #ccc;
+    --logout-link-color: #9ac2ed;
+    --logout-status-bg: #28a745;
+}
+
+/* Dark Mode styles */
+body.dark-mode {
+    --sidebar-bg: #2b2e3b;
+    --sidebar-text-color: #e0e0e0;
+    --sidebar-hover-bg: #3a3f52;
+    --sidebar-active-bg: #4c5268;
+    --sidebar-border-color: #4a4d60;
+    --submenu-bg: #323546;
+    --submenu-hover-bg: #3f4357;
+    --sidebar-header-bg: #22242e;
+    --sidebar-footer-bg: #22242e;
+    --sidebar-logo-border: #5a5d70;
+    --close-button-color: #e0e0e0;
+    --close-button-hover-color: #b0b0b0;
+    --logout-link-color: #9ac2ed;
+    --logout-status-bg: #1e6c3d;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed; /* Position fixed to overlay content */
+    top: 0;
+    left: -280px; /* Hidden by default */
+    width: 260px; /* Adjusted width for menu content */
+    height: 100%;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text-color);
+    box-shadow: 2px 0 10px rgba(var(--shadow-color-rgb), 0.2);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000; /* Ensure it's above other content */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.active {
+    left: 0; /* Slide in */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--sidebar-header-bg);
+    border-bottom: 1px solid var(--sidebar-border-color);
+}
+
+.sidebar-logo {
+    width: 85%;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 1px solid var(--sidebar-logo-border);
+}
+
+.sidebar-app-name {
+    font-weight: bold;
+    flex-grow: 1;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.close-sidebar-button {
+    width: 15%;
+    text-align: right;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--close-button-color);
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.close-sidebar-button:hover {
+    color: var(--close-button-hover-color);
+}
+
+.sidebar-nav {
+    flex-grow: 1; /* Allows nav to take available vertical space */
+    overflow-y: auto; /* Enable scrolling for long menus */
+    padding-top: 10px;
+    padding-bottom: 10px; /* Add padding to the bottom for scroll */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav ul li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav ul li a i {
+    margin-right: 12px;
+    font-size: 1.1em;
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: var(--accent-color); /* Highlight text on hover */
+}
+
+.sidebar-nav ul li a.active {
+    background-color: var(--sidebar-active-bg);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sidebar-nav ul li a.has-submenu {
+    position: relative;
+    padding-right: 40px; /* Space for the arrow icon */
+}
+
+.sidebar-nav ul li a .submenu-icon {
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav ul li a.has-submenu.expanded .submenu-icon {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    padding-left: 0; /* Remove default padding */
+    margin-left: 0;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--submenu-bg);
+}
+
+.submenu.expanded {
+    max-height: 500px; /* Arbitrary large value to show all content */
+    transition: max-height 0.5s ease-in;
+}
+
+.submenu li a {
+    padding: 12px 20px 12px 40px !important; /* Apply specific padding including the desired left indent */
+    font-size: 0.88em; /* Smaller font size */
+}
+
+.submenu li a:hover {
+    background-color: var(--submenu-hover-bg);
+}
+
+.sidebar-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--sidebar-border-color);
+    background-color: var(--sidebar-footer-bg);
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+}
+
+.user-info span {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--sidebar-text-color);
+}
+
+.user-info .restaurant-name {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+}
+
+.user-info .username {
+    color: var(--sidebar-text-color);
+}
+
+.user-info .version {
+    font-size: 0.75em;
+    color: var(--subtitle-color);
+}
+
+.logout-holder {
+    display: flex;
+    margin-top: 10px;
+}
+
+.logout-link {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--logout-link-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-link i {
+    margin-right: 8px;
+    font-size: 1.3em;
+}
+
+.logout-status {
+    background-color: var(--logout-status-bg);
+    color: #ffffff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: normal;
+}
+
+.mode-button-holder {
+    width: 50%;
+}
+
+.mode-button {
+    width: 24px; /* Adjust as needed */
+    height: 24px; /* Make sure width and height are equal for a circle */
+    float: right;
+    border-radius: 50%; /* Make it round */
+    background-color: var(--logout-status-bg); /* Use your theme's accent color */
+    color: white; /* Or any contrasting color */
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em; /* Adjust as needed */
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+/* Overlay to dim content when sidebar is open */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Below sidebar, above content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}

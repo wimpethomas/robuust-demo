@@ -41,6 +41,7 @@
                 <button class="action-button open-modal-btn" data-modal-id="modal8">Open Modal 8 (Simple List)</button>
                 <button class="action-button open-modal-btn" data-modal-id="modal9">Open Modal 9 (Text Options)</button>
                 <button class="action-button open-modal-btn" data-modal-id="modal10">Open Modal 10 (Action Buttons)</button>
+                <button class="action-button open-modal-btn" data-modal-id="modal11">Open Modal 11 (Advanced Inputs)</button>
             </div>
         </main>
     </div>
@@ -218,6 +219,257 @@
             </div>
     </div>
 
+    <div id="modal11Overlay" class="modal-overlay" aria-modal="true" role="dialog">
+        <div class="modal" id="modal11">
+            <div class="modal-header">
+                <h3>Advanced Inputs</h3>
+                <button class="close-modal-btn" data-modal-id="modal11"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body modal-advanced-inputs">
+                <div class="form-group">
+                    <label for="textInputModal11">Full Name:</label>
+                    <input type="text" id="textInputModal11" class="filter-input" placeholder="e.g., Jane Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="beautifiedSelect">Select Category:</label>
+                    <div class="custom-select-wrapper">
+                        <select id="beautifiedSelect" class="filter-input custom-select">
+                            <option value="">-- Please choose an option --</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="main_course">Main Course</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="beverage">Beverage</option>
+                        </select>
+                        <span class="custom-arrow fas fa-chevron-down"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <fieldset class="multiselect-checkboxes">
+                        <legend>Select Ingredients (Checkbox List):</legend>
+                        <label class="checkbox-container">Tomatoes
+                            <input type="checkbox" name="ingredients_checkbox" value="tomatoes">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Onions
+                            <input type="checkbox" name="ingredients_checkbox" value="onions">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Lettuce
+                            <input type="checkbox" name="ingredients_checkbox" value="lettue">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Cheese
+                            <input type="checkbox" name="ingredients_checkbox" value="cheese">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Bell Peppers
+                            <input type="checkbox" name="ingredients_checkbox" value="bell_peppers">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Mushrooms
+                            <input type="checkbox" name="ingredients_checkbox" value="mushrooms">
+                            <span class="checkmark"></span>
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Toppings:</label>
+                    <div class="multiselect-single-line-dropdown">
+                        <div class="multiselect-display-area" id="multiselectToppingsDisplay" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="multiselectToppingsOptions">
+                            Select toppings...
+                        </div>
+                        <span class="multiselect-arrow fas fa-chevron-down"></span>
+
+                        <div class="multiselect-options-container" id="multiselectToppingsOptions" role="listbox">
+                            <select id="multiselectToppingsHidden" name="toppings" multiple class="hidden-select" aria-hidden="true" tabindex="-1">
+                                <option value="pepperoni">Pepperoni</option>
+                                <option value="olives">Olives</option>
+                                <option value="extra_cheese">Extra Cheese</option>
+                                <option value="pineapple">Pineapple</option>
+                                <option value="ham">Ham</option>
+                                <option value="spinach">Spinach</option>
+                            </select>
+
+                            <div class="multiselect-checkbox-list">
+                                <label class="checkbox-container">Pepperoni
+                                    <input type="checkbox" data-value="pepperoni">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">Olives
+                                    <input type="checkbox" data-value="olives">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">Extra Cheese
+                                    <input type="checkbox" data-value="extra_cheese">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">Pineapple
+                                    <input type="checkbox" data-value="pineapple">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">Ham
+                                    <input type="checkbox" data-value="ham">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">Spinach
+                                    <input type="checkbox" data-value="spinach">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Dietary Restrictions:</label>
+                    <div class="checkbox-group-vertical">
+                        <label class="checkbox-container">Vegetarian
+                            <input type="checkbox" name="dietary" value="vegetarian">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Vegan
+                            <input type="checkbox" name="dietary" value="vegan">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Gluten-Free
+                            <input type="checkbox" name="dietary" value="gluten-free">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Sides:</label>
+                    <div class="checkbox-group-horizontal">
+                        <label class="checkbox-container">Fries
+                            <input type="checkbox" name="sides" value="fries">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Salad
+                            <input type="checkbox" name="sides" value="salad">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Soup
+                            <input type="checkbox" name="sides" value="soup">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-button cancel-button close-modal-btn" data-modal-id="modal11">Cancel</button>
+                <button class="action-button save-button close-modal-btn" data-modal-id="modal11">Submit</button>
+            </div>
+        </div>
+    </div>
+
     <script src="modals.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Functionality for the custom multiselect dropdown (single line)
+            const multiselectDropdown = document.querySelector('.multiselect-single-line-dropdown');
+            if (multiselectDropdown) {
+                const displayArea = multiselectDropdown.querySelector('.multiselect-display-area');
+                const optionsContainer = multiselectDropdown.querySelector('.multiselect-options-container');
+                const hiddenSelect = multiselectDropdown.querySelector('.hidden-select'); // The actual select[multiple]
+                const checkboxes = optionsContainer.querySelectorAll('.multiselect-checkbox-list input[type="checkbox"]');
+
+                // Function to update the display area text
+                const updateDisplay = () => {
+                    const selectedOptionsText = [];
+                    const selectedValues = [];
+
+                    checkboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            selectedOptionsText.push(checkbox.parentNode.textContent.trim()); // Get label text
+                            selectedValues.push(checkbox.dataset.value); // Get value for hidden select
+                        }
+                    });
+
+                    if (selectedOptionsText.length === 0) {
+                        displayArea.textContent = 'Select toppings...';
+                        displayArea.classList.remove('selected-items');
+                    } else {
+                        displayArea.textContent = selectedOptionsText.join(', ');
+                        displayArea.classList.add('selected-items');
+                    }
+
+                    // Also sync with the hidden native select for form submission
+                    Array.from(hiddenSelect.options).forEach(option => {
+                        option.selected = selectedValues.includes(option.value);
+                    });
+                };
+
+                // Toggle dropdown visibility
+                displayArea.addEventListener('click', () => {
+                    const isShown = optionsContainer.classList.toggle('show');
+                    displayArea.setAttribute('aria-expanded', isShown);
+                    if (isShown) {
+                        optionsContainer.focus(); // Focus the options container when opened
+                    }
+                });
+
+                // Also toggle with the arrow click
+                multiselectDropdown.querySelector('.multiselect-arrow').addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent click from bubbling to displayArea
+                    const isShown = optionsContainer.classList.toggle('show');
+                    displayArea.setAttribute('aria-expanded', isShown);
+                    if (isShown) {
+                        optionsContainer.focus(); // Focus the options container when opened
+                    }
+                });
+
+
+                // Handle checkbox changes
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', updateDisplay);
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener('click', (event) => {
+                    if (!multiselectDropdown.contains(event.target)) {
+                        optionsContainer.classList.remove('show');
+                        displayArea.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Add keyboard navigation for accessibility
+                displayArea.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault(); // Prevent scrolling with spacebar
+                        displayArea.click(); // Simulate click to open/close
+                    }
+                });
+
+                // When options container is open, allow arrow keys to navigate checkboxes
+                optionsContainer.addEventListener('keydown', (event) => {
+                    const focusableCheckboxes = Array.from(checkboxes).filter(cb => !cb.disabled);
+                    const currentFocusIndex = focusableCheckboxes.findIndex(cb => cb === document.activeElement);
+
+                    if (event.key === 'ArrowDown') {
+                        event.preventDefault();
+                        const nextIndex = (currentFocusIndex + 1) % focusableCheckboxes.length;
+                        focusableCheckboxes[nextIndex].focus();
+                    } else if (event.key === 'ArrowUp') {
+                        event.preventDefault();
+                        const prevIndex = (currentFocusIndex - 1 + focusableCheckboxes.length) % focusableCheckboxes.length;
+                        focusableCheckboxes[prevIndex].focus();
+                    } else if (event.key === 'Escape') {
+                        event.preventDefault();
+                        optionsContainer.classList.remove('show');
+                        displayArea.setAttribute('aria-expanded', 'false');
+                        displayArea.focus(); // Return focus to display area
+                    }
+                });
+
+
+                updateDisplay(); // Initial display update
+            }
+        });
+    </script>
 </body>
 </html>

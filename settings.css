@@ -1,0 +1,364 @@
+/* Import existing base styles */
+@import url("reviews.css"); /* Or timesheet-admin-coworker.css, whichever is more comprehensive for base elements */
+@import url("modals.css"); /* For custom checkboxes and multi-select elements */
+
+/* Settings Page Specific Styles */
+
+.pos-main-content.settings-content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--bg-color); /* Use background color from theme */
+    min-height: calc(100vh - var(--header-height)); /* Fill remaining height */
+    overflow-y: auto; /* Allow scrolling for long content */
+}
+
+.settings-container {
+    width: 100%;
+    max-width: 800px; /* Max width for content, similar to modals */
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between sections */
+    padding-bottom: 30px; /* Padding at the bottom for scrolling */
+}
+
+.settings-section {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow); /* Reusing card shadow */
+    padding: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.settings-section h2 {
+    font-size: 1.4em;
+    color: var(--h-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-section h2 .fas {
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+/* Individual Setting Group (for toggles and basic labels) */
+.settings-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.settings-group:last-of-type {
+    border-bottom: none; /* No border for the last item in a group */
+}
+
+.settings-group label {
+    flex-grow: 1; /* Allow label to take available space */
+    cursor: pointer;
+    margin-right: 15px; /* Space between label and toggle */
+}
+
+/* Custom Toggle Switch (re-using general checkbox styles and extending) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 45px; /* Width of the switch track */
+    height: 25px; /* Height of the switch track */
+    vertical-align: middle;
+}
+
+.toggle-switch .toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--input-border); /* Inactive state color */
+    border-radius: 25px; /* Rounded corners for switch track */
+    transition: background-color 0.3s ease;
+}
+
+.toggle-label:before {
+    content: "";
+    position: absolute;
+    height: 21px; /* Size of the draggable "ball" */
+    width: 21px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--card-bg); /* Ball color */
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 2px rgba(var(--shadow-color-rgb), 0.2);
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: var(--accent-color); /* Active state color */
+}
+
+.toggle-checkbox:checked + .toggle-label:before {
+    transform: translateX(20px); /* Move ball to the right */
+}
+
+/* Special style for the Dark Mode toggle inside settings (if it's smaller) */
+.settings-group .dark-mode-toggle-container.small-toggle {
+    margin-right: 0; /* Remove default margin from header toggle */
+}
+
+.settings-group .dark-mode-toggle-container.small-toggle .dark-mode-label {
+    width: 45px;
+    height: 25px;
+}
+
+.settings-group .dark-mode-toggle-container.small-toggle .dark-mode-label .ball {
+    height: 21px;
+    width: 21px;
+    top: 2px;
+    left: 2px;
+}
+
+.settings-group .dark-mode-toggle-container.small-toggle .dark-mode-checkbox:checked + .dark-mode-label .ball {
+    transform: translateX(20px);
+}
+
+
+/* General Settings List Styling */
+.settings-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.settings-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.settings-list li:last-child {
+    border-bottom: none;
+}
+
+.settings-list li span {
+    flex-grow: 1;
+}
+
+/* Clickable List (with chevron icon) */
+.settings-list.clickable-list li {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.settings-list.clickable-list li:hover {
+    background-color: var(--table-row-hover); /* Light hover effect */
+    border-radius: 5px; /* Apply border-radius on hover for visual appeal */
+}
+
+.settings-list.clickable-list li .fas.fa-chevron-right,
+.settings-list.about-list li .fas.fa-external-link-alt {
+    color: var(--subtitle-color);
+    font-size: 0.9em;
+    margin-left: 15px;
+}
+
+/* Single Select List (with checkmark) */
+.settings-list.single-select-list li {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.settings-list.single-select-list li.selected {
+    color: var(--accent-color); /* Highlight selected item */
+    font-weight: bold;
+}
+
+.settings-list.single-select-list li.selected .fas.fa-check {
+    display: inline-block; /* Show checkmark for selected item */
+    color: var(--accent-color);
+    margin-left: 10px;
+}
+
+.settings-list.single-select-list li .fas.fa-check {
+    display: none; /* Hide checkmark by default */
+}
+
+
+/* Multiselect Dropdown (reusing from modals.css but needs adjustments) */
+/* The .multiselect-display-area, .multiselect-options-container, .multiselect-checkbox-list, .checkbox-container, .checkmark
+   are already defined in modals.css. Ensure they are correctly imported and overridden if necessary. */
+
+.settings-section .multiselect-options-display {
+    position: relative; /* Establish positioning context for dropdown */
+    width: 100%;
+    margin-top: 10px; /* Space from label */
+}
+
+.settings-section .multiselect-options-display .multiselect-display-area {
+    /* Inherits most styles from modals.css */
+    height: auto; /* Allow height to adjust for multiple lines if necessary for display area */
+    min-height: 40px; /* Ensure minimum height */
+    align-items: flex-start; /* Align text to top */
+    flex-wrap: wrap; /* Allow selected tags to wrap */
+    white-space: normal; /* Allow text to wrap for multiple items */
+    text-overflow: clip; /* Prevent ellipsis on wrapped text */
+    padding-right: 40px; /* Maintain space for arrow */
+}
+
+.settings-section .multiselect-options-display .multiselect-display-area.selected-items {
+    /* If we use "tags" then this class will be redundant or repurposed */
+    color: var(--text-color);
+}
+
+.settings-section .multiselect-options-display .multiselect-options-container {
+    /* Inherits from modals.css */
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 100%;
+    z-index: 10;
+}
+
+/* Adjustments for the multiselect in settings page specifically */
+.settings-group > label + .multiselect-options-display { /* Specificity for styling the multiselect when it's next to a label */
+    flex-direction: column; /* This is primarily for the display area and options container itself */
+    align-items: flex-start;
+}
+
+/* About List */
+.settings-list.about-list li {
+    padding: 8px 0;
+    color: var(--subtitle-color);
+    font-size: 0.95em;
+}
+.settings-list.about-list li span:last-child { /* For version/date values */
+    font-weight: bold;
+    color: var(--text-color);
+}
+.settings-list.about-list li .fas {
+    cursor: pointer;
+}
+
+/* Small Round Button */
+.small-round-button {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Make sure width and height are equal for a circle */
+    border-radius: 50%; /* Make it round */
+    background-color: var(--accent-color); /* Use your theme's accent color */
+    color: white; /* Or any contrasting color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em; /* Adjust as needed */
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.small-round-button:hover {
+    background-color: var(--button-hover-color); /* Use your theme's hover color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pos-main-content.settings-content {
+        padding: 15px;
+    }
+
+    .settings-section {
+        padding: 20px;
+    }
+
+    .settings-section h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .settings-group, .settings-list li {
+        font-size: 0.95em;
+        padding: 10px 0;
+    }
+
+    .toggle-switch {
+        width: 40px;
+        height: 22px;
+    }
+
+    .toggle-label:before {
+        height: 18px;
+        width: 18px;
+        bottom: 2px;
+        left: 2px;
+    }
+
+    .toggle-checkbox:checked + .toggle-label:before {
+        transform: translateX(18px);
+    }
+}
+
+@media (max-width: 480px) {
+    .pos-main-content.settings-content {
+        padding: 10px;
+    }
+
+    .settings-section {
+        padding: 15px;
+    }
+
+    .settings-section h2 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .settings-group, .settings-list li {
+        font-size: 0.9em;
+        padding: 8px 0;
+    }
+
+    /* Smaller toggle for very small screens */
+    .toggle-switch {
+        width: 35px;
+        height: 20px;
+    }
+    .toggle-label:before {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+    }
+    .toggle-checkbox:checked + .toggle-label:before {
+        transform: translateX(15px);
+    }
+
+    .settings-list.clickable-list li .fas.fa-chevron-right,
+    .settings-list.about-list li .fas.fa-external-link-alt {
+        font-size: 0.8em;
+    }
+
+    .settings-section .multiselect-options-display .multiselect-display-area {
+        min-height: 36px;
+        padding: 8px 10px;
+        padding-right: 35px;
+    }
+    .settings-section .multiselect-options-display .multiselect-arrow {
+        right: 10px;
+        font-size: 0.7em;
+    }
+}
