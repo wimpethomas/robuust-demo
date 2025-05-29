@@ -11,20 +11,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentDate = new Date(); // Start with today's date
 
-    // --- Dark Mode Toggle Logic (Consistent across pages) ---
+   // Slider elements
+    const reservationSlider = document.getElementById('reservationSlider');
+    const reservationSliderOverlay = document.getElementById('reservationSliderOverlay');
+    const closeSliderBtn = document.getElementById('closeSliderBtn');
+    const cancelSliderBtn = document.getElementById('cancelSliderBtn');
+    const addReservationBtn = document.getElementById('addReservationBtn'); // New button in header
+    const sliderTitle = document.getElementById('sliderTitle');
+
+    // Form elements
+    const reservationForm = document.getElementById('reservationForm');
+    const reservationIdInput = document.getElementById('reservationId');
+    const guestNameInput = document.getElementById('guestName');
+    const guestsInput = document.getElementById('guests');
+    const reservationDateInput = document.getElementById('reservationDate');
+    const reservationTimeInput = document.getElementById('reservationTime');
+    const durationInput = document.getElementById('duration');
+    const tableSelect = document.getElementById('tableSelect');
+    const notesInput = document.getElementById('notes');
+    const deleteReservationBtn = document.getElementById('deleteReservationBtn');
+    const saveReservationBtn = document.getElementById('saveReservationBtn');
+    const darkModeToggle = document.getElementById('darkModeToggle');    
+
+   // --- Dark Mode Logic (Consistent across pages) ---
     function applyTheme(theme) {
         if (theme === 'dark') {
             body.classList.add('dark-mode');
+            if (darkModeButton) {
+                // Show sun icon for light mode (because clicking it will switch to light)
+                darkModeButton.innerHTML = '<i class="fas fa-sun"></i>';
+                darkModeButton.setAttribute('aria-label', 'Switch to Light Mode');
+            }
         } else {
             body.classList.remove('dark-mode');
+            if (darkModeButton) {
+                // Show moon icon for dark mode (because clicking it will switch to dark)
+                darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+                darkModeButton.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
         }
+        localStorage.setItem('theme', theme);
     }
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         applyTheme(savedTheme);
     } else {
-        applyTheme('dark');
+        applyTheme('dark'); // Default to dark mode if no preference
+    }
+
+    // Event listener for the new dark mode button
+    if (darkModeButton) {
+        darkModeButton.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            if (currentTheme === 'dark') {
+                applyTheme('light');
+            } else {
+                applyTheme('dark');
+            }
+        });
     }
 
     // --- Sample Data ---
@@ -86,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to render the reservation grid
     function renderReservationGrid() {
         reservationGrid.innerHTML = ''; // Clear existing grid
-        currentDateDisplay.textContent = formatDisplayDate(currentDate);
+        reportDateRangeInput.textContent = formatDisplayDate(currentDate);
 
         // Filter tables by room
         const selectedRoom = roomFilter.value;
@@ -247,6 +292,58 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Month view coming soon!'); // Placeholder for future implementation
         // Logic to switch to month view
     });
+
+    // --- Slider Functions ---
+    function openSlider(reservation = null, suggestedTableId = null, suggestedTime = null) {
+        reservationSlider.classList.add('visible');
+        reservationSliderOverlay.classList.add('visible');
+        body.style.overflow = 'hidden'; // Prevent scrolling of background content
+
+        if (reservation) {
+            sliderTitle.textContent = 'Edit Reservation';
+            reservationIdInput.value = reservation.id;
+            guestNameInput.value = reservation.guestName;
+            guestsInput.value = reservation.guests;
+            reservationDateInput.value = reservation.date;
+            reservationTimeInput.value = reservation.time;
+            durationInput.value = reservation.duration;
+            tableSelect.value = reservation.tableId;
+            notesInput.value = reservation.notes;
+            deleteReservationBtn.style.display = 'block'; // Show delete button for existing
+        } else {
+            sliderTitle.textContent = 'Add New Reservation';
+            reservationIdInput.value = '';
+            reservationForm.reset(); // Clear all form fields
+            // Pre-fill date with current displayed date
+            reservationDateInput.value = formatDate(currentDate);
+            // Pre-fill table and time if clicked on a specific empty slot
+            if (suggestedTableId) {
+                tableSelect.value = suggestedTableId;
+            }
+            if (suggestedTime) {
+                reservationTimeInput.value = suggestedTime;
+            }
+            // Default guests and duration if not pre-filled
+            if (!guestsInput.value) guestsInput.value = 2;
+            if (!durationInput.value) durationInput.value = 90;
+            deleteReservationBtn.style.display = 'none'; // Hide delete button for new
+        }
+    }
+
+    function closeSlider() {
+        reservationSlider.classList.remove('visible');
+        reservationSliderOverlay.classList.remove('visible');
+        body.style.overflow = ''; // Allow scrolling again
+    }    
+
+    // Slider related event listeners
+    addReservationBtn.addEventListener('click', () => {
+        openSlider(); // Open slider for new reservation
+    });
+
+    closeSliderBtn.addEventListener('click', closeSlider);
+    cancelSliderBtn.addEventListener('click', closeSlider);
+    reservationSliderOverlay.addEventListener('click', closeSlider); // Close when clicking outside    
 
     // Initial render
     renderReservationGrid();

@@ -9,17 +9,19 @@
 
 /* CSS Variables for Theme (Consistent with existing pages) */
 :root {
+    font-family: Arial, sans-serif;    
     /* Light Mode Defaults */
     --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
     --text-color: #333;
-    --h-color: #007bff; /* General header color */
+    --h-color: #5c6bc0; /* General header color */
     --subtitle-color: #666;
     --border-color: #ddd;
     --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
-    --accent-color: #007bff;
+    --accent-color: #5a647d;
+    --accent-contrast-color: #ddd;
     --button-hover-color: #0056b3;
     --input-bg: #f5f5f5;
+    --input-color: var(--text-color);
     --input-border: #999;
     --table-header-bg: #e9ecef;
     --table-border: #dee2e6;
@@ -31,6 +33,14 @@
     --header-button-border: #ccc;
     --header-button-hover-bg: #d0d0d0;
 
+        /* Card specific colors */
+    --card-bg: #ffffff;    
+    --card-border: #e0e0e0;
+    --card-header-bg: #f8f9fa;
+    --card-footer-bg: #f2f2f2;
+    --positive-color: #28a745; /* Green for positive metrics */
+    --negative-color: #dc3545; /* Red for negative metrics like discounts/cancellations */
+
     /* Dark Mode Variables */
     --dark-bg-color: #1a1a2e;
     --dark-card-bg: #1f283e;
@@ -39,7 +49,7 @@
     --dark-subtitle-color: #b0b0b0;
     --dark-border-color: #3e4451;
     --dark-shadow-color-rgb: 0, 0, 0;
-    --dark-accent-color: #7fffd4;
+    --dark-accent-color: #999;
     --dark-button-hover-color: #64d4b3;
     --dark-input-bg: #282f44;
     --dark-input-border: #5a647d;
@@ -56,10 +66,10 @@
 
 /* Dark Mode styles */
 body.dark-mode {
+    font-family: Arial, sans-serif;
     background-color: var(--dark-bg-color);
     color: var(--dark-text-color);
     --bg-color: var(--dark-bg-color);
-    --card-bg: var(--dark-card-bg);
     --text-color: var(--dark-text-color);
     --h-color: var(--dark-h-color);
     --subtitle-color: var(--dark-subtitle-color);
@@ -68,10 +78,25 @@ body.dark-mode {
     --accent-color: var(--dark-accent-color);
     --button-hover-color: var(--dark-button-hover-color);
     --input-bg: var(--dark-input-bg);
+    --input-color: var(--dark-text-color);    
     --input-border: var(--dark-input-border);
     --table-header-bg: var(--dark-table-header-bg);
     --table-border: var(--dark-table-border);
     --table-row-hover: var(--dark-table-row-hover);
+
+    /* Header button colors for dark mode */
+    --header-button-bg: #3e4c6c;
+    --header-button-text: #e0e0e0;
+    --header-button-border: #555;
+    --header-button-hover-bg: #4a5c7c;
+
+    /* Card specific colors for dark mode */
+    --card-bg: var(--dark-card-bg);
+    --card-border: #333;
+    --card-header-bg: #2a3a4e;
+    --card-footer-bg: #28283d;
+    --positive-color: #4CAF50; /* Slightly brighter green for dark mode */
+    --negative-color: #FF6347; /* Slightly brighter red for dark mode */
 }
 
 body.dark-mode .page-header,
@@ -158,18 +183,18 @@ body.dark-mode .data-table tbody tr:hover {
 }
 
 .header-left .page-title {
-    font-size: 1.1em;
+    font-size: 1.4em;
     font-weight: bold;
-    color: var(--text-color);
+    color: var(--h-color);
 }
 
 .header-left i {
     font-size: 1.2em;
-    color: var(--subtitle-color);
+    color: var(--h-color);
 }
 
 .page-header h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: var(--h-color);
     margin: 0;
     flex-grow: 1;
@@ -206,7 +231,7 @@ body.dark-mode .data-table tbody tr:hover {
 /* Top Controls */
 .top-controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     gap: 20px;
@@ -215,10 +240,11 @@ body.dark-mode .data-table tbody tr:hover {
     flex-wrap: wrap; /* Allow wrapping for filters */
 }
 
-.filter-group, .search-group {
+.date-group, .filter-group, .search-group, .small-buttons-group, .actions-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .filter-input, .filter-select {
@@ -256,12 +282,18 @@ body.dark-mode .data-table tbody tr:hover {
     color: var(--subtitle-color);
 }
 
+.menu-button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .action-button {
     background-color: var(--header-button-bg);
     color: var(--header-button-text);
     border: 1px solid var(--header-button-border);
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 8px 12px;
     cursor: pointer;
     font-size: 0.95em;
     display: flex;
@@ -270,7 +302,7 @@ body.dark-mode .data-table tbody tr:hover {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.action-button:hover {
+.action-button:hover, .menu-button:hover {
     background-color: var(--header-button-hover-bg);
 }
 
@@ -285,20 +317,61 @@ body.dark-mode .data-table tbody tr:hover {
     border-color: var(--button-hover-color);
 }
 
+.header-icon-button.primary-button, .action-button.primary-button {
+    background-color: var(--accent-color);
+    color: var(--accent-contrast-color);
+    border-color: var(--accent-color);
+}
+
+/* Toggle */
+.view-toggle {
+    display: flex;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    padding: 8px 15px;
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: var(--table-row-hover);
+}
+
+.toggle-btn.active {
+    background-color: var(--accent-color);
+    color: var(--accent-contrast-color);
+    font-weight: bold;
+}
+
 /* Small Round Button */
 .small-round-button {
     width: 30px; /* Adjust as needed */
     height: 30px; /* Make sure width and height are equal for a circle */
     border-radius: 50%; /* Make it round */
-    background-color: var(--accent-color); /* Use your theme's accent color */
-    color: white; /* Or any contrasting color */
+    background-color: var(--header-button-bg);
+    color: var(--header-button-text);
+    border: 1px solid var(--header-button-border);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.8em; /* Adjust as needed */
+    font-size: 0.9em; /* Adjust as needed */
     cursor: pointer;
-    border: none;
     transition: background-color 0.2s ease;
+}
+
+.small-round-button i {
+    line-height: 30px;
+    margin-top: 2px;
 }
 
 .small-round-button:hover {
@@ -334,7 +407,7 @@ body.dark-mode .data-table tbody tr:hover {
         padding: 10px;
     }
 
-    .filter-group, .search-group {
+    .date-group, .filter-group, .search-group, .small-buttons-group {
         width: 100%;
     }
 

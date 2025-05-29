@@ -12,14 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMonth, currentYear;
 
-    // --- Dark Mode Toggle Logic (Consistent across pages) ---
+   // --- Dark Mode Logic (Consistent across pages) ---
     function applyTheme(theme) {
         if (theme === 'dark') {
             body.classList.add('dark-mode');
-            darkModeToggle.checked = true;
+            if (darkModeButton) {
+                // Show sun icon for light mode (because clicking it will switch to light)
+                darkModeButton.innerHTML = '<i class="fas fa-sun"></i>';
+                darkModeButton.setAttribute('aria-label', 'Switch to Light Mode');
+            }
         } else {
             body.classList.remove('dark-mode');
-            darkModeToggle.checked = false;
+            if (darkModeButton) {
+                // Show moon icon for dark mode (because clicking it will switch to dark)
+                darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+                darkModeButton.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
         }
         localStorage.setItem('theme', theme);
     }
@@ -28,16 +36,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedTheme) {
         applyTheme(savedTheme);
     } else {
-        applyTheme('light'); // Default to light mode
+        applyTheme('dark'); // Default to dark mode if no preference
     }
 
-    darkModeToggle.addEventListener('change', () => {
-        if (darkModeToggle.checked) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light');
-        }
-    });
+    // Event listener for the new dark mode button
+    if (darkModeButton) {
+        darkModeButton.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            if (currentTheme === 'dark') {
+                applyTheme('light');
+            } else {
+                applyTheme('dark');
+            }
+        });
+    }
 
     // --- Calendar and Reservation Data Logic ---
 
@@ -112,8 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const dayData = monthlyReservationData[dateStr] || { totalGuests: 0, rooms: {} };
 
             dayCell.innerHTML = `
+                <span class="day-holder">
                 <span class="day-number">${day}</span>
                 <span class="total-guests"><i class="fas fa-users"></i> ${dayData.totalGuests}</span>
+                </span>
                 <div class="room-guest-details"></div>
             `;
 
