@@ -1,79 +1,68 @@
-/* Basic Reset & Box-sizing */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* CSS Variables for Theme */
-:root {
-    --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
-    --text-color: #333;
-    --subtitle-color: #666;
-    --border-color: #ddd;
-    --shadow-color-rgb: 0, 0, 0; /* Base for shadows */
-    --accent-color: #007bff;
-    --button-hover-color: #0056b3;
-}
-
-/* Dark Mode Variables */
-body.dark-mode {
-    --bg-color: #1a1a2e;
-    --card-bg: #16213e;
-    --text-color: #e0e0e0;
-    --subtitle-color: #b0b0b0;
-    --border-color: #3a3a5f;
-    --shadow-color-rgb: 0, 0, 0; /* Can be adjusted for dark mode if needed */
-    --accent-color: #66b3ff;
-    --button-hover-color: #4a90e2;
-}
-
-body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align content to the top */
-    min-height: 100vh;
-    padding: 20px;
-    transition: background-color 0.3s ease; /* Smooth transition for theme change */
-}
-
-.page-wrapper {
-    width: 100%;
-    max-width: 1200px; /* Overall max width for the dashboard content */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center dashboard content horizontally */
-}
-
+/* Dashboard Grid */
 .dashboard-container {
     display: grid;
-    /* Max 3 cards in a row. Adjust minmax to control card size */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for main layout */
     gap: 20px;
-    width: 100%; /* Take full width of its parent (.page-wrapper) */
+    width: 100%;
 }
 
 /* Card Styling */
 .card {
     background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 12px;
-    /* More distinctive shadows */
-    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15); /* Default shadow */
+    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15);
     padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Animation properties */
-    min-height: 180px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    min-height: 300px; /* Default height for cards with charts */
 }
 
-/* Card Hover Animation - More distinctive */
-.card:hover {
-    transform: translateY(-10px); /* Lift effect */
-    box-shadow: 0 16px 32px rgba(var(--shadow-color-rgb), 0.25); /* More pronounced shadow */
+/* Specific layout for the new arrangement */
+.full-width-chart-card {
+    grid-column: span 2; /* Bar chart spans 2 columns */
+}
+
+/*
+.revenue-card .card-title {
+    font-size: 1.1em;
+    color: var(--subtitle-color);
+    margin-bottom: 8px;
+}
+
+.revenue-card .card-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--card-value-color);
+    margin-bottom: 5px;
+}
+
+.revenue-card .card-trend {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.revenue-card .card-trend.positive {
+    color: var(--positive-color);
+}
+
+.revenue-card .card-trend.negative {
+    color: var(--negative-color);
+}
+
+.revenue-card .card-description {
+    font-size: 0.85em;
+    color: var(--subtitle-color);
+}
+*/
+
+/* Card Hover Animation */
+.card:hover, .summary-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 32px rgba(var(--shadow-color-rgb), 0.25);
 }
 
 .card-header {
@@ -85,7 +74,7 @@ body {
 
 .card-header h3 {
     font-size: 1.1em;
-    color: var(--text-color);
+    color: var(--h-color); /* Use h-color for card headers */
     font-weight: 600;
 }
 
@@ -97,155 +86,189 @@ body {
     padding: 5px;
 }
 
-.card-content {
+/* Chart Container within Card */
+.card-chart-content {
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Adjusted min-height for charts */
 }
 
-/* Specific Card Content Styles */
-.subtitle {
-    font-size: 0.9em;
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+/* Metric Card Specific Styles */
+.metric-card {
+    min-height: 120px; /* Smaller height for metric cards */
+    justify-content: center;
+    align-items: flex-start; /* Align text to start */
+}
+
+.metric-card .card-metric {
+    font-size: 2.2em; /* Slightly smaller for metric cards */
+    margin-bottom: 5px;
+}
+
+.metric-card .card-description {
+    font-size: 0.8em;
     color: var(--subtitle-color);
+}
+
+/* Text Card Content Styles (re-purposed for metrics) */
+.card-content-text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0;
+}
+
+.card-metric {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--card-value-color);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.card-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
-.value-line-1 {
-    font-size: 1.4em;
-    font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 5px;
-}
-
-.value-line-2 {
-    font-size: 0.85em;
+.card-description {
+    font-size: 0.9em;
     color: var(--subtitle-color);
+    transition: color 0.3s ease;
 }
 
-.icon-label {
-    font-size: 0.85em;
-    color: var(--accent-color);
-    font-weight: 500;
+.card-percentage {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.card-percentage.positive {
+    background-color: #e6ffe6;
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+body.dark-mode .card-percentage.positive {
+    background-color: #1a4528;
+    color: #a7f7b7;
+    border-color: #a7f7b7;
+}
+
+.card-percentage.negative {
+    background-color: #ffe6e6;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+body.dark-mode .card-percentage.negative {
+    background-color: #451a1a;
+    color: #f7b7b7;
+    border-color: #f7b7b7;
+}
+
+.card-footer {
+    margin-top: auto;
+    font-size: 0.8em;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease;
+}
+
+/* Summary Cards */
+.summary-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(var(--shadow-color-rgb), 0.05);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.summary-card .card-title {
+    font-size: 1.1em;
+    color: var(--subtitle-color);
     margin-bottom: 8px;
 }
 
-.large-number {
-    font-size: 2.2em;
-    font-weight: 800;
-    color: var(--text-color);
+.summary-card .card-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--card-value-color);
     margin-bottom: 5px;
 }
 
-.small-text {
-    font-size: 0.9em;
+.summary-card .card-trend {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.summary-card .card-trend.positive {
+    color: var(--positive-color);
+}
+
+.summary-card .card-trend.negative {
+    color: var(--negative-color);
+}
+
+.summary-card .card-description {
+    font-size: 0.85em;
     color: var(--subtitle-color);
 }
 
-/* Card with Form Elements */
-.card-with-form .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .dashboard-container {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjust grid for smaller screens */
+    }
+    .full-width-chart-card { /* Only apply this for the specific chart now */
+        grid-column: auto; /* Remove specific spans on smaller screens */
+    }
 }
+@media (max-width: 768px) {
+    .summary-cards-container {
+        grid-template-columns: 1fr;
+    }
 
-.dropdown-select {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--card-bg); /* Use card background */
-    color: var(--text-color);
-    font-size: 0.95em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2C197.3L159.2%2C69.4c-3.6-3.6-7.8-5.4-12.1-5.4c-4.3%2C0-8.5%2C1.8-12.1%2C5.4L5.4%2C197.3c-7.2%2C7.2-7.2%2C18.9%2C0%2C26.1c3.6%2C3.6%2C7.8%2C5.4%2C12.1%2C5.4c4.3%2C0%2C8.5-1.8%2C12.1-5.4L145.2%2C118.9c3.6-3.6%2C7.8-5.4%2C12.1-5.4s8.5%2C1.8%2C12.1%2C5.4l119.8%2C119.8c7.2%2C7.2%2C18.9%2C7.2%2C26.1%2C0C294.2%2C216.2%2C294.2%2C204.5%2C287%2C197.3z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow (dark grey) */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    .transaction-section h2 {
+        font-size: 1.5em;
+    }
+
+    .transaction-table th, .transaction-table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
 }
-/* Ensure option text color is also themed */
-.dropdown-select option {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-}
-
-
-.action-button {
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    align-self: flex-end;
-}
-
-.action-button:hover {
-    background-color: var(--button-hover-color);
-}
-
-
-/* Theme Switch Specific Styles */
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; /* Align to the right */
-    margin-bottom: 25px; /* Spacing below the switch */
-    width: 100%; /* Take full width of page-wrapper */
-}
-
-.theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-    border-radius: 34px; /* Round slider */
-}
-
-.slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-    border-radius: 50%; /* Round handle */
-}
-
-input:checked + .slider {
-    background-color: #2196F3; /* Blue when checked */
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.theme-switch-wrapper em {
-    margin-left: 10px;
-    color: var(--text-color);
-    font-size: 0.9em;
-    font-style: normal;
-    transition: color 0.3s ease;
+@media (max-width: 480px) {
+    .summary-card .card-value {
+        font-size: 2em;
+    }
+    .daily-table-container {
+        padding: 15px;
+    }
+    .daily-table-container h3, .daily-table-container h2 {
+        font-size: 1.2em;
+    }
+    .transaction-table th, .transaction-table td {
+        font-size: 0.85em;
+    }
 }

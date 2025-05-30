@@ -1,4 +1,5 @@
 @import url("style.css");
+@import url("modal.css");
 
 /* Basic Reset & Box-sizing */
 *, *::before, *::after {
@@ -277,6 +278,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .main-content.reservations-content {
+        padding: 10px;
+    }
+    
     .calendar-day {
         min-height: 70px; /* Further reduce height */
         padding: 8px;
@@ -296,6 +301,10 @@ body {
 
     .calendar-header-controls h2 {
         font-size: 1.5em;
+    }
+
+    .stats-section {
+        padding: 0;
     }
 }
 

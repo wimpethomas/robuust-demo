@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue - 1892 Eten & Drinken</title>
+    <link rel="stylesheet" href="revenue-2.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <i class="fas fa-chart-line"></i>
+                <span class="page-title">Revenue</span>
+            </div>
+            <div class="header-center">
+                <h1>1892 Eten & Drinken</h1>
+            </div>
+            <div class="header-right">
+                <button id="darkModeButton" class="small-round-button" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <span class="menu-icon">&#9776;</span>
+            </div>
+        </header>
+
+        <div class="top-controls">
+            <div class="filter-group">
+                <label for="roomFilter">Room:</label>
+                <select id="roomFilter" class="filter-select">
+                    <option value="all">All Rooms</option>
+                    <option value="main">Main Dining</option>
+                    <option value="terrace">Terrace</option>
+                    <option value="private">Private Room</option>
+                </select>
+            </div>
+            <div class="date-range-filter">
+                <label for="startDate">Date:</label>
+                <input type="date" id="startDate" class="date-filter-input">
+                <span>-</span>
+                <input type="date" id="endDate" class="date-filter-input">
+            </div>
+            <div class="last-update">
+                Last update: <span id="lastUpdateDateTime">May 30, 2025 - 11:43 AM</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="key-metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value">€12,345</span>
+                    <span class="metric-label">Total Revenue</span>
+                    <div class="metric-sparkline-placeholder">
+                        <div class="sparkline-line"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">250</span>
+                    <span class="metric-label">Guests</span>
+                    <div class="metric-sparkline-placeholder">
+                        <div class="sparkline-line"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">€49.38</span>
+                    <span class="metric-label">Average Check</span>
+                    <div class="metric-sparkline-placeholder">
+                        <div class="sparkline-line"></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">2.5</span>
+                    <span class="metric-label">Table Turnover</span>
+                    <div class="metric-sparkline-placeholder">
+                        <div class="sparkline-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-and-tables-grid">
+                <div class="chart-panel card">
+                    <h3>Revenue by Room</h3>
+                    <div class="chart-placeholder bar-chart">
+                        <p>Bar Chart Placeholder</p>
+                    </div>
+                </div>
+                <div class="chart-panel card">
+                    <h3>Revenue by Hour</h3>
+                    <div class="chart-placeholder line-chart">
+                        <p>Line Chart Placeholder</p>
+                    </div>
+                </div>
+                <div class="data-table-panel card">
+                    <h3>Top Selling Items</h3>
+                    <div class="table-scroll-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Qty</th>
+                                    <th>Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Espresso</td><td>150</td><td>€300.00</td></tr>
+                                <tr><td>Lasagna</td><td>50</td><td>€750.00</td></tr>
+                                <tr><td>Tiramisu</td><td>40</td><td>€240.00</td></tr>
+                                <tr><td>Wine Bottle</td><td>20</td><td>€600.00</td></tr>
+                                <tr><td>Pasta Carbonara</td><td>35</td><td>€525.00</td></tr>
+                                <tr><td>Grilled Salmon</td><td>28</td><td>€630.00</td></tr>
+                                <tr><td>Caesar Salad</td><td>45</td><td>€360.00</td></tr>
+                                <tr><td>Cheesecake</td><td>30</td><td>€180.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="data-table-panel card">
+                    <h3>Payment Methods</h3>
+                    <div class="table-scroll-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Credit Card</td><td>€8,500.00</td></tr>
+                                <tr><td>Debit Card</td><td>€2,500.00</td></tr>
+                                <tr><td>Cash</td><td>€1,000.00</td></tr>
+                                <tr><td>Gift Card</td><td>€345.00</td></tr>
+                                <tr><td>Bank Transfer</td><td>€0.00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="revenue-2.js"></script>
+</body>
+</html>

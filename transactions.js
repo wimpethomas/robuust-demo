@@ -11,35 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const averageCheckCard = document.getElementById('averageCheck');
     const averageCoversCard = document.getElementById('averageCovers');
 
-    // --- Dark Mode Toggle Logic (Copied from revenue.js for consistency) ---
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            body.classList.add('dark-mode');
-            darkModeToggle.checked = true;
-        } else {
-            body.classList.remove('dark-mode');
-            darkModeToggle.checked = false;
-        }
-        localStorage.setItem('theme', theme); // Save preference
-    }
-
-    // Check for saved theme preference on page load
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
+  // --- Dark Mode Logic (Consistent across pages) ---
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      body.classList.add('dark-mode');
+      if (darkModeButton) {
+        // Show sun icon for light mode (because clicking it will switch to light)
+        darkModeButton.innerHTML = '<i class="fas fa-sun"></i>';
+        darkModeButton.setAttribute('aria-label', 'Switch to Light Mode');
+      }
     } else {
-        // Default to dark mode as per Kassa.png if no preference saved
-        applyTheme('dark'); 
+      body.classList.remove('dark-mode');
+      if (darkModeButton) {
+        // Show moon icon for dark mode (because clicking it will switch to dark)
+        darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeButton.setAttribute('aria-label', 'Switch to Dark Mode');
+      }
     }
+    localStorage.setItem('theme', theme);
+  }
 
-    // Toggle theme on switch change
-    darkModeToggle.addEventListener('change', () => {
-        if (darkModeToggle.checked) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light');
-        }
-    });
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    applyTheme('dark'); // Default to dark mode if no preference
+  }    
 
     // --- Date Picker Logic (Copied from revenue.js) ---
     const today = new Date();

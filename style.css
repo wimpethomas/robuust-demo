@@ -9,7 +9,8 @@
 
 /* CSS Variables for Theme (Consistent with existing pages) */
 :root {
-    font-family: Arial, sans-serif;    
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+    /*font-family: Arial, sans-serif;*/
     /* Light Mode Defaults */
     --bg-color: #f0f2f5;
     --text-color: #333;
@@ -33,9 +34,10 @@
     --header-button-border: #ccc;
     --header-button-hover-bg: #d0d0d0;
 
-        /* Card specific colors */
+    /* Card specific colors */
     --card-bg: #ffffff;    
     --card-border: #e0e0e0;
+    --card-value-color: #007bff;
     --card-header-bg: #f8f9fa;
     --card-footer-bg: #f2f2f2;
     --positive-color: #28a745; /* Green for positive metrics */
@@ -43,7 +45,7 @@
 
     /* Dark Mode Variables */
     --dark-bg-color: #1a1a2e;
-    --dark-card-bg: #1f283e;
+    --dark-card-bg: #16213e;
     --dark-text-color: #e0e0e0;
     --dark-h-color: #7fffd4; /* Light teal for dark mode headers */
     --dark-subtitle-color: #b0b0b0;
@@ -53,7 +55,7 @@
     --dark-button-hover-color: #64d4b3;
     --dark-input-bg: #282f44;
     --dark-input-border: #5a647d;
-    --dark-table-header-bg: #2b354d;
+    --dark-table-header-bg: #2a3b5c;
     --dark-table-border: #4d566e;
     --dark-table-row-hover: #37405b;
 
@@ -66,7 +68,8 @@
 
 /* Dark Mode styles */
 body.dark-mode {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+    /*font-family: Arial, sans-serif;*/
     background-color: var(--dark-bg-color);
     color: var(--dark-text-color);
     --bg-color: var(--dark-bg-color);
@@ -93,6 +96,7 @@ body.dark-mode {
     /* Card specific colors for dark mode */
     --card-bg: var(--dark-card-bg);
     --card-border: #333;
+    --card-value-color: #90caf9;   
     --card-header-bg: #2a3a4e;
     --card-footer-bg: #28283d;
     --positive-color: #4CAF50; /* Slightly brighter green for dark mode */
@@ -231,13 +235,16 @@ body.dark-mode .data-table tbody tr:hover {
 /* Top Controls */
 .top-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     gap: 20px;
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
     flex-wrap: wrap; /* Allow wrapping for filters */
+}
+.top-controls.wide {
+    justify-content: space-between;
 }
 
 .date-group, .filter-group, .search-group, .small-buttons-group, .actions-group {
@@ -306,17 +313,6 @@ body.dark-mode .data-table tbody tr:hover {
     background-color: var(--header-button-hover-bg);
 }
 
-.action-button.add-new-button {
-    background-color: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-}
-
-.action-button.add-new-button:hover {
-    background-color: var(--button-hover-color);
-    border-color: var(--button-hover-color);
-}
-
 .header-icon-button.primary-button, .action-button.primary-button {
     background-color: var(--accent-color);
     color: var(--accent-contrast-color);
@@ -378,6 +374,38 @@ body.dark-mode .data-table tbody tr:hover {
     background-color: var(--button-hover-color); /* Use your theme's hover color */
 }
 
+/* Radio and Checkbox Groups */
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 5px 0;
+}
+
+.radio-group label, .checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--modal-text);
+    margin-bottom: 0;
+}
+
+.radio-group input[type="radio"], .checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--accent-color);
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    vertical-align: middle;    
+}
+
+.info-icon {
+    font-size: 0.9em;
+    color: var(--subtitle-color);
+    cursor: help;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 992px) {
     .top-controls {
@@ -387,18 +415,21 @@ body.dark-mode .data-table tbody tr:hover {
 }
 @media (max-width: 768px) {    
     .page-header {
-        flex-direction: column;
+        /*flex-direction: column;*/
         text-align: center;
         gap: 10px;
     }
 
-    .header-left, .header-right, .header-center {
-        width: 100%;
-        justify-content: center;
+    .header-left .page-title {
+        font-size: 1.2em;
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        width: 300px;
     }
 
     .page-header h1 {
-        font-size: 1.5em;
+        display: none;
     }
 
     .top-controls {
@@ -431,10 +462,7 @@ body.dark-mode .data-table tbody tr:hover {
         padding: 8px 10px;
     }
     .header-left .page-title {
-        font-size: 1em;
-    }
-    .page-header h1 {
-        font-size: 1.2em;
+        width: 200px;
     }
     .header-icon-button {
         padding: 6px 10px;

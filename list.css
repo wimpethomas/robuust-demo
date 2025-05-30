@@ -1,0 +1,108 @@
+/* Container */
+.table-container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(var(--shadow-color-rgb), 0.15);
+    overflow-x: auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.daily-table-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(var(--shadow-color-rgb), 0.05);
+    padding: 20px;
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+}
+.daily-table-container h3, .daily-table-container h2 {
+    color: var(--card-title-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Table */
+.robuust-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text-color);
+    border-radius: 8px;
+    font-size: 0.95em;
+    overflow: hidden;
+}
+
+.robuust-table th, .robuust-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+}
+
+.robuust-table th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.robuust-table th:first-child,
+.robuust-table td:first-child {
+    white-space: nowrap;
+}
+
+/* Ensure price stays on one line */
+.robuust-table .column-price {
+    white-space: nowrap;
+}
+
+.robuust-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+.robuust-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Checkbox styling */
+.robuust-table input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--accent-color);
+}
+
+.robuust-table .action-button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .robuust-table .column-type,
+    .robuust-table .column-group,
+    .robuust-table .column-subgroup,
+    .robuust-table .column-department,
+    .robuust-table .column-partie,
+    .robuust-table .column-gang {
+        display: none;
+    }
+    .robuust-table th.column-type,
+    .robuust-table th.column-group,
+    .robuust-table th.column-subgroup,
+    .robuust-table th.column-department,
+    .robuust-table th.column-partie,
+    .robuust-table th.column-gang {
+        display: none;
+    }
+}

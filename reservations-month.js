@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
-
     const monthSelect = document.getElementById('monthSelect');
     const yearSelect = document.getElementById('yearSelect');
     const currentMonthYearElem = document.getElementById('currentMonthYear');
@@ -11,45 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const roomGuestList = document.getElementById('roomGuestList');
 
     let currentMonth, currentYear;
+        let currentDate = new Date(); // Start with today's date
 
-   // --- Dark Mode Logic (Consistent across pages) ---
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            body.classList.add('dark-mode');
-            if (darkModeButton) {
-                // Show sun icon for light mode (because clicking it will switch to light)
-                darkModeButton.innerHTML = '<i class="fas fa-sun"></i>';
-                darkModeButton.setAttribute('aria-label', 'Switch to Light Mode');
-            }
-        } else {
-            body.classList.remove('dark-mode');
-            if (darkModeButton) {
-                // Show moon icon for dark mode (because clicking it will switch to dark)
-                darkModeButton.innerHTML = '<i class="fas fa-moon"></i>';
-                darkModeButton.setAttribute('aria-label', 'Switch to Dark Mode');
-            }
-        }
-        localStorage.setItem('theme', theme);
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    } else {
-        applyTheme('dark'); // Default to dark mode if no preference
-    }
-
-    // Event listener for the new dark mode button
-    if (darkModeButton) {
-        darkModeButton.addEventListener('click', () => {
-            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            if (currentTheme === 'dark') {
-                applyTheme('light');
-            } else {
-                applyTheme('dark');
-            }
-        });
-    }
+    // Helper to format date as YYYY-MM-DD
+    function formatDate(date) {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }    
 
     // --- Calendar and Reservation Data Logic ---
 
@@ -253,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         monthSelect.value = currentMonth; // Update dropdown
         yearSelect.value = currentYear;   // Update dropdown
         renderCalendar();
-    });
+    });  
 
     // Initial load
     populateMonthYearSelectors();

@@ -1,295 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - 1892 Eten & Drinken</title>
     <link rel="stylesheet" href="products.css">
-        <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
 </head>
+
 <body>
-    <div class="page-wrapper">
-        <header class="main-header">
+    <div class="page-container">
+        <header class="page-header">
             <div class="header-left">
-                <span class="icon-products">&#127869; Produkten</span>
+                <i class="fas fa-dish"></i>
+                <span class="page-title">Producten</span>
             </div>
             <div class="header-center">
-                <h1>1892 Eten & Drinken</h1>
+                <h1>Restaurant Jorge Mendoza</h1>
             </div>
             <div class="header-right">
-                <button class="action-icon-button" id="headerButton1">
-                    <span class="icon">&#10003;</span>
-                </button>
-                <button class="action-icon-button" id="headerButton2">
-                    <span class="icon">&#9998;</span>
-                </button>
-                <button class="action-icon-button" id="headerButton3">
-                    <span class="icon">&#43;</span>
-                </button>
-                <span class="menu-icon">&#9776;</span>
+                <button class="header-icon-button primary-button" id="addBtn"><i class="fas fa-plus"></i></button>
+                <button class="header-icon-button"><i class="fas fa-a"></i></button>
+                <span id="menuToggle" class="menu-button"><i class="fas fa-bars"></i></span>
             </div>
         </header>
 
         <div class="top-controls">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="darkModeToggle">
-                    <input type="checkbox" id="darkModeToggle" />
-                    <span class="slider round"></span>
-                </label>
-                <em>Toggle Light/Dark Mode</em>
+            <div class="filter-group">
+                <select id="typeFilter" class="filter-select">
+                    <option value="">-- Selecteer Type --</option>
+                    <option value="gerecht">gerecht</option>
+                    <option value="drank">drank</option>
+                </select>
+                <select id="groupFilter" class="filter-select">
+                    <option value="">-- Selecteer Groep --</option>
+                    <option value="A la carte">A la carte</option>
+                    <option value="Voorgerecht">Voorgerecht</option>
+                    <option value="Hoofdgerecht">Hoofdgerecht</option>
+                </select>
+                <select id="departmentFilter" class="filter-select">
+                    <option value="">-- Selecteer Afdeling --</option>
+                    <option value="Keuken">Keuken</option>
+                    <option value="Bar">Bar</option>
+                </select>
+            </div>
+            <div class="search-group">
+                <input type="text" id="searchDish" class="filter-input search-input" placeholder="Zoek gerecht">
+                <i class="fas fa-search search-icon"></i>
             </div>
         </div>
 
-        <div class="filter-bar">
-            <select id="typeFilter" class="filter-dropdown">
-                <option value="">-- Selecteer Type --</option>
-                <option value="gerecht">gerecht</option>
-                <option value="drank">drank</option>
-            </select>
-            <select id="groupFilter" class="filter-dropdown">
-                <option value="">-- Selecteer Groep --</option>
-                <option value="A la carte">A la carte</option>
-                <option value="Voorgerecht">Voorgerecht</option>
-                <option value="Hoofdgerecht">Hoofdgerecht</option>
-            </select>
-            <select id="departmentFilter" class="filter-dropdown">
-                <option value="">-- Selecteer Afdeling --</option>
-                <option value="Keuken">Keuken</option>
-                <option value="Bar">Bar</option>
-            </select>
-            <input type="text" id="searchDish" class="search-input" placeholder="Zoek gerecht">
-        </div>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/robuust-logo.png" alt="Robuust Software Logo" class="sidebar-logo">
+                <button class="close-sidebar-button" id="closeSidebar">&times;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/robuust-demo/index" class="active"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="/robuust-demo/pos-flex"><i class="fas fa-cash-register"></i> Kassa</a></li>
+                    <li><a href="/robuust-demo/floormanager"><i class="fas fa-vector-square"></i> Floormanager</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Afdelingsschermen</a></li>
+                    <li>
+                        <a href="#" class="has-submenu"><i class="fas fa-chart-line"></i> Rapportages <i
+                                class="fas fa-chevron-down submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/robuust-demo/revenue"><i class="fas fa-book-open"></i> Omzetten</a></li>
+                            <li><a href="/robuust-demo/revenue-2"><i class="fas fa-book-open"></i> Omzetten 2</a></li>
+                            <li><a href="/robuust-demo/transactions"><i class="fas fa-cog"></i> Bonnen</a></li>
+                            <li><a href="/robuust-demo/stats"><i class="fas fa-cog"></i> Statistieken</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu"><i class="fas fa-utensils"></i> Keukenmanagement <i
+                                class="fas fa-chevron-down submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/robuust-demo/products"><i class="fas fa-book-open"></i> Producten</a></li>
+                            <li><a href="/robuust-demo/day-reports"><i class="fas fa-cog"></i> Dagrapportages</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu"><i class="fas fa-book-open"></i> Reserveringen <i
+                                class="fas fa-chevron-down submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/robuust-demo/reservations-month"><i class="fas fa-book-open"></i>
+                                    Reserveringen (maand)</a></li>
+                            <li><a href="/robuust-demo/reservations-day"><i class="fas fa-book-open"></i> Reserveringen
+                                    (slots)</a></li>
+                            <li><a href="/robuust-demo/reservations-stats"><i class="fas fa-chart-pie"></i>
+                                    Statistieken</a></li>
+                            <li><a href="/robuust-demo/guests"><i class="fas fa-users"></i> Gasten</a></li>
+                            <li><a href="/robuust-demo/reviews"><i class="fas fa-comments"></i> Reviews</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu"><i class="fas fa-user-friends"></i> Personeel <i
+                                class="fas fa-chevron-down submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/robuust-demo/schedule-month"><i class="fas fa-user-friends"></i> Rooster
+                                    (maand)</a></li>
+                            <li><a href="/robuust-demo/schedule-week"><i class="fas fa-user-friends"></i> Rooster
+                                    (week)</a></li>
+                            <li><a href="/robuust-demo/schedule-list"><i class="fas fa-user-friends"></i> Rooster (list
+                                    1)</a></li>
+                            <li><a href="/robuust-demo/schedule-list-2"><i class="fas fa-user-friends"></i> Rooster
+                                    (list 2)</a></li>
+                            <li><a href="/robuust-demo/schedule-week-2"><i class="fas fa-user-friends"></i>
+                                    Inroosteren</a></li>
+                            <li><a href="/robuust-demo/timekeeping"><i class="fas fa-comments"></i> Uren</a></li>
+                            <li><a href="/robuust-demo/timesheet-admin-period"><i class="fas fa-comments"></i> Uren
+                                    (admin periode)</a></li>
+                            <li><a href="/robuust-demo/timesheet-admin-coworker"><i class="fas fa-comments"></i> Uren
+                                    (admin user)</a></li>
+                            <li><a href="/robuust-demo/settings"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> Nieuwsbrieven</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu"><i class="fas fa-utensils"></i> Overig <i
+                                class="fas fa-chevron-down submenu-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/robuust-demo/dashboard-2"><i class="fas fa-book-open"></i> Alternatief
+                                    Dashboard</a></li>
+                            <li><a href="/robuust-demo/dashboard-charts"><i class="fas fa-cog"></i> Alternatief
+                                    Dashboard 2</a></li>
+                            <li><a href="/robuust-demo/pos-flex-4"><i class="fas fa-cog"></i> POS incl payment en
+                                    opties/extras</a></li>
+                            <li><a href="/robuust-demo/pos-flex-3"><i class="fas fa-cog"></i> POS incl opties/extras</a>
+                            </li>
+                            <li><a href="/robuust-demo/pos-flex-4"><i class="fas fa-cog"></i> POS default</a></li>
+                            <li><a href="/robuust-demo/pos-grid"><i class="fas fa-cog"></i> Alternatief POS</a></li>
+                            <li><a href="/robuust-demo/modals"><i class="fas fa-cog"></i> Modals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="restaurant-name">Restaurant Jorge Mendoza - demo</span>
+                    <span class="username">Wimpe Heaumeaux</span>
+                    <span class="version">Restaurant Jorge Mendoza - (v3...)</span>
+                </div>
+                <div class="logout-holder">
+                    <a href="#" class="logout-link"><i class="fas fa-sign-out-alt"></i>Uitloggen</a>
+                    <div class="mode-button-holder"><button id="darkModeButton" class="mode-button"
+                            aria-label="Toggle Dark Mode"><i class="fas fa-moon"></i></button></div>
+                </div>
+            </div>
+        </aside>
 
-        <div class="table-container">
-            <table class="products-table">
-                <thead>
-                    <tr>
-                        <th><input type="checkbox" id="selectAllDesktop"> Nr</th>
-                        <th>Naam</th>
-                        <th class="column-type">Type</th>
-                        <th class="column-group">Groep</th>
-                        <th class="column-subgroup">Subgroep</th>
-                        <th class="column-department">Afdeling</th>
-                        <th class="column-partie">Partie</th>
-                        <th class="column-gang">Gang</th>
-                        <th class="column-price">Prijs</th>
-                        <th></th> </tr>
-                </thead>
-                <tbody>
-                    <tr data-product-id="I-1" data-type="gerecht" data-group="Voorgerecht" data-department="Keuken">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-1</td>
-                        <td>Brood met smeersels</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">Voorgerecht</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Keuken</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 8,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr data-product-id="I-2" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-2</td>
-                        <td>Carpaccio</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 16,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-4" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-4</td>
-                        <td>Iberico ribfingers</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 18,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-6" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-6</td>
-                        <td>Diamantbaas Gegratineerd</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 16,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-7" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-7</td>
-                        <td>Torbedo Gamalen</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 14,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-9" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-9</td>
-                        <td>Zalm Gegratineerd</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 16,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-11" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-11</td>
-                        <td>Pokebowl vega</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 13,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-12" data-type="gerecht" data-group="A la carte" data-department="Voorgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-12</td>
-                        <td>Kaaskroketjes</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Voorgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 12,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-13" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-13</td>
-                        <td>Kip cashew</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Hoofdgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 25,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-17" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-17</td>
-                        <td>Vis van de dag</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Hoofdgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 25,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-18" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-18</td>
-                        <td>Grote Tijgergarnalen</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Hoofdgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 27,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr data-product-id="I-20" data-type="gerecht" data-group="A la carte" data-department="Hoofdgerecht">
-                        <td><input type="checkbox" class="product-checkbox-desktop"> I-20</td>
-                        <td>Gevulde Portobello</td>
-                        <td class="column-type">gerecht</td>
-                        <td class="column-group">A la carte</td>
-                        <td class="column-subgroup"></td>
-                        <td class="column-department">Hoofdgerecht</td>
-                        <td class="column-partie"></td>
-                        <td class="column-gang"></td>
-                        <td class="column-price">€ 17,50</td>
-                        <td>
-                            <button class="action-button">
-                                <span class="save-icon">&#x1F4BE;</span>
-                                <span class="drag-handle-icon">&#x2261;</span>
-                            </button>
-                        </td>
-                    </tr>
+        <div class="page-main-content">
+            <div class="table-container">
+                <table class="robuust-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAllDesktop"> Nr</th>
+                            <th>Naam</th>
+                            <th class="column-type">Type</th>
+                            <th class="column-group">Groep</th>
+                            <th class="column-subgroup">Subgroep</th>
+                            <th class="column-department">Afdeling</th>
+                            <th class="column-partie">Partie</th>
+                            <th class="column-gang">Gang</th>
+                            <th class="column-price">Prijs</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-product-id="I-1" data-type="gerecht" data-group="Voorgerecht" data-department="Keuken">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-1</td>
+                            <td>Brood met smeersels</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">Voorgerecht</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Keuken</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 8,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-2" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-2</td>
+                            <td>Carpaccio</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 16,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-4" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-4</td>
+                            <td>Iberico ribfingers</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 18,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-6" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-6</td>
+                            <td>Diamantbaas Gegratineerd</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 16,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-7" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-7</td>
+                            <td>Torbedo Gamalen</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 14,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-9" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-9</td>
+                            <td>Zalm Gegratineerd</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 16,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-11" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-11</td>
+                            <td>Pokebowl vega</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 13,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-12" data-type="gerecht" data-group="A la carte"
+                            data-department="Voorgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-12</td>
+                            <td>Kaaskroketjes</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Voorgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 12,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-13" data-type="gerecht" data-group="A la carte"
+                            data-department="Hoofdgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-13</td>
+                            <td>Kip cashew</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Hoofdgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 25,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-17" data-type="gerecht" data-group="A la carte"
+                            data-department="Hoofdgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-17</td>
+                            <td>Vis van de dag</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Hoofdgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 25,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-18" data-type="gerecht" data-group="A la carte"
+                            data-department="Hoofdgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-18</td>
+                            <td>Grote Tijgergarnalen</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Hoofdgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 27,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
+                        <tr data-product-id="I-20" data-type="gerecht" data-group="A la carte"
+                            data-department="Hoofdgerecht">
+                            <td><input type="checkbox" class="product-checkbox-desktop"> I-20</td>
+                            <td>Gevulde Portobello</td>
+                            <td class="column-type">gerecht</td>
+                            <td class="column-group">A la carte</td>
+                            <td class="column-subgroup"></td>
+                            <td class="column-department">Hoofdgerecht</td>
+                            <td class="column-partie"></td>
+                            <td class="column-gang"></td>
+                            <td class="column-price">€ 17,50</td>
+                            <td>
+                                <button class="action-button"><i class="fas fa-save"></i></button>
+                            </td>
+                        </tr>
                     </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="product-modal-overlay" id="newProductModal">
-        <div class="product-modal">
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="robuust-modal wide" id="robuustModal">
             <div class="modal-header">
                 <h2>New Product</h2>
-                <button class="modal-close-btn" id="modalCloseBtn">&#x2715;</button>
+                <button class="modal-close-btn fas fa-times" id="closeModalBtn"></button>
             </div>
             <div class="modal-tabs">
                 <button class="modal-tab-btn active" data-tab="main">Main</button>
@@ -303,7 +371,7 @@
             </div>
             <div class="modal-content">
                 <div class="modal-content-section active" id="main-tab">
-                    <div class="modal-grid-two-columns">
+                    <div class="form-grid">
                         <div class="form-group">
                             <label for="product-name">Product Name</label>
                             <input type="text" id="product-name" placeholder="Enter product name">
@@ -412,31 +480,33 @@
                             <label for="purchase-price">Purchase Price</label>
                             <input type="text" id="purchase-price" placeholder="€0.00">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Product Type <i class="fas fa-info-circle info-icon" title="Choose the type of product."></i></label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="product-type" value="standard" checked> Standard Product</label>
-                            <label><input type="radio" name="product-type" value="recipe"> Recipe</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <div class="rich-text-editor-placeholder">
-                            <div class="toolbar">
-                                <button><i class="fas fa-bold"></i></button>
-                                <button><i class="fas fa-italic"></i></button>
-                                <button><i class="fas fa-underline"></i></button>
-                                <button><i class="fas fa-list-ul"></i></button>
-                                <button><i class="fas fa-list-ol"></i></button>
-                                <select>
-                                    <option>Normal</option>
-                                    <option>Heading 1</option>
-                                </select>
+                        <div class="form-group full-width">
+                            <label>Product Type <i class="fas fa-info-circle info-icon"
+                                    title="Choose the type of product."></i></label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="product-type" value="standard" checked> Standard
+                                    Product</label>
+                                <label><input type="radio" name="product-type" value="recipe"> Recipe</label>
                             </div>
-                            <textarea id="description" placeholder="Enter product description here..."></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">Description</label>
+                            <div class="rich-text-editor-placeholder">
+                                <div class="toolbar">
+                                    <button><i class="fas fa-bold"></i></button>
+                                    <button><i class="fas fa-italic"></i></button>
+                                    <button><i class="fas fa-underline"></i></button>
+                                    <button><i class="fas fa-list-ul"></i></button>
+                                    <button><i class="fas fa-list-ol"></i></button>
+                                    <select>
+                                        <option>Normal</option>
+                                        <option>Heading 1</option>
+                                    </select>
+                                </div>
+                                <textarea id="description" placeholder="Enter product description here..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -450,7 +520,7 @@
                                     <th>Ingredient</th>
                                     <th>Quantity</th>
                                     <th>Unit</th>
-                                    <th>Actions</th>
+                                    <th class="actions-column">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -478,7 +548,7 @@
                 </div>
 
                 <div class="modal-content-section" id="options-tab">
-                    <div class="modal-two-column-grid">
+                    <div class="form-grid">
                         <div>
                             <h3>Options <button class="table-add-btn"><i class="fas fa-plus"></i></button></h3>
                             <div class="modal-table-container">
@@ -487,7 +557,7 @@
                                         <tr>
                                             <th>Option Name</th>
                                             <th>Price</th>
-                                            <th>Actions</th>
+                                            <th class="actions-column">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -519,7 +589,7 @@
                                         <tr>
                                             <th>Extra Name</th>
                                             <th>Price</th>
-                                            <th>Actions</th>
+                                            <th class="actions-column">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -547,24 +617,28 @@
                 </div>
 
                 <div class="modal-content-section" id="advanced-tab">
-                    <div class="form-group">
-                        <label for="product-code">Product Code</label>
-                        <input type="text" id="product-code" placeholder="Auto-generated or enter manually">
-                    </div>
-                    <div class="form-group">
-                        <label for="barcode">Barcode</label>
-                        <input type="text" id="barcode" placeholder="Scan or enter barcode">
-                    </div>
-                    <div class="form-group">
-                        <label>Availability</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="availability" value="online" checked> Available Online</label>
-                            <label><input type="checkbox" name="availability" value="instore"> Available In-Store</label>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="product-code">Product Code</label>
+                            <input type="text" id="product-code" placeholder="Auto-generated or enter manually">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Internal Notes</label>
-                        <textarea id="notes" placeholder="Add any internal notes about the product..."></textarea>
+                        <div class="form-group full-width">
+                            <label for="barcode">Barcode</label>
+                            <input type="text" id="barcode" placeholder="Scan or enter barcode">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Availability</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="availability" value="online" checked> Available
+                                    Online</label>
+                                <label><input type="checkbox" name="availability" value="instore"> Available
+                                    In-Store</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="notes">Internal Notes</label>
+                            <textarea id="notes" placeholder="Add any internal notes about the product..."></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -591,12 +665,16 @@
                 <div class="modal-navigation-buttons">
                     <button class="modal-action-btn nav-button"><i class="fas fa-chevron-left"></i></button>
                     <button class="modal-action-btn nav-button"><i class="fas fa-chevron-right"></i></button>
-                    <button class="modal-action-btn save-button-footer"><i class="fas fa-save"></i> Save Product</button>
+                    <button class="modal-action-btn save-button-footer"><i class="fas fa-save"></i> Save
+                        Product</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="products.js"></script>
+    <script src="menu.js"></script>
+    <script src="modal.js"></script>
 </body>
+
 </html>

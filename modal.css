@@ -1,0 +1,566 @@
+/* CSS Variables for Theme */
+:root {
+    --modal-bg: var(--card-bg);
+    --modal-border: var(--border-color);
+    --modal-header-bg: var(--table-header-bg);
+    --modal-text: var(--text-color);
+    --modal-input-bg: var(--input-bg);
+    --modal-input-border: var(--input-border);
+    --modal-tab-inactive-bg: transparent; /* Changed: Transparent for inactive tabs */
+    --modal-tab-active-bg: transparent; /* Changed: Transparent for active tabs */
+    --modal-tab-active-text: var(--accent-color); /* Changed: Accent color for active tab text */
+    --modal-tab-hover-bg: var(--header-button-hover-bg); /* Changed: Use header button hover */
+    --modal-button-bg: var(--header-button-bg); /* Changed: Use header button bg */
+    --modal-button-text: var(--header-button-text); /* Changed: Use header button text */
+    --modal-button-hover-bg: var(--header-button-hover-bg); /* New: For general modal buttons */
+    --modal-button-hover-text: var(--accent-color); /* New: For general modal buttons */
+    --modal-button-cancel-bg: var(--header-button-bg); /* Changed: Use header button bg */
+    --modal-button-cancel-hover-bg: var(--header-button-hover-bg); /* Changed: Use header button hover */
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --modal-bg: var(--card-bg);
+    --modal-border: var(--border-color);
+    --modal-header-bg: var(--table-header-bg);
+    --modal-text: var(--text-color);
+    --modal-input-bg: var(--input-bg);
+    --modal-input-border: var(--input-border);
+    --modal-tab-inactive-bg: transparent; /* Changed: Transparent for inactive tabs */
+    --modal-tab-active-bg: transparent; /* Changed: Transparent for active tabs */
+    --modal-tab-active-text: var(--accent-color); /* Changed: Accent color for active tab text */
+    --modal-tab-hover-bg: var(--header-button-hover-bg); /* Changed: Use header button hover */
+    --modal-button-bg: var(--header-button-bg); /* Changed: Use header button bg */
+    --modal-button-text: var(--header-button-text); /* Changed: Use header button text */
+    --modal-button-hover-bg: var(--header-button-hover-bg); /* New: For general modal buttons */
+    --modal-button-hover-text: var(--accent-color); /* New: For general modal buttons */
+    --modal-button-cancel-bg: var(--header-button-bg); /* Changed: Use header button bg */
+    --modal-button-cancel-hover-bg: var(--header-button-hover-bg); /* Changed: Use header button hover */
+}
+
+/* --- Reservation Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for modal */
+    z-index: 1000; /* Below modal, above main content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;   
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.robuust-modal {
+    background-color: var(--modal-bg);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(var(--shadow-color-rgb), 0.2);
+    color: var(--modal-text);    
+    width: 90%; /* Max width for general usage */
+    transform: translateY(20px); /* Start slightly below center */
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Max height to fit within viewport */
+    overflow: hidden; /* Hide overflowing content in modal */
+}
+
+.robuust-modal.wide {
+    max-width: 800px; /* Constrain width */
+}
+
+body.dark-mode .robuust-modal {
+    background-color: var(--dark-card-bg);
+    box-shadow: 0 5px 15px rgba(var(--dark-shadow-color-rgb), 0.4);
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.robuust-modal.visible {
+    transform: translateY(0); /* Slide into center */
+    opacity: 1;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--modal-header-bg);
+    border-bottom: 1px solid var(--modal-border);
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    font-size: 1.4em;
+    color: var(--modal-text);
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+body.dark-mode .modal-close-btn {
+    color: var(--dark-text-color);
+}
+
+.modal-close-btn:hover {
+    color: #f0f0f0;
+}
+
+.modal-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling for form content if it overflows */
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Reduced space between form groups for compactness */
+}
+
+
+
+/* Form Grid for Two-Column Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between grid items */
+    margin-bottom: 20px; /* Space below the grid */
+}
+
+/* Make full-width form groups span two columns */
+.form-group.full-width {
+    grid-column: 1 / -1; /* Span all columns */
+}
+
+.form-group {
+    margin-bottom: 0; /* Remove default margin as grid gap handles spacing */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 80px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px; /* Reduced margin for compactness */
+    color: var(--text-color);
+    font-size: 0.95em; /* Slightly smaller label font */
+}
+
+body.dark-mode .form-group label {
+    color: var(--dark-text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px; /* Reduced padding for compactness */
+    border: 1px solid var(--input-border);
+    border-radius: 4px; /* Slightly smaller border-radius */
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.9em; /* Smaller font size for inputs */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-input-border);
+    color: var(--dark-text-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.2);
+}
+
+/* Specific styling for number inputs' spin buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    flex-shrink: 0; /* Prevent actions from shrinking */
+}
+
+body.dark-mode .modal-actions {
+    background-color: var(--dark-card-bg);
+    border-top-color: var(--dark-border-color);
+}
+
+.modal-actions .right-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Modal Tabs Styling */
+.modal-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--modal-border);
+    padding: 0 20px;
+    flex-shrink: 0;
+}
+
+.modal-tab-btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--modal-tab-inactive-bg);
+    color: var(--text-color);
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-bottom 0.2s ease;
+    border-radius: 0;
+    margin-right: 0;
+    margin-bottom: -1px;
+    border-bottom: 3px solid transparent;
+}
+
+.modal-tab-btn i {
+    font-size: 1.2em; /* Icon size */
+}
+
+    .modal-tab-btn:hover:not(.active) {
+        background-color: var(--modal-tab-hover-bg);
+        color: var(--modal-button-hover-text);
+    }
+
+    .modal-tab-btn.active {
+        background-color: var(--modal-tab-active-bg);
+        color: var(--modal-tab-active-text);
+        font-weight: 600;
+        border-bottom: 3px solid var(--accent-color);
+    }
+
+/* Modal Content Wrapper - holds all tab sections */
+.modal-content-wrapper {
+    flex-grow: 1; /* Allows it to take up available space */
+    padding: 20px 25px;
+    overflow-y: auto; /* Enable scrolling for content if it overflows */
+    background-color: var(--bg-color); /* Background for the content area */
+    border-bottom: 1px solid var(--border-color); /* Separator above footer */
+}
+
+
+/* Individual Content Sections for Tabs */
+.modal-content-section {
+    display: none; /* Hidden by default */
+}
+
+.modal-content-section.active {
+    display: block; /* Show active section */
+}
+
+.modal-content-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--modal-text);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: var(--modal-header-bg);
+    border-top: 1px solid var(--modal-border);
+    flex-shrink: 0;
+}
+
+.modal-action-btn {
+    padding: 10px 18px;
+    height: 42px;
+    border: 1px solid var(--header-button-border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    background-color: var(--modal-button-bg);
+    color: var(--modal-button-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-action-btn.cancel-button {
+    background-color: var(--modal-button-cancel-bg);
+    color: var(--modal-button-text);
+}
+
+.modal-action-btn.cancel-button:hover {
+    background-color: var(--modal-button-cancel-hover-bg);
+    color: var(--modal-button-hover-text);
+    border-color: var(--modal-button-hover-text);
+}
+
+.modal-action-btn:not(.cancel-button):hover {
+    background-color: var(--modal-button-hover-bg);
+    color: var(--modal-button-hover-text);
+    border-color: var(--modal-button-hover-text);
+}
+
+.modal-action-btn.delete-button {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+    border-color: #dc3545;
+}
+
+.modal-action-btn.delete-button:hover {
+    background-color: #c82333;
+}
+
+
+.modal-action-btn.save-button {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.modal-action-btn.save-button:hover {
+    background-color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+}
+
+/* Rich Text Editor Placeholder */
+.rich-text-editor-placeholder {
+    border: 1px solid var(--modal-input-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--modal-input-bg);
+}
+
+.rich-text-editor-placeholder .toolbar {
+    background-color: var(--table-header-bg);
+    padding: 8px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border-bottom: 1px solid var(--modal-input-border);
+}
+
+.rich-text-editor-placeholder .toolbar button,
+.rich-text-editor-placeholder .toolbar select {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--modal-text);
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.rich-text-editor-placeholder .toolbar button:hover,
+.rich-text-editor-placeholder .toolbar select:hover {
+    background-color: var(--table-row-hover);
+    border-color: var(--accent-color);
+}
+.rich-text-editor-placeholder textarea {
+    border: none;
+    background: none;
+    border-radius: 0;
+    padding: 10px;
+    min-height: 120px;
+    color: var(--modal-text);
+}
+
+/* Modal Tables */
+.modal-table-container {
+    border: 1px solid var(--table-border);
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--modal-text);
+    font-size: 0.9em;
+}
+
+.modal-table th, .modal-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--table-border);
+}
+
+.modal-table th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.modal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modal-content-section .table-add-btn,
+.modal-content-section .table-edit-btn,
+.modal-content-section .table-delete-btn {
+    background: transparent;
+    border: transparent;
+    color: var(--header-button-text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+}
+
+.modal-content-section .table-add-btn { 
+    font-size: 1.2em;
+}
+.modal-table .table-add-btn:hover, .modal-table .table-edit-btn:hover, .modal-table .table-delete-btn:hover {
+    background-color: var(--header-button-hover-bg);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.actions-column {
+    text-align: right !important;
+    white-space: nowrap;
+}
+.actions-column button {
+    margin-left: 5px;
+}
+.modal-table th.actions-column {
+    padding-right: 30px;
+}
+
+
+/* Responsiveness for Modal (adjust existing media queries if needed) */
+@media (max-width: 768px) {
+    .robuust-modal {
+        width: 95%; /* Wider on smaller screens */
+        margin: 10px auto; /* Center with margin */
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+    }
+    .modal-header h2 {
+        font-size: 1.5em; /* Adjust font size */        
+    }
+    .modal-close-btn {
+        font-size: 1.1em; /* Adjusted for consistency */
+        width: 38px; /* Adjusted for consistency */
+        height: 38px; /* Adjusted for consistency */
+    }
+    
+    .modal-tabs {
+        /*flex-direction: column; /* Stack tabs vertically */
+        /*align-items: stretch; /* Make them full width */
+        padding: 0; /* No horizontal padding */
+        gap: 0; /* No gap when stacked */
+    }
+
+    .modal-tab-btn {
+        border-bottom: 1px solid var(--border-color); /* Separator between stacked tabs */
+        border-radius: 0; /* Remove rounded corners */
+        padding: 10px 15px; /* Adjust padding */
+        justify-content: center; /* Center content in stacked tabs */
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+    .form-group {
+        margin-bottom: 10px;
+    }
+    .radio-group, .checkbox-group {
+        flex-direction: column; /* Stack radio/checkbox items */
+        gap: 8px;
+    }
+    .modal-table th, .modal-table td {
+        padding: 8px 10px;
+    }    
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Single column layout on small screens */
+    }
+
+    .modal-footer {
+        flex-direction: column; /* Stack buttons in footer */
+        gap: 10px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-actions .action-button,
+    .modal-actions .right-actions {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column; /* Stack save/cancel buttons */
+    }    
+
+    .modal-action-btn {
+        width: 100%; /* Full width buttons */
+        justify-content: center; /* Center button text/icon */
+    }
+
+    .modal-navigation-buttons {
+        width: 100%;
+        justify-content: center; /* Center nav buttons */
+    }
+}
